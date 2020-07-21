@@ -1,5 +1,7 @@
+import uuid
+
 from commons.models import BaseModel
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, User
+from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -8,5 +10,8 @@ from django.utils.translation import gettext_lazy as _
 
 class User(BaseModel, AbstractBaseUser):
 
-    identification = models.UUIDField()
+    identification = models.UUIDField(default=uuid.uuid4, editable=False)
     password = models.CharField(_("password"), max_length=128, blank=True, null=True)
+
+    def get_username(self) -> str:
+        return str(self.identification)
