@@ -1,0 +1,18 @@
+[flake8]
+max-line-length = 80
+max-complexity = 12
+select = B, B9, C, E, F, N, W
+ignore =
+    # B902: https://tossteam.slack.com/archives/C629ALRFA/p1561988910050700
+    B902,
+    # E203: https://github.com/python/black/blob/19.3b0/README.md#slices
+    E203,
+    # E501: https://github.com/python/black/blob/19.3b0/README.md#line-length
+    E501,
+    B950,
+    # E722: https://github.com/PyCQA/flake8-bugbear/tree/19.3.0#list-of-warnings
+    E722,
+    # N805: https://tossteam.slack.com/archives/C629ALRFA/p1561988910050700
+    N805,
+    # W503: https://github.com/python/black/blob/19.3b0/README.md#line-breaks--binary-operators
+    W503
