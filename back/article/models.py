@@ -1,13 +1,13 @@
 import uuid
 from django.db import models
-from back.user.models import User
-from back.commons.models import BaseModel
+from user.models import User
+from commons.models import BaseModel
 from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-class article(BaseModel, AbstractBaseUser):
+class Article(BaseModel):
 
     identification = models.UUIDField(default=uuid.uuid4, editable=False)
     title = models.CharField(_("Title"), max_length=20, blank=False, null=False)
