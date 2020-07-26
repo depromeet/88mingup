@@ -19,7 +19,7 @@ services:
     depends_on:
       - db
     links:
-      - "db"
+      - db
     container_name: server
     environment:
       - DB_HOST=db
@@ -28,7 +28,7 @@ services:
       - "8000:8000"
     volumes:
       - ./pgdata:/pgdata
-    command: python manage.py runserver 0.0.0.0:8000
+    command: ./scripts/wait-for-it.sh db:5432 -- python manage.py runserver 0.0.0.0:8000
 
   migrate:
     image: app:latest
@@ -39,4 +39,4 @@ services:
       - DB_PORT=5432
     volumes:
       - ./pgdata:/pgdata
-    command: python manage.py migrate
+    command: ./scripts/wait-for-it.sh db:5432 -- python manage.py migrate
