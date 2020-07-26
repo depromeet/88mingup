@@ -17,6 +17,7 @@ pathspec==0.8.0
 pexpect==4.8.0
 pickleshare==0.7.5
 prompt-toolkit==3.0.5
+psycopg2==2.8.5
 ptpython==3.0.3
 ptyprocess==0.6.0
 Pygments==2.6.1
