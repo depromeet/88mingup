@@ -18,6 +18,7 @@ services:
     image: app:latest
     depends_on:
       - db
+      - migrate
     links:
       - db
     container_name: server
