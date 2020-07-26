@@ -6,8 +6,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/app
-COPY requirements.txt ./
-RUN pip install -r requirements.txt
 COPY . .
+RUN pip install -r requirements.txt
 
 EXPOSE 8000
