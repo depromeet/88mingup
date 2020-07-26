@@ -2,15 +2,15 @@ version: "3"
 
 services:
   db:
-    container_name: local_postgres_database
+    container_name: db
     image: postgres:10.9
     environment:
       - POSTGRES_USER=dpm123
       - POSTGRES_PASSWORD=dpm
       - POSTGRES_DB=warmingup
-      - POSTGRES_HOST=local_postgres
+      - POSTGRES_HOST=localhost
     ports:
-      - "${DB_PORT:-5432}:5432"
+      - "${DB_PORT:-4432}:5432"
     volumes:
       - ./pgdata:/var/lib/postgresql/data
 
@@ -23,6 +23,7 @@ services:
     container_name: server
     environment:
       - DB_HOST=db
+      - DB_PORT=5432
     ports:
       - "8000:8000"
     volumes:
@@ -35,6 +36,7 @@ services:
       - db
     environment:
       - DB_HOST=db
+      - DB_PORT=5432
     volumes:
       - ./pgdata:/pgdata
     command: python manage.py migrate
