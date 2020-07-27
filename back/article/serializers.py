@@ -1,8 +1,17 @@
 from rest_framework import serializers
-from .models import Article
+from .models import Article,Images
 from rest_framework.serializers import ModelSerializer
 
+class ImageSerializer(ModelSerializer):
+    class Meta:
+        model=Images
+        fields=[
+            'article',
+            'image',
+        ]
 class ArticleSerializer(ModelSerializer):
+    images_set=ImageSerializer(many=True,read_only=True)
+
     class Meta:
         model = Article
         fields=[
@@ -10,5 +19,6 @@ class ArticleSerializer(ModelSerializer):
             'content',
             'lat',
             'lng',
-            'writer'
+            'writer',
+            'images_set',
         ]
