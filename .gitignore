@@ -204,13 +204,13 @@ dmypy.json
 # pytype static type analyzer
 
 ### VisualStudioCode ###
-# .vscode
-# .vscode/*
-# !.vscode/settings.json
-# !.vscode/tasks.json
-# !.vscode/launch.json
-# !.vscode/extensions.json
-# *.code-workspace
+.vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
@@ -564,3 +564,5 @@ fabric.properties
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+pgdata/
