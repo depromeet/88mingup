@@ -18,6 +18,6 @@ class Article(BaseModel):
         return str(self.title)
 
 
-class Images(BaseModel):
+class MediaContent(BaseModel):
     article = models.ForeignKey(Article, on_delete=models.DO_NOTHING, null=False, blank=False)
-    image = models.ImageField(null=True, blank=True, upload_to='img')
+    file = models.FileField(null=True, blank=True, upload_to="file")

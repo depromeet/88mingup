@@ -10,11 +10,11 @@ class ArticleViewSet(ModelViewSet):
 
 
 article_list = ArticleViewSet.as_view({
-    'get': 'list',
-    'post': 'create',
+    "get": "list",
+    "post": "create",
 })
 
 article_detail = ArticleViewSet.as_view({
-    'get': 'retrieve',
-    'delete': 'destroy'
+    "get": "retrieve",
+    "delete": "destroy"
 })

@@ -6,8 +6,8 @@ class ImageSerializer(ModelSerializer):
     class Meta:
         model=Images
         fields=[
-            'article',
-            'image',
+            "article",
+            "image",
         ]
 class ArticleSerializer(ModelSerializer):
     images_set=ImageSerializer(many=True,read_only=True)
@@ -15,10 +15,10 @@ class ArticleSerializer(ModelSerializer):
     class Meta:
         model = Article
         fields=[
-            'title',
-            'content',
-            'lat',
-            'lng',
-            'writer',
-            'images_set',
+            "title",
+            "content",
+            "lat",
+            "lng",
+            "writer",
+            "images_set",
         ]
