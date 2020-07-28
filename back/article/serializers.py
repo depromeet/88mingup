@@ -1,13 +1,13 @@
 from rest_framework import serializers
-from .models import Article,Images
+from .models import Article,MediaContent
 from rest_framework.serializers import ModelSerializer
 
 class ImageSerializer(ModelSerializer):
     class Meta:
-        model=Images
+        model=MediaContent
         fields=[
             "article",
-            "image",
+            "file",
         ]
 class ArticleSerializer(ModelSerializer):
     images_set=ImageSerializer(many=True,read_only=True)
