@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Article,MediaContent
+from .models import Article, MediaContent
 from rest_framework.serializers import ModelSerializer
 
 class ImageSerializer(ModelSerializer):

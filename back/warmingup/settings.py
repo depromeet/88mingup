@@ -79,22 +79,17 @@ WSGI_APPLICATION = "warmingup.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": "warmingup",
-#         "USER": "dpm123",
-#         "PASSWORD": "dpm",
-#         "HOST": os.environ.get("DB_HOST", "localhost"),
-#         "PORT": os.environ.get("DB_PORT", "4432"),
-#     }
-# }
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "warmingup",
+        "USER": "dpm123",
+        "PASSWORD": "dpm",
+        "HOST": os.environ.get("DB_HOST", "localhost"),
+        "PORT": os.environ.get("DB_PORT", "4432"),
     }
 }
+
 
 
 # Password validation
