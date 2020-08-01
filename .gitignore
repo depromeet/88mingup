@@ -566,3 +566,6 @@ yarn-debug.log*
 yarn-error.log*
 
 pgdata/
+
+back/warmingup/settings/dev.py
+back/warmingup/settings/live.py
