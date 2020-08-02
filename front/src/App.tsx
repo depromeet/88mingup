@@ -1,3 +1,4 @@
+import { Card } from 'components';
 import { ConnectedRouter } from 'connected-react-router';
 import RootPage from 'pages/root';
 import React from 'react';
@@ -13,7 +14,13 @@ function App() {
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <RootPage>
-          <div>으아F</div>
+          <Card
+            url={
+              new URL(
+                'https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg',
+              )
+            }
+          />
         </RootPage>
       </ConnectedRouter>
     </Provider>
