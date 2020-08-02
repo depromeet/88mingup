@@ -567,5 +567,6 @@ yarn-error.log*
 
 pgdata/
 
+*.idea/**
 back/warmingup/settings/dev.py
 back/warmingup/settings/live.py
