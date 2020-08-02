@@ -1,8 +1,7 @@
 import './mypage.scss';
 
 import { User } from 'assets';
-import { Card } from 'components';
-import Header from 'components/header';
+import { Card, Header } from 'components';
 import React from 'react';
 
 const MyPage: React.FC = () => {
