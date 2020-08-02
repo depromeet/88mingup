@@ -10,7 +10,7 @@ const MyPage: React.FC = () => {
   // 텍스트도 되고 svg 파일도 되도록 구현
 
   return (
-    <React.Fragment>
+    <>
       <Header
         items={[
           {
@@ -48,7 +48,7 @@ const MyPage: React.FC = () => {
         <Card url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg" />
         <Card url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg" />
       </div>
-    </React.Fragment>
+    </>
   );
 };
 
