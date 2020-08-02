@@ -4,10 +4,10 @@ $space: 20px;
   scrollbar-width: none;
   margin-bottom: 0;
   padding-bottom: 0;
-}
 
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .list {
@@ -23,7 +23,13 @@ $space: 20px;
   padding-bottom: 0.75 * $space;
   margin-bottom: -0.25 * $space;
 
-  .list-item {
+  &::before,
+  &::after {
+    content: '';
+    width: 10px;
+  }
+
+  &-item {
     scroll-snap-align: center;
     padding: $space / 2 * 1.5;
     display: flex;
@@ -31,10 +37,4 @@ $space: 20px;
     justify-content: center;
     align-items: center;
   }
-}
-
-.list:before,
-.list:after {
-  content: '';
-  width: 10px;
 }

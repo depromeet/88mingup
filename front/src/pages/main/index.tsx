@@ -1,9 +1,12 @@
 import './main.scss';
 
 import { Card } from 'components';
+import { useScrollPosition } from 'hooks';
 import React from 'react';
 
 const MainPage: React.FC = (props) => {
+  const scrollPostion = useScrollPosition();
+
   return (
     <div className="list no-scrollbar">
       <Card
