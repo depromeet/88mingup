@@ -25,7 +25,7 @@ SECRET_KEY = "6&t*j^*8z2h0foos=^u7bohb(i8#t66upwg%u7s+l-#4jv)t@_"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # First-party
     "user",
     "article",
+    "health",
 ]
 
 MIDDLEWARE = [
@@ -75,24 +76,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "warmingup.wsgi.application"
 
-
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "warmingup",
-        "USER": "dpm123",
-        "PASSWORD": "dpm",
-        "HOST": os.environ.get("DB_HOST", "localhost"),
-        "PORT": os.environ.get("DB_PORT", "4432"),
-    }
-}
-
-
-
-# Password validation
+ Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -118,10 +102,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = "/static/"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+
+APPEND_SLASH = False
+TRIM_SLASH = True
