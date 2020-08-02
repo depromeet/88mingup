@@ -22,7 +22,7 @@ module.exports = {
     'simple-import-sort/sort': 'error',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
-    'react/prop-types': [2, { ignore: ['children'] }],
+    'react/prop-types': 0,
     '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
 };
