@@ -14,10 +14,3 @@ class ArticleViewSet(ModelViewSet):
 class MediaContentViewSet(ModelViewSet):
     queryset = MediaContent.objects.all()
     serializer_class = MediaContentSerializer
-
-
-article_list = ArticleViewSet.as_view({"get": "list", "post": "create",})
-
-article_detail = ArticleViewSet.as_view({"get": "retrieve", "delete": "destroy"})
-
-media_content_list = MediaContentViewSet.as_view({"get": "list", "post": "create"})
