@@ -2,7 +2,8 @@ import React from 'react';
 
 interface CardProps {
   style?: React.CSSProperties;
-  url?: URL;
+  url?: string | URL;
+  className?: string;
 }
 
 const defaultCardStyle: React.CSSProperties = {
@@ -14,9 +15,10 @@ const defaultCardStyle: React.CSSProperties = {
 };
 
 const Card: React.FC<CardProps> = (props) => {
-  const { children, style, url } = props;
+  const { children, style, url, className } = props;
   return (
     <div
+      className={className}
       style={{ ...defaultCardStyle, ...style, backgroundImage: `url(${url})` }}
     >
       {children}
