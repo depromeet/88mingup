@@ -1,4 +1,3 @@
-import uuid
 from os import path
 from uuid import uuid1
 
