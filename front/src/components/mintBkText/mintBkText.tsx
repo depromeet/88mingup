@@ -12,7 +12,7 @@ const backgroundStyle: React.CSSProperties = {
   fontSize: '13px',
   color: '#373cff',
   borderRadius: '8px',
-  fontStyle: 'blod',
+  fontStyle: 'bold',
 };
 
 const mintBkText: React.FC<mintBkTextProps> = (props) => {
