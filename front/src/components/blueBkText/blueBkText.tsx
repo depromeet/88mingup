@@ -11,6 +11,7 @@ const backgroundStyle: React.CSSProperties = {
   backgroundColor: '#373cff',
   fontSize: '13px',
   color: '#a5ffae',
+  borderRadius: '35px',
 };
 
 const blueBkText: React.FC<blukBkTextProps> = (props) => {
