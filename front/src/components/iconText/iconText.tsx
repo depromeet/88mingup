@@ -2,31 +2,32 @@ import React from 'react';
 
 interface iconTextProps {
   style?: React.CSSProperties;
-  url?: string | URL;
   className?: string;
+  icon:
+    | string
+    | React.ReactNode
+    | React.FunctionComponent<
+        React.SVGProps<SVGSVGElement> & {
+          title?: string | undefined;
+        }
+      >;
 }
 
 const containerStyle: React.CSSProperties = {
-  width: 168,
-  height: 168,
-};
-
-const icon: React.CSSProperties = {
-  width: 80,
-  height: 80,
+  height: '24px',
 };
 
 const text: React.CSSProperties = {
-  fontSize: 10,
-  marginLeft: 8,
-  color: 'white',
+  fontSize: '11px',
+  marginLeft: '2px',
+  textAlign: 'center',
 };
 
 const Card: React.FC<iconTextProps> = (props) => {
-  const { style, url, className } = props;
+  const { style, icon, className } = props;
   return (
     <div className={className} style={{ ...containerStyle, ...style }}>
-      <img style={{ ...icon, ...style }} />
+      <span style={{ ...style }}>{{ icon }}</span>
       <span style={{ ...text, ...style }}>1024</span>
     </div>
   );
