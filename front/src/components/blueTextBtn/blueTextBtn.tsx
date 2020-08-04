@@ -3,17 +3,17 @@ import React from 'react';
 interface btnProps {
   style?: React.CSSProperties;
   className?: string;
-  isActice?: Boolean;
+  isActive?: Boolean;
   text?: string | undefined;
   onClick?: () => void;
 }
 
 const blueTextBtn: React.FC<btnProps> = (props) => {
-  const { style, className, isActice, text, onClick } = props;
+  const { style, className, isActive, text, onClick } = props;
   return (
     <div
       className={className}
-      style={{ color: isActice ? '#373cff' : '#a1a1a1' }}
+      style={{ color: isActive ? '#373cff' : '#a1a1a1' }}
       onClick={onClick}
     >
       {text}
