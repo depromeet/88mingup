@@ -9,13 +9,11 @@ from user.models import User
 
 
 class Article(BaseModel):
-    title = models.CharField(_("Title"), max_length=20, blank=False, null=False)
-    description = models.TextField(blank=False, null=False)
-    lat = models.FloatField(null=False, blank=False)
-    lng = models.FloatField(null=False, blank=False)
-    writer = models.ForeignKey(
-        User, on_delete=models.DO_NOTHING, null=False, blank=False
-    )
+    title = models.CharField(_("Title"), max_length=20)
+    description = models.TextField()
+    lat = models.FloatField()
+    lng = models.FloatField()
+    writer = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     media_contents = models.ManyToManyField("MediaContent")
 
 
