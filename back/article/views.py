@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from .models import Article
-from .serializers import ArticleSerializer
+from rest_framework.generics import CreateAPIView
 from rest_framework.viewsets import ModelViewSet
+
+from .models import Article, MediaContent
+from .serializers import ArticleSerializer, MediaContentSerializer
 
 
 class ArticleViewSet(ModelViewSet):
@@ -9,12 +11,6 @@ class ArticleViewSet(ModelViewSet):
     serializer_class = ArticleSerializer
 
 
-article_list = ArticleViewSet.as_view({
-    "get": "list",
-    "post": "create",
-})
-
-article_detail = ArticleViewSet.as_view({
-    "get": "retrieve",
-    "delete": "destroy"
-})
+class MediaContentViewSet(ModelViewSet):
+    queryset = MediaContent.objects.all()
+    serializer_class = MediaContentSerializer

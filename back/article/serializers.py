@@ -1,24 +1,27 @@
 from rest_framework import serializers
-from .models import Article, MediaContent
 from rest_framework.serializers import ModelSerializer
 
-class ImageSerializer(ModelSerializer):
+from .models import Article, MediaContent
+
+
+class MediaContentSerializer(ModelSerializer):
     class Meta:
-        model=MediaContent
-        fields=[
-            "article",
+        model = MediaContent
+        fields = [
             "file",
         ]
+
+
 class ArticleSerializer(ModelSerializer):
-    images_set=ImageSerializer(many=True,read_only=True)
+    media_content_set = MediaContentSerializer(many=True, read_only=True)
 
     class Meta:
         model = Article
-        fields=[
+        fields = [
             "title",
-            "content",
+            "description",
             "lat",
             "lng",
             "writer",
-            "images_set",
+            "media_content_set",
         ]
