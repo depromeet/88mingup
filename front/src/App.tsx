@@ -1,6 +1,7 @@
 import { Card } from 'components';
 import { ConnectedRouter } from 'connected-react-router';
 import MainPage from 'pages/main';
+import MyPage from 'pages/mypage';
 import RootPage from 'pages/root';
 import React from 'react';
 import { Provider } from 'react-redux';
@@ -15,7 +16,7 @@ function App() {
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <RootPage>
-          <MainPage />
+          <MyPage />
         </RootPage>
       </ConnectedRouter>
     </Provider>
