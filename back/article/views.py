@@ -1,16 +1,22 @@
-from django.shortcuts import render
-from rest_framework.generics import CreateAPIView
-from rest_framework.viewsets import ModelViewSet
+from rest_framework import viewsets
 
 from .models import Article, MediaContent
-from .serializers import ArticleSerializer, MediaContentSerializer
+from .serializers import (
+    ArticleCreateSerializer,
+    ArticleSerializer,
+    MediaContentSerializer,
+)
 
 
-class ArticleViewSet(ModelViewSet):
+class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all()
-    serializer_class = ArticleSerializer
+
+    def get_serializer_class(self):
+        if self.action == "create":
+            return ArticleCreateSerializer
+        return ArticleSerializer
 
 
-class MediaContentViewSet(ModelViewSet):
+class MediaContentViewSet(viewsets.ModelViewSet):
     queryset = MediaContent.objects.all()
     serializer_class = MediaContentSerializer

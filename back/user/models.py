@@ -12,6 +12,9 @@ class User(BaseModel, AbstractBaseUser):
 
     kakao_id = models.IntegerField()
     name = models.CharField(max_length=128)
-    password = models.CharField(_("password"), max_length=128, blank=True, null=True)
+    password = models.CharField(max_length=128, blank=True, null=True)
 
     USERNAME_FIELD = "id"
+
+    def get_username(self) -> str:
+        return self.name

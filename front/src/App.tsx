@@ -20,7 +20,9 @@ function App() {
         <RootPage>
           <Auth
             onLoginSuccess={(resp) => {
-              axios.post('/api/v1/auth/login', { ...resp });
+              axios.post('/api/v1/auth/login', { ...resp }).then((res) => {
+                axios.get('/api/v1/articles');
+              });
             }}
           ></Auth>
         </RootPage>

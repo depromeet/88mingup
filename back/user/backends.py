@@ -16,7 +16,6 @@ class KakaoAuthentication(authentication.BaseAuthentication):
     def authenticate(self, request, **kwargs):
         UserModel = get_user_model()
 
-        profile = request.data["profile"]
         access_token = request.data["response"]["access_token"]
         refresh_token = request.data["response"]["refresh_token"]
         response = requests.get(
@@ -35,3 +34,6 @@ class KakaoAuthentication(authentication.BaseAuthentication):
             user = UserModel.objects.create(kakao_id=user_kakao_id)
 
         return user
+
+    def get_user(self, user_id):
+        return get_user_model().objects.get(id=user_id)

@@ -115,6 +115,7 @@ APPEND_SLASH = False
 TRIM_SLASH = True
 
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 
 
 AUTH_USER_MODEL = "user.User"
@@ -123,13 +124,3 @@ AUTH_USER_MODEL = "user.User"
 AUTHENTICATION_BACKENDS = [
     "user.backends.KakaoAuthentication",
 ]
-
-# 'DEFAULT_AUTHENTICATION_CLASSES': (
-#     'user.backends.KakaoAuthentication', # custom authentication class
-# ),
-
-REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.SessionAuthentication",
-    ),
-}
