@@ -7,7 +7,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { history } from 'store/rootReducer';
 
+import { AxiosInstance as axios } from 'apis';
 import configureStore, { RootState } from './store/configureStore';
+import Auth from 'pages/auth';
 
 function App() {
   const store = configureStore();
@@ -16,7 +18,11 @@ function App() {
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <RootPage>
-          <MyPage />
+          <Auth
+            onLoginSuccess={(resp) => {
+              axios.post('/api/v1/auth/login', { ...resp });
+            }}
+          ></Auth>
         </RootPage>
       </ConnectedRouter>
     </Provider>

@@ -10,8 +10,8 @@ from django.utils.translation import gettext_lazy as _
 
 class User(BaseModel, AbstractBaseUser):
 
-    identification = models.UUIDField(default=uuid.uuid4, editable=False)
+    kakao_id = models.IntegerField()
+    name = models.CharField(max_length=128)
     password = models.CharField(_("password"), max_length=128, blank=True, null=True)
 
-    def get_username(self) -> str:
-        return str(self.identification)
+    USERNAME_FIELD = "id"
