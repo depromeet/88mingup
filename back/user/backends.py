@@ -17,7 +17,6 @@ class KakaoAuthentication(authentication.BaseAuthentication):
         UserModel = get_user_model()
 
         access_token = request.data["response"]["access_token"]
-        refresh_token = request.data["response"]["refresh_token"]
         response = requests.get(
             "https://kapi.kakao.com/v1/user/access_token_info",
             headers={"Authorization": f"Bearer :{access_token}"},
@@ -28,12 +27,12 @@ class KakaoAuthentication(authentication.BaseAuthentication):
         if app_id != 466893:  # 상수
             raise Exception("인증 문제가 발생했습니다.")
 
-        try:
-            user = UserModel.objects.get(kakao_id=user_kakao_id)
-        except UserModel.DoesNotExist as e:
-            user = UserModel.objects.create(kakao_id=user_kakao_id)
-
+        user = UserModel.objects.get_or_create(kakao_id=user_kakao_id)
         return user
 
     def get_user(self, user_id):
-        return get_user_model().objects.get(id=user_id)
+        try:
+            user = get_user_model().objects.get(id=user_id)
+        except get_user_model().DoesNotExist:
+            user = None
+        return user
