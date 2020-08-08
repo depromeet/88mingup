@@ -8,31 +8,33 @@ const MainPage: React.FC = (props) => {
   const scrollPostion = useScrollPosition();
 
   return (
-    <div className="list no-scrollbar">
-      <Card
-        className="list-item"
-        url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg"
-      />
-      <Card
-        className="list-item"
-        url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg"
-      />
-      <Card
-        className="list-item"
-        url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg"
-      />
-      <Card
-        className="list-item"
-        url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg"
-      />
-      <Card
-        className="list-item"
-        url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg"
-      />
-      <Card
-        className="list-item"
-        url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg"
-      />
+    <div>
+      <div className="no-scrollbar list">
+        <Card
+          className="list-item"
+          url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg"
+        />
+        <Card
+          className="list-item"
+          url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg"
+        />
+        <Card
+          className="list-item"
+          url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg"
+        />
+        <Card
+          className="list-item"
+          url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg"
+        />
+        <Card
+          className="list-item"
+          url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg"
+        />
+        <Card
+          className="list-item"
+          url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg"
+        />
+      </div>
     </div>
   );
 };
