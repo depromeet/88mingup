@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-=======
-import uuid
->>>>>>> master
 from os import path
 from uuid import uuid1
-
 from commons.models import BaseModel
 from django.conf import settings
 from django.db import models
-from django.utils.translation import gettext_lazy as _
 from user.models import User
 
 

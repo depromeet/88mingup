@@ -8,10 +8,7 @@ class MediaContentSerializer(ModelSerializer):
     class Meta:
         model = MediaContent
         fields = [
-<<<<<<< HEAD
-=======
             "id",
->>>>>>> master
             "file",
         ]
 
