@@ -11,7 +11,6 @@ class ArticleViewSet(ModelViewSet):
 
     def get_queryset(self):
         qs=super().get_queryset()
-        order = self.request.query_params.get("order","")
         user_lat = self.request.query_params.get("user_lat","")
         user_lng = self.request.query_params.get("user_lng", "")
         user_position = (37.5, 126.6)  # (lat, lon)
