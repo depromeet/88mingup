@@ -17,6 +17,7 @@ const HeaderItemContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 64px;
 `;
 
 export function HeaderItem(props: Props) {

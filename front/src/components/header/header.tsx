@@ -9,7 +9,7 @@ interface Props {
 }
 
 const HeaderItemWrapper = styled.div`
-  min-width: 64px;
+  display: flex;
 `;
 
 const HeaderContainer = styled.div`

@@ -13,6 +13,20 @@ export function MainHeader() {
         align="start"
       />
       <Header.Item
+        icon={Logo}
+        onClick={() => {
+          window.alert('왼쪽 로고!');
+        }}
+        align="start"
+      />
+      <Header.Item
+        icon={Logo}
+        onClick={() => {
+          window.alert('왼쪽 로고!');
+        }}
+        align="start"
+      />
+      <Header.Item
         icon={User}
         onClick={() => {
           window.alert('오른쪽 유저!');
@@ -27,6 +41,20 @@ export function MainHeader() {
       >
         테스트랍니다
       </Header.Item>
+      <Header.Item
+        icon={User}
+        onClick={() => {
+          window.alert('오른쪽 유저!');
+        }}
+        align="end"
+      />
+      <Header.Item
+        icon={User}
+        onClick={() => {
+          window.alert('오른쪽 유저!');
+        }}
+        align="end"
+      />
     </Header>
   );
 }
