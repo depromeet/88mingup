@@ -14,7 +14,7 @@ class KakaoAuthentication(authentication.BaseAuthentication):
 
         access_token = request.data["response"]["access_token"]
         response = requests.get(
-            "https://kapi.kakao.com/v1/user/access_token_info",
+            Constants.KAKAO_API_HOST,
             headers={"Authorization": f"Bearer :{access_token}"},
         ).json()
 
