@@ -24,4 +24,5 @@ class ArticleSerializer(ModelSerializer):
             "lng",
             "writer",
             "media_content_set",
+            "popularity",
         ]
