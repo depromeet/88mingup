@@ -6,9 +6,10 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { history } from 'store/rootReducer';
 
-import configureStore, { RootState } from './store/configureStore';
+import configureStore from './store/configureStore';
 import { Switch, Route } from 'react-router-dom';
 import Auth from 'pages/auth';
+import MyPage from 'pages/mypage';
 
 function App() {
   const store = configureStore();
@@ -20,6 +21,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={MainPage} />
             <Route exact path="/login" component={Auth} />
+            <Route exact path="/mypage" component={MyPage} />
           </Switch>
         </RootPage>
       </ConnectedRouter>
