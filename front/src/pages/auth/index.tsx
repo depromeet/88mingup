@@ -8,7 +8,7 @@ interface Props {
 export default function Auth({ onLoginSuccess }: Props) {
   return (
     <KakaoLogin
-      jsKey={'91098a76bbe479fc20ebb633ff870b3f'}
+      jsKey={process.env.REACT_APP_KAKAO_AUTH_API_KEY as string}
       onSuccess={onLoginSuccess}
       onFailure={(result) => console.log(result)}
       getProfile={true}

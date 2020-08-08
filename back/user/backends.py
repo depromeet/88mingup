@@ -27,7 +27,7 @@ class KakaoAuthentication(authentication.BaseAuthentication):
         if app_id != 466893:  # 상수
             raise Exception("인증 문제가 발생했습니다.")
 
-        user = UserModel.objects.get_or_create(kakao_id=user_kakao_id)
+        user, _ = UserModel.objects.get_or_create(kakao_id=user_kakao_id)
         return user
 
     def get_user(self, user_id):
