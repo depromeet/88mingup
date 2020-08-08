@@ -6,15 +6,16 @@ from .serializers import ArticleSerializer, MediaContentSerializer
 from haversine import haversine
 from django_filters import rest_framework as filters
 from django_filters.rest_framework import DjangoFilterBackend
-# from .filters import ArticleFilter
+from .filters import ArticleFilter
+from rest_framework.filters import OrderingFilter
 
 
 class ArticleViewSet(ModelViewSet):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
-    filter_backends = (DjangoFilterBackend,)
-    filter_fields=('lat','lng')
-
+    filter_backends = (DjangoFilterBackend,OrderingFilter,)
+    filterset_class=ArticleFilter
+    ordering_fields=['lat','popularity','lng']
 
     # def get_queryset(self):
     #     print("test",self.request.query_params.get("user_lat",""))
