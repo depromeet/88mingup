@@ -115,3 +115,12 @@ APPEND_SLASH = False
 TRIM_SLASH = True
 
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+
+
+AUTH_USER_MODEL = "user.User"
+
+
+AUTHENTICATION_BACKENDS = [
+    "user.backends.KakaoAuthentication",
+]

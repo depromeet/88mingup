@@ -10,7 +10,6 @@ from user.models import User
 
 
 class Article(BaseModel):
-
     title = models.CharField(max_length=20)
     description = models.TextField()
     lat = models.FloatField()

@@ -19,6 +19,7 @@ class ArticleSerializer(ModelSerializer):
     class Meta:
         model = Article
         fields = [
+            "id",
             "title",
             "description",
             "lat",
@@ -30,11 +31,22 @@ class ArticleSerializer(ModelSerializer):
 
 class ArticleCreateSerializer(ModelSerializer):
 
-    file_ids = serializers.ListField(child=serializers.IntegerField())
+    file_ids = serializers.ListField(child=serializers.IntegerField(), write_only=True)
+    writer = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    media_contents = MediaContentSerializer(many=True, read_only=True)
 
     class Meta:
         model = Article
-        fields = ["title", "description", "lat", "lng", "file_ids"]
+        fields = [
+            "id",
+            "title",
+            "description",
+            "lat",
+            "lng",
+            "file_ids",
+            "writer",
+            "media_contents",
+        ]
 
     def create(self, validated_data):
         ids = validated_data.pop("file_ids")
