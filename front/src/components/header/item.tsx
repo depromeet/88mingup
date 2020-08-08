@@ -10,7 +10,7 @@ export interface Props {
   align: 'start' | 'middle' | 'end';
 }
 
-const HeaderItemDiv = styled.div`
+const HeaderItemContainer = styled.div`
   margin: auto;
   height: 100%;
   text-align: center;
@@ -21,7 +21,7 @@ const HeaderItemDiv = styled.div`
 
 export function HeaderItem(props: Props) {
   return (
-    <HeaderItemDiv>
+    <HeaderItemContainer>
       {props.icon &&
         jsx(props.icon, {
           css: {
@@ -37,6 +37,6 @@ export function HeaderItem(props: Props) {
       >
         {props.children}
       </span>
-    </HeaderItemDiv>
+    </HeaderItemContainer>
   );
 }

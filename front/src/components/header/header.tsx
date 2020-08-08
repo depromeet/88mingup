@@ -8,11 +8,11 @@ interface Props {
   children: ReactElement<HeaderItemProps>[];
 }
 
-const HeaderItemWrapperdiv = styled.div`
+const HeaderItemWrapper = styled.div`
   min-width: 64px;
 `;
 
-const HeaderDiv = styled.div`
+const HeaderContainer = styled.div`
   display: flex;
   max-height: 60px;
   height: 60px;
@@ -22,17 +22,17 @@ const HeaderDiv = styled.div`
 
 const Header = (props: Props) => {
   return (
-    <HeaderDiv>
-      <HeaderItemWrapperdiv>
+    <HeaderContainer>
+      <HeaderItemWrapper>
         {props.children.filter((child) => child.props.align === 'start')}
-      </HeaderItemWrapperdiv>
-      <HeaderItemWrapperdiv css={{ width: '100%' }}>
+      </HeaderItemWrapper>
+      <HeaderItemWrapper css={{ width: '100%' }}>
         {props.children.filter((child) => child.props.align === 'middle')}
-      </HeaderItemWrapperdiv>
-      <HeaderItemWrapperdiv>
+      </HeaderItemWrapper>
+      <HeaderItemWrapper>
         {props.children.filter((child) => child.props.align === 'end')}
-      </HeaderItemWrapperdiv>
-    </HeaderDiv>
+      </HeaderItemWrapper>
+    </HeaderContainer>
   );
 };
 
