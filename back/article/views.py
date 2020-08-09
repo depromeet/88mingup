@@ -1,20 +1,30 @@
-from django.shortcuts import render
-from .models import Article
-from .serializers import ArticleSerializer
-from rest_framework.viewsets import ModelViewSet
+from rest_framework import viewsets
+from rest_framework.permissions import AllowAny, IsAuthenticated
+
+from .models import Article, MediaContent
+from .serializers import (
+    ArticleCreateSerializer,
+    ArticleSerializer,
+    MediaContentSerializer,
+)
 
 
-class ArticleViewSet(ModelViewSet):
+class ArticleViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = Article.objects.all()
-    serializer_class = ArticleSerializer
+
+    def get_serializer_class(self):
+        if self.action == "create":
+            return ArticleCreateSerializer
+        return ArticleSerializer
+
+    def get_permissions(self):
+        permission_classes = [AllowAny]
+        if self.action == "create":
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]
 
 
-article_list = ArticleViewSet.as_view({
-    "get": "list",
-    "post": "create",
-})
-
-article_detail = ArticleViewSet.as_view({
-    "get": "retrieve",
-    "delete": "destroy"
-})
+class MediaContentViewSet(viewsets.ModelViewSet):
+    queryset = MediaContent.objects.all()
+    serializer_class = MediaContentSerializer

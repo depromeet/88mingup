@@ -13,3 +13,5 @@ DATABASES = {
         "PORT": os.environ.get("DB_PORT", "4432"),
     }
 }
+
+ENVIRONMENT = "LOCAL"
