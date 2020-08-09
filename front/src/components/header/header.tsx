@@ -1,82 +1,41 @@
-import React from 'react';
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+import styled from '@emotion/styled';
+import { HeaderItem, Props as HeaderItemProps } from './item';
+import { ReactElement } from 'react';
 
-interface HeaderProps {
-  items: HeaderItem[];
+interface Props {
+  children: ReactElement<HeaderItemProps>[];
 }
 
-interface HeaderItem {
-  icon:
-    | string
-    | React.ReactNode
-    | React.FunctionComponent<
-        React.SVGProps<SVGSVGElement> & {
-          title?: string | undefined;
-        }
-      >;
-  align: 'start' | 'middle' | 'end';
-  onClick?: () => void;
-}
+const HeaderItemWrapper = styled.div`
+  display: flex;
+`;
 
-const groupByAlign = (
-  items: HeaderItem[],
-): {
-  start: HeaderItem[];
-  middle: HeaderItem[];
-  end: HeaderItem[];
-} => {
-  const groupByAlignHeaderItem = {
-    start: [] as HeaderItem[],
-    middle: [] as HeaderItem[],
-    end: [] as HeaderItem[],
-  };
+const HeaderContainer = styled.div`
+  display: flex;
+  max-height: 60px;
+  height: 60px;
+  position: fixed;
+  width: 100%;
+`;
 
-  items.forEach((item) => groupByAlignHeaderItem[item.align].push(item));
-
-  return groupByAlignHeaderItem;
-};
-
-const renderHeaderItem = (item: HeaderItem, index: number) => {
+const Header = (props: Props) => {
   return (
-    <span
-      key={`${item.align}-${index}`}
-      onClick={item.onClick}
-      style={{ cursor: item.onClick ? 'pointer' : undefined }}
-    >
-      {item.icon}
-    </span>
+    <HeaderContainer>
+      <HeaderItemWrapper>
+        {props.children.filter((child) => child.props.align === 'start')}
+      </HeaderItemWrapper>
+      <HeaderItemWrapper css={{ width: '100%' }}>
+        {props.children.filter((child) => child.props.align === 'middle')}
+      </HeaderItemWrapper>
+      <HeaderItemWrapper>
+        {props.children.filter((child) => child.props.align === 'end')}
+      </HeaderItemWrapper>
+    </HeaderContainer>
   );
 };
 
-const Header: React.FC<HeaderProps> = (props) => {
-  const groupByHeaderItems = groupByAlign(props.items);
-
-  return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        height: 48,
-        padding: '0px 16px',
-      }}
-    >
-      <div>
-        {groupByHeaderItems['start'].map((item, index) =>
-          renderHeaderItem(item, index),
-        )}
-      </div>
-      <div>
-        {groupByHeaderItems['middle'].map((item, index) =>
-          renderHeaderItem(item, index),
-        )}
-      </div>
-      <div>
-        {groupByHeaderItems['end'].map((item, index) =>
-          renderHeaderItem(item, index),
-        )}
-      </div>
-    </div>
-  );
-};
+Header.Item = HeaderItem;
 
 export default Header;
