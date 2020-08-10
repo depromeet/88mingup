@@ -570,5 +570,5 @@ pgdata/
 *.idea/**
 back/warmingup/settings/dev.py
 back/warmingup/settings/live.py
-
+back/warmingup/settings/local.py
 front/.env

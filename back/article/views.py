@@ -1,5 +1,13 @@
+
+from rest_framework.viewsets import ModelViewSet
+from .models import Article, MediaContent
+from .serializers import ArticleSerializer, MediaContentSerializer
+from django_filters.rest_framework import DjangoFilterBackend
+from .filters import ArticleFilter
+from rest_framework.filters import OrderingFilter
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticated
+
 
 from .models import Article, MediaContent
 from .serializers import (
@@ -12,6 +20,10 @@ from .serializers import (
 class ArticleViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+    filter_backends = (DjangoFilterBackend,OrderingFilter,)
+    filterset_class = ArticleFilter
+    ordering_fields = ["lat","lng","popularity","created_at","updated_at"]
 
     def get_serializer_class(self):
         if self.action == "create":

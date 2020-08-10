@@ -1,6 +1,5 @@
 from article.views import ArticleViewSet, MediaContentViewSet
 from django.urls import path
-
 from . import views
 
 urlpatterns = [
