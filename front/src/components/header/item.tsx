@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 export interface Props {
   icon?: typeof ReactComponent;
   children?: string;
-  onClick: () => void;
+  onClick?: () => void;
   align: 'start' | 'middle' | 'end';
 }
 
@@ -26,13 +26,13 @@ export function HeaderItem(props: Props) {
       {props.icon &&
         jsx(props.icon, {
           css: {
-            cursor: 'pointer',
+            cursor: props.onClick ? 'pointer' : undefined,
           },
           onClick: props.onClick,
         })}
       <span
         css={{
-          cursor: 'pointer',
+          cursor: props.onClick ? 'pointer' : undefined,
         }}
         onClick={props.onClick}
       >
