@@ -7,14 +7,17 @@ from user.models import User
 
 
 class Article(BaseModel):
-
     title = models.CharField(max_length=20)
     description = models.TextField()
     lat = models.FloatField()
     lng = models.FloatField()
     writer = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     media_contents = models.ManyToManyField("MediaContent")
-    popularity=models.IntegerField(default=0)
+    #popularity=models.IntegerField(default=0)
+    like_users = models.ManyToManyField(
+        "User",
+        through="ArticleLike",
+    )
 
 def upload_to(instance, filename):
     _, ext = path.splitext(filename)
@@ -23,3 +26,7 @@ def upload_to(instance, filename):
 
 class MediaContent(BaseModel):
     file = models.FileField(null=False, blank=False, upload_to=upload_to)
+
+class ArticleLike(BaseModel):
+    article=models.ForeignKey(Article, on_delete=models.DO_NOTHING)
+    liker=models.ForeignKey(User, on_delete=models.DO_NOTHING)
