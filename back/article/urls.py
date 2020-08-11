@@ -1,4 +1,4 @@
-from article.views import ArticleViewSet, MediaContentViewSet
+from article.views import ArticleViewSet, MediaContentViewSet, ArticleLikeViewSet
 from django.urls import path
 from . import views
 
@@ -9,4 +9,5 @@ urlpatterns = [
         ArticleViewSet.as_view({"get": "retrieve", "delete": "destroy"}),
     ),
     path("files", MediaContentViewSet.as_view({"get": "list", "post": "create"})),
+    path("like", ArticleLikeViewSet.as_view({"get": "list", "post": "create"})),
 ]

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
-from .models import Article, MediaContent
+from .models import Article, MediaContent, ArticleLike
 
 
 class MediaContentSerializer(ModelSerializer):
@@ -57,3 +57,14 @@ class ArticleCreateSerializer(ModelSerializer):
         instance.media_contents.add(*contents)
 
         return instance
+
+
+class ArticleLikeSerializer(ModelSerializer):
+    class Meta:
+        model = ArticleLike
+        fields = [
+            "id",
+            "article",
+            "liker",
+        ]
+

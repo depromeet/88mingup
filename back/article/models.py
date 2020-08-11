@@ -16,7 +16,7 @@ class Article(BaseModel):
     like_users = models.ManyToManyField(
         User,
         through="ArticleLike",
-        related_name="likes",
+        related_name="like_users",
     )
 
 def upload_to(instance, filename):
@@ -26,6 +26,7 @@ def upload_to(instance, filename):
 
 class MediaContent(BaseModel):
     file = models.FileField(null=False, blank=False, upload_to=upload_to)
+
 
 class ArticleLike(BaseModel):
     article=models.ForeignKey(Article, on_delete=models.DO_NOTHING)

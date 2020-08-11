@@ -1,4 +1,4 @@
-
+from rest_framework.generics import get_object_or_404
 from rest_framework.viewsets import ModelViewSet
 from .models import Article, MediaContent
 from .serializers import ArticleSerializer, MediaContentSerializer
@@ -7,13 +7,15 @@ from .filters import ArticleFilter
 from rest_framework.filters import OrderingFilter
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from django.http import HttpResponse
 
 
-from .models import Article, MediaContent
+from .models import Article, MediaContent, ArticleLike
 from .serializers import (
     ArticleCreateSerializer,
     ArticleSerializer,
     MediaContentSerializer,
+    ArticleLikeSerializer,
 )
 
 
@@ -40,3 +42,21 @@ class ArticleViewSet(viewsets.ModelViewSet):
 class MediaContentViewSet(viewsets.ModelViewSet):
     queryset = MediaContent.objects.all()
     serializer_class = MediaContentSerializer
+
+
+class ArticleLikeViewSet(viewsets.ModelViewSet):
+    queryset = ArticleLike.objects.all()
+    serializer_class = ArticleLikeSerializer
+
+
+    def create(self,request):
+        article_id=request.POST['article']
+        user = request.POST['liker']
+        article = get_object_or_404(Article, pk=article_id)
+
+        if article.like_users.filter(id=user):
+            article.like_users.remove(user)
+        else:
+            article.like_users.add(user)
+
+        return HttpResponse(status=200)
