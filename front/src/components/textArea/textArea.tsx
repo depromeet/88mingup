@@ -18,13 +18,13 @@ const TextArea: React.FC<Props> = (props) => {
   };
 
   React.useEffect(() => {
-    setFormattedContent(content.trimEnd());
+    setFormattedContent(content);
   }, []);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', width: width }}>
       <div style={{ display: 'flex' }}>
-        <b style={{ fontWeight: 'bold' }}>{title}</b>
+        <b style={{ fontWeight: 'bold', marginBottom: 8 }}>{title}</b>
         <div style={{ marginLeft: 'auto' }}>
           <span style={{ color: '#373cff' }}>{content.length}</span>
           <span style={{ color: '#868686' }}>/{limit}</span>
@@ -34,8 +34,8 @@ const TextArea: React.FC<Props> = (props) => {
         {...props}
         style={{
           borderRadius: 8,
-          marginTop: 8,
           border: 'solid 1px #373cff',
+          padding: '10px 8px',
           ...props.style,
         }}
         onChange={(event) => setFormattedContent(event.target.value)}

@@ -1,6 +1,6 @@
 import './main.scss';
 
-import { Card, Header } from 'components';
+import { Card, Header, Input } from 'components';
 import { MainHeader } from 'components/header';
 import TextArea from 'components/textArea';
 import { useScrollPosition } from 'hooks';
@@ -39,6 +39,7 @@ const MainPage: React.FC = (props) => {
         />
       </div>
       <TextArea title="zz" />
+      <Input title="bb" />
     </div>
   );
 };
