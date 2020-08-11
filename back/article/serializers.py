@@ -47,7 +47,6 @@ class ArticleCreateSerializer(ModelSerializer):
             "file_ids",
             "writer",
             "media_contents",
-            "popularity",
         ]
 
     def create(self, validated_data):

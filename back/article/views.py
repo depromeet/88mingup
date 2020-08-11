@@ -23,7 +23,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
     serializer_class = ArticleSerializer
     filter_backends = (DjangoFilterBackend,OrderingFilter,)
     filterset_class = ArticleFilter
-    ordering_fields = ["lat","lng","popularity","created_at","updated_at"]
+    ordering_fields = ["lat","lng","created_at","updated_at"]
 
     def get_serializer_class(self):
         if self.action == "create":

@@ -13,10 +13,10 @@ class Article(BaseModel):
     lng = models.FloatField()
     writer = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     media_contents = models.ManyToManyField("MediaContent")
-    #popularity=models.IntegerField(default=0)
     like_users = models.ManyToManyField(
-        "User",
+        User,
         through="ArticleLike",
+        related_name="likes",
     )
 
 def upload_to(instance, filename):
