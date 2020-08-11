@@ -14,7 +14,7 @@ from .serializers import (
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
-    # permission_classes = [IsAuthenticated] TODO(clogic): 살려야함
+    permission_classes = [IsAuthenticated]
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     filter_backends = (
@@ -29,12 +29,11 @@ class ArticleViewSet(viewsets.ModelViewSet):
             return ArticleCreateSerializer
         return ArticleSerializer
 
-    # TODO(clogic): 살려야함
-    # def get_permissions(self):
-    #     permission_classes = [AllowAny]
-    #     if self.action == "create":
-    #         permission_classes = [IsAuthenticated]
-    #     return [permission() for permission in permission_classes]
+    def get_permissions(self):
+        permission_classes = [AllowAny]
+        if self.action == "create":
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]
 
 
 class MediaContentViewSet(viewsets.ModelViewSet):
