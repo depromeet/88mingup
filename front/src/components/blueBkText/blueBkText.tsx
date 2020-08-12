@@ -3,7 +3,6 @@ import React from 'react';
 interface blueBkTextProps {
   style?: React.CSSProperties;
   className?: string;
-  text?: string | undefined;
 }
 
 const backgroundStyle: React.CSSProperties = {
@@ -15,10 +14,10 @@ const backgroundStyle: React.CSSProperties = {
 };
 
 const blueBkText: React.FC<blueBkTextProps> = (props) => {
-  const { style, className, text } = props;
+  const { style, className, children } = props;
   return (
     <div className={className} style={{ ...backgroundStyle, ...style }}>
-      {text}
+      {children}
     </div>
   );
 };

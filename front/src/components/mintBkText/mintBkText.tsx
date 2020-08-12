@@ -3,7 +3,6 @@ import React from 'react';
 interface mintBkTextProps {
   style?: React.CSSProperties;
   className?: string;
-  text?: string | undefined;
 }
 
 const backgroundStyle: React.CSSProperties = {
@@ -16,10 +15,10 @@ const backgroundStyle: React.CSSProperties = {
 };
 
 const mintBkText: React.FC<mintBkTextProps> = (props) => {
-  const { style, className, text } = props;
+  const { style, className, children } = props;
   return (
     <div className={className} style={{ ...backgroundStyle, ...style }}>
-      {text}
+      {children}
     </div>
   );
 };
