@@ -19,3 +19,5 @@ const blueTextBtn: React.FC<btnProps> = (props) => {
     </div>
   );
 };
+
+export default blueTextBtn;
