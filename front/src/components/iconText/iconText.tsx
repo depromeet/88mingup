@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface iconTextProps {
+interface Props {
   style?: React.CSSProperties;
   className?: string;
   icon:
@@ -23,7 +23,7 @@ const text: React.CSSProperties = {
   textAlign: 'center',
 };
 
-const iconText: React.FC<iconTextProps> = (props) => {
+const IconText: React.FC<Props> = (props) => {
   const { style, icon, className } = props;
   return (
     <div className={className} style={{ ...containerStyle, ...style }}>
@@ -33,4 +33,4 @@ const iconText: React.FC<iconTextProps> = (props) => {
   );
 };
 
-export default iconText;
+export default IconText;

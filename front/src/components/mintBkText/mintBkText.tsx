@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface mintBkTextProps {
+interface Props {
   style?: React.CSSProperties;
   className?: string;
 }
@@ -14,7 +14,7 @@ const backgroundStyle: React.CSSProperties = {
   fontStyle: 'bold',
 };
 
-const mintBkText: React.FC<mintBkTextProps> = (props) => {
+const MintBkText: React.FC<Props> = (props) => {
   const { style, className, children } = props;
   return (
     <div className={className} style={{ ...backgroundStyle, ...style }}>
@@ -23,4 +23,4 @@ const mintBkText: React.FC<mintBkTextProps> = (props) => {
   );
 };
 
-export default mintBkText;
+export default MintBkText;
