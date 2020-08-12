@@ -7,3 +7,4 @@ export { default as Input } from './input';
 export { default as BlueBKText } from './blueBkText';
 export { default as BlueTextBtn } from './blueTextBtn';
 export { default as MinkBKText } from './mintBkText';
+export { default as GoogleMap } from './googleMap';
