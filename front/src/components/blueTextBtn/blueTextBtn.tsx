@@ -12,10 +12,12 @@ const blueTextBtn: React.FC<btnProps> = (props) => {
   return (
     <div
       className={className}
-      style={{ color: isActive ? '#373cff' : '#a1a1a1' }}
+      style={{ color: isActive ? '#373cff' : '#a1a1a1', ...style }}
       onClick={onClick}
     >
       {children}
     </div>
   );
 };
+
+export default blueTextBtn;
