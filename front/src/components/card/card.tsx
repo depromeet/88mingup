@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from '@emotion/styled';
 
 interface CardProps {
   style?: React.CSSProperties;
@@ -6,23 +7,23 @@ interface CardProps {
   className?: string;
 }
 
-const defaultCardStyle: React.CSSProperties = {
-  borderRadius: 16,
-  width: 168,
-  height: 168,
-  background: '#f2f2f2',
-  backgroundSize: 'cover',
-};
+const CardDiv = styled.div`
+  border-radius: 16px;
+  width: 168px;
+  height: 168px;
+  background: #f2f2f2;
+  background-size: cover;
+`;
 
 const Card: React.FC<CardProps> = (props) => {
   const { children, style, url, className } = props;
   return (
-    <div
+    <CardDiv
       className={className}
-      style={{ ...defaultCardStyle, ...style, backgroundImage: `url(${url})` }}
+      style={{ ...style, backgroundImage: `url(${url})` }}
     >
       {children}
-    </div>
+    </CardDiv>
   );
 };
 

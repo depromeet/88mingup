@@ -1,8 +1,10 @@
 import './mypage.scss';
 
-import { User } from 'assets';
+import { User, Logo } from 'assets';
 import { Card, Header } from 'components';
 import React from 'react';
+import { HeaderItem } from 'components/header/item';
+import { MainHeader } from 'components/header';
 
 const MyPage: React.FC = () => {
   const images = [];
@@ -11,31 +13,14 @@ const MyPage: React.FC = () => {
 
   return (
     <>
-      <Header
-        items={[
-          {
-            icon: <User />,
-            onClick: () => console.log('zzz'),
-            align: 'start',
-          },
-          {
-            icon: 'ㅇㅇz',
-            onClick: () => console.log('zzz'),
-            align: 'end',
-          },
-          {
-            icon: 'ㅇㅇss',
-            onClick: () => console.log('zzz'),
-            align: 'middle',
-          },
-        ]}
-      />
+      <MainHeader />
       <div
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
           gridGap: 8,
           padding: 16,
+          paddingTop: 60,
         }}
       >
         <Card url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg" />

@@ -45,7 +45,14 @@ INSTALLED_APPS = [
     "user",
     "article",
     "health",
+    "django_filters",
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_FILTER_BACKENDS": (
+        "django_filters.rest_framework.DjangoFilterBackend",
+    ),
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -77,6 +84,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "warmingup.wsgi.application"
+
+
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

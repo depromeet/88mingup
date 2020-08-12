@@ -20,7 +20,7 @@ class KakaoAuthentication(authentication.BaseAuthentication):
 
         user_kakao_id = response["id"]
         app_id = response["app_id"]
-        if app_id != Constants.KAKAO_APP_ID:  # 상수
+        if app_id != Constants.KAKAO_APP_ID:
             raise Exception("인증 문제가 발생했습니다.")
 
         user, _ = UserModel.objects.get_or_create(kakao_id=user_kakao_id)
