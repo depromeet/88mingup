@@ -23,7 +23,7 @@ const text: React.CSSProperties = {
   textAlign: 'center',
 };
 
-const Card: React.FC<iconTextProps> = (props) => {
+const iconText: React.FC<iconTextProps> = (props) => {
   const { style, icon, className } = props;
   return (
     <div className={className} style={{ ...containerStyle, ...style }}>
@@ -33,4 +33,4 @@ const Card: React.FC<iconTextProps> = (props) => {
   );
 };
 
-export default Card;
+export default iconText;
