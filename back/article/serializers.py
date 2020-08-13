@@ -35,7 +35,6 @@ class ArticleCreateSerializer(ModelSerializer):
     writer = serializers.HiddenField(default=serializers.CurrentUserDefault())
     media_contents = MediaContentSerializer(many=True, read_only=True)
 
-
     class Meta:
         model = Article
         fields = [

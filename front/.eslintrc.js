@@ -17,9 +17,8 @@ module.exports = {
     ecmaVersion: 11,
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint', 'simple-import-sort', 'react-hooks'],
+  plugins: ['react', '@typescript-eslint', 'react-hooks'],
   rules: {
-    'simple-import-sort/sort': 'error',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'react/prop-types': 0,
