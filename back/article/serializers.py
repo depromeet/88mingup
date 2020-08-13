@@ -22,7 +22,7 @@ class CommentSerializer(ModelSerializer):
             "content",
         ]
 
-class ArticleSerializer(ModelSerializer):
+class ArticleWithCommentSerializer(ModelSerializer):
     media_contents = MediaContentSerializer(many=True, read_only=True)
     comments = CommentSerializer(many=True, read_only=True)
 
@@ -37,6 +37,23 @@ class ArticleSerializer(ModelSerializer):
             "writer",
             "media_contents",
             "comments",
+        ]
+
+
+
+class ArticleSerializer(ModelSerializer):
+    media_contents = MediaContentSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Article
+        fields = [
+            "id",
+            "title",
+            "description",
+            "lat",
+            "lng",
+            "writer",
+            "media_contents",
         ]
 
 

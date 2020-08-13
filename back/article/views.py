@@ -13,6 +13,7 @@ from .serializers import (
     MediaContentSerializer,
     ArticleLikeSerializer,
     CommentSerializer,
+    ArticleWithCommentSerializer,
 )
 
 
@@ -30,8 +31,9 @@ class ArticleViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action == "create":
             return ArticleCreateSerializer
+        if self.action == "retrieve":
+            return ArticleWithCommentSerializer
         return ArticleSerializer
-
     def get_permissions(self):
         permission_classes = [AllowAny]
         if self.action == "create":
