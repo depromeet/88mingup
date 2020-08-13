@@ -50,7 +50,7 @@ class ArticleLikeViewSet(viewsets.ModelViewSet):
 
 
     def create(self,request):
-        article_id=request.POST['article']
+        article_id = request.POST['article']
         user = request.POST['liker']
         article = get_object_or_404(Article, pk=article_id)
 
