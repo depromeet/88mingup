@@ -13,6 +13,6 @@ export default function Auth() {
       }}
       onFailure={(result) => console.log(result)}
       getProfile={true}
-    ></KakaoLogin>
+    />
   );
 }
