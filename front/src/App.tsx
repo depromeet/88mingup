@@ -36,7 +36,7 @@ function App() {
                 />
               )}
             />
-            <Route exact path="/mypage" component={MyPage} />
+            <Route exact path="/:id" component={MyPage} />
           </Switch>
         </RootPage>
       </ConnectedRouter>

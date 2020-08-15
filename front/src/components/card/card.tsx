@@ -9,7 +9,7 @@ interface CardProps {
 
 const CardDiv = styled.div`
   border-radius: 16px;
-  width: 168px;
+  width: 100%;
   height: 168px;
   background: #f2f2f2;
   background-size: cover;
