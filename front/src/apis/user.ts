@@ -1,13 +1,13 @@
 import { AxiosInstance } from 'apis';
 import { UserStateProps } from 'store/user/reducer';
 
-interface UserDao {
+interface UserDto {
   name: string;
   profile_url: string;
 }
 
 export const getProfile = () =>
-  AxiosInstance.get<UserDao>('/api/v1/auth/profile').then(
+  AxiosInstance.get<UserDto>('/api/v1/auth/profile').then(
     (res): Omit<UserStateProps, 'authenticated'> => {
       return { name: res.data.name, profileUrl: res.data.profile_url };
     },

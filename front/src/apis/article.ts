@@ -2,23 +2,23 @@ import { AxiosInstance } from 'apis';
 import { UserStateProps } from 'store/user/reducer';
 import { ArticleEntityStateProps } from 'store/article/reducer';
 
-interface ArticleDao {
+interface ArticleDto {
   id: number;
   title: string;
   description: string;
   lat: number;
   lng: number;
   writer: UserStateProps;
-  media_contents: ArticleFileDao[];
+  media_contents: ArticleFileDto[];
 }
 
-interface ArticleFileDao {
+interface ArticleFileDto {
   id: number;
   url: string;
 }
 
 export const getArticles = () =>
-  AxiosInstance.get<ArticleDao[]>('/api/v1/articles').then(
+  AxiosInstance.get<ArticleDto[]>('/api/v1/articles').then(
     (res): ArticleEntityStateProps[] => {
       return res.data.map((dao) => {
         return {
