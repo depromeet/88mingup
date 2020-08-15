@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface blueBkTextProps {
+interface Props {
   style?: React.CSSProperties;
   className?: string;
 }
@@ -13,7 +13,7 @@ const backgroundStyle: React.CSSProperties = {
   borderRadius: '35px',
 };
 
-const blueBkText: React.FC<blueBkTextProps> = (props) => {
+const BlueBkText: React.FC<Props> = (props) => {
   const { style, className, children } = props;
   return (
     <div className={className} style={{ ...backgroundStyle, ...style }}>
@@ -22,4 +22,4 @@ const blueBkText: React.FC<blueBkTextProps> = (props) => {
   );
 };
 
-export default blueBkText;
+export default BlueBkText;

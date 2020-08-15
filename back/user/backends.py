@@ -12,9 +12,12 @@ class KakaoAuthentication(authentication.BaseAuthentication):
     def authenticate(self, request, **kwargs):
         UserModel = get_user_model()
 
-        access_token = request.data["response"]["access_token"]
+        if "response" not in request.data:
+            access_token = request.data["access_token"]
+        else:
+            access_token = request.data["response"]["access_token"]
         response = requests.get(
-            Constants.KAKAO_API_HOST,
+            f"{Constants.KAKAO_API_HOST}/v1/user/access_token_info",
             headers={"Authorization": f"Bearer :{access_token}"},
         ).json()
 
@@ -23,7 +26,20 @@ class KakaoAuthentication(authentication.BaseAuthentication):
         if app_id != Constants.KAKAO_APP_ID:
             raise Exception("인증 문제가 발생했습니다.")
 
-        user, _ = UserModel.objects.get_or_create(kakao_id=user_kakao_id)
+        response = requests.get(
+            f"{Constants.KAKAO_API_HOST}/v2/user/me",
+            headers={"Authorization": f"Bearer :{access_token}"},
+        ).json()
+
+        user, _ = UserModel.objects.get_or_create(
+            kakao_id=user_kakao_id,
+            defaults={
+                "name": response["kakao_account"]["profile"]["nickname"],
+                "profile_url": response["kakao_account"]["profile"].get(
+                    "profile_image_url"
+                ),
+            },
+        )
         return user
 
     def get_user(self, user_id):

@@ -1,0 +1,26 @@
+{% extends "drf-yasg/swagger-ui.html" %}
+{% load static %}
+{% load auth %}
+
+{% block extra_scripts %}
+    <script src="{% static 'rest_framework/js/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'js/kakao.js' %}"></script>
+    <script src="{% static 'js/core.js' %}"></script>
+
+    <script>
+        Kakao.init('91098a76bbe479fc20ebb633ff870b3f');
+    </script>
+{% endblock %}
+
+
+{% block session_auth_button %}
+    {% csrf_token %}
+
+    {% if request.user.is_authenticated %}
+        <div class='authorize'>
+            {% optional_logout request user %}
+        </div>
+    {% else %}
+        {% optional_login request %}
+    {% endif %}
+{% endblock %}

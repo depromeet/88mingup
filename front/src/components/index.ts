@@ -8,3 +8,4 @@ export { default as BlueBKText } from './blueBkText';
 export { default as BlueTextBtn } from './blueTextBtn';
 export { default as MinkBKText } from './mintBkText';
 export { default as Avatar } from './avatar';
+export { default as GoogleMap } from './googleMap';

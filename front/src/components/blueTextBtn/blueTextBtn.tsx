@@ -1,13 +1,13 @@
 import React from 'react';
 
-interface btnProps {
+interface Props {
   style?: React.CSSProperties;
   className?: string;
   isActive?: Boolean;
   onClick?: () => void;
 }
 
-const blueTextBtn: React.FC<btnProps> = (props) => {
+const BlueTextBtn: React.FC<Props> = (props) => {
   const { style, className, isActive, children, onClick } = props;
   return (
     <div
@@ -20,4 +20,4 @@ const blueTextBtn: React.FC<btnProps> = (props) => {
   );
 };
 
-export default blueTextBtn;
+export default BlueTextBtn;
