@@ -39,7 +39,7 @@ const MyPage: React.FC = () => {
         </Header>
 
         <div style={{ margin: '0 auto', textAlign: 'center' }}>
-          <Avatar />
+          <Avatar src={user.profileUrl} />
           <div
             style={{
               color: '#a5ffae',
@@ -48,10 +48,10 @@ const MyPage: React.FC = () => {
               marginTop: 16,
             }}
           >
-            금나와라뚝딱
+            {user.name}
           </div>
           <div style={{ fontSize: 14, color: '#e0e0e0', marginTop: 8 }}>
-            서울시 00구 00동{' '}
+            서울시 00구 00동
           </div>
         </div>
       </div>
