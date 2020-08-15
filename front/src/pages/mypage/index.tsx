@@ -1,15 +1,29 @@
 import './mypage.scss';
 
-import { BackIcon, RecordIcon } from 'assets';
-import { Card, Header, Avatar } from 'components';
-import React from 'react';
+import Auth from 'pages/auth';
+import { UserActionTypes } from 'store/user/action';
+import { useDispatch, useSelector } from 'react-redux';
+import { UserStateProps } from 'store/user/reducer';
+import { RootState } from 'store/configureStore';
+import React, { useEffect } from 'react';
+import { Header, Card } from 'components';
 import { HeaderItem } from 'components/header/item';
+import { BackIcon, RecordIcon } from 'assets';
+import Avatar from 'components/avatar';
 
 const MyPage: React.FC = () => {
-
   // 텍스트도 되고 svg 파일도 되도록 구현
 
-  return (
+  const user: UserStateProps = useSelector<RootState, UserStateProps>(
+    (state) => state.user,
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: UserActionTypes.REFRESH_PROFILE });
+  }, [dispatch]);
+
+  return user.authenticated ? (
     <>
       <div
         style={{
@@ -101,6 +115,8 @@ const MyPage: React.FC = () => {
         <Card url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg" />
       </div>
     </>
+  ) : (
+    <Auth />
   );
 };
 
