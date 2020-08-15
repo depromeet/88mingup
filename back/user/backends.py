@@ -12,7 +12,10 @@ class KakaoAuthentication(authentication.BaseAuthentication):
     def authenticate(self, request, **kwargs):
         UserModel = get_user_model()
 
-        access_token = request.data["response"]["access_token"]
+        if "response" not in request.data:
+            access_token = request.data["access_token"]
+        else:
+            access_token = request.data["response"]["access_token"]
         response = requests.get(
             f"{Constants.KAKAO_API_HOST}/v1/user/access_token_info",
             headers={"Authorization": f"Bearer :{access_token}"},
