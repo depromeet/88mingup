@@ -30,6 +30,10 @@ class LogoutView(APIView):
 
 
 class AuthenticatedCheckAPI(APIView):
+    """
+    자신의 프로필을 조회하는 API입니다
+    """
+
     def get(self, request):
         user = request.user
         if not user:
