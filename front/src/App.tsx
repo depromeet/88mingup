@@ -21,23 +21,7 @@ function App() {
         <RootPage>
           <Switch>
             <Route exact path="/" component={MainPage} />
-            <Route
-              exact
-              path="/login"
-              component={() => (
-                <Auth
-                  onLoginSuccess={(resp) => {
-                    axios
-                      .post('/api/v1/auth/login', {
-                        ...resp,
-                      })
-                      .then((res) => {
-                        axios.get('/api/v1/articles');
-                      });
-                  }}
-                />
-              )}
-            />
+
             <Route exact path="/mypage" component={MyPage} />
           </Switch>
         </RootPage>
