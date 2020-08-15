@@ -12,6 +12,6 @@ export default function Auth({ onLoginSuccess }: Props) {
       onSuccess={onLoginSuccess}
       onFailure={(result) => console.log(result)}
       getProfile={true}
-    ></KakaoLogin>
+    />
   );
 }

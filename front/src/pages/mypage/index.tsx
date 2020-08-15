@@ -1,13 +1,11 @@
 import './mypage.scss';
 
-import { User, Logo, BackIcon, RecordIcon } from 'assets';
-import { Card, Header, Avatar, MinkBKText } from 'components';
+import { BackIcon, RecordIcon } from 'assets';
+import { Card, Header, Avatar } from 'components';
 import React from 'react';
 import { HeaderItem } from 'components/header/item';
-import { MainHeader } from 'components/header';
 
 const MyPage: React.FC = () => {
-  const images = [];
 
   // 텍스트도 되고 svg 파일도 되도록 구현
 

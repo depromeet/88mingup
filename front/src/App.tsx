@@ -11,6 +11,7 @@ import configureStore from './store/configureStore';
 import { Switch, Route } from 'react-router-dom';
 import Auth from 'pages/auth';
 import MyPage from 'pages/mypage';
+import LoginPage from 'pages/login';
 
 function App() {
   const store = configureStore();
@@ -21,21 +22,7 @@ function App() {
         <RootPage>
           <Switch>
             <Route exact path="/" component={MainPage} />
-            <Route
-              exact
-              path="/login"
-              component={() => (
-                <Auth
-                  onLoginSuccess={(resp) => {
-                    axios
-                      .post('/api/v1/auth/login', { ...resp })
-                      .then((res) => {
-                        axios.get('/api/v1/articles');
-                      });
-                  }}
-                />
-              )}
-            />
+            <Route exact path="/login" component={LoginPage} />
             <Route exact path="/:id" component={MyPage} />
           </Switch>
         </RootPage>
@@ -45,3 +32,21 @@ function App() {
 }
 
 export default App;
+
+{
+  /* <Route
+exact
+path="/login"
+component={() => (
+  <Auth
+    onLoginSuccess={(resp) => {
+      axios
+        .post('/api/v1/auth/login', { ...resp })
+        .then((res) => {
+          axios.get('/api/v1/articles');
+        });
+    }}
+  />
+)}
+/> */
+}
