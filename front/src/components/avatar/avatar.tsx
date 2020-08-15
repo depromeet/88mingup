@@ -19,7 +19,7 @@ const Avatar: React.FC<Props> = (props) => {
         backgroundColor: '#e9e9e9',
         width: props.size || 64,
         height: props.size || 64,
-        objectFit: 'contain',
+        objectFit: 'cover',
       }}
       src={props.src || DefaultProfileIcon}
     />
