@@ -1,9 +1,6 @@
 import './mypage.scss';
 
-import { User, Logo } from 'assets';
-import { Card, Header } from 'components';
 import React, { useEffect } from 'react';
-import { HeaderItem } from 'components/header/item';
 import { MainHeader } from 'components/header';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'store/configureStore';
@@ -12,8 +9,6 @@ import { UserActionTypes } from 'store/user/action';
 import Auth from 'pages/auth';
 
 const MyPage: React.FC = () => {
-  const images = [];
-
   // 텍스트도 되고 svg 파일도 되도록 구현
 
   const user: UserStateProps = useSelector<RootState, UserStateProps>(
@@ -23,7 +18,7 @@ const MyPage: React.FC = () => {
 
   useEffect(() => {
     dispatch({ type: UserActionTypes.REFRESH_PROFILE });
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

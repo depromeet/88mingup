@@ -1,14 +1,11 @@
 import './main.scss';
 
-import { Card, Header, Input, GoogleMap } from 'components';
+import { Card, Input, GoogleMap } from 'components';
 import { MainHeader } from 'components/header';
 import TextArea from 'components/textArea';
-import { useScrollPosition } from 'hooks';
 import React from 'react';
 
 const MainPage: React.FC = (props) => {
-  const scrollPostion = useScrollPosition();
-
   return (
     <div>
       <MainHeader />
@@ -40,7 +37,7 @@ const MainPage: React.FC = (props) => {
       </div>
       <TextArea title="zz" />
       <Input title="bb" />
-      <GoogleMap/>
+      <GoogleMap />
     </div>
   );
 };
