@@ -6,7 +6,6 @@ import { UserStateProps } from './reducer';
 export function* currentUserProfile() {
   try {
     const profile: UserStateProps = yield call(getProfile);
-    console.log(profile);
     yield put({
       type: UserActionTypes.SET_PROFILE,
       payload: {
@@ -15,7 +14,6 @@ export function* currentUserProfile() {
       },
     });
   } catch (err) {
-    console.log(err);
     yield put({
       type: UserActionTypes.SET_PROFILE,
       payload: {
