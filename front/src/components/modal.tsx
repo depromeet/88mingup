@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { ModalActionCreators } from 'store/modal/action';
 import { ModalProps } from 'store/modal/reducer';

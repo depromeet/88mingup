@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { UserActionTypes, UserActionCreators } from './action';
+import { UserActionCreators } from './action';
 
 export interface UserStateProps {
   name: string;

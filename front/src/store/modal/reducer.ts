@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { ModalActionCreators, ModalActionTypes } from './action';
+import { ModalActionCreators } from './action';
 
 export interface ModalProps {
   visible: boolean;
