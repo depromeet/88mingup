@@ -1,5 +1,6 @@
 import { AxiosInstance } from 'apis';
 import { UserStateProps } from 'store/user/reducer';
+import { ArticleEntityStateProps } from 'store/article/reducer';
 
 interface ArticleDao {
   id: number;
@@ -17,16 +18,18 @@ interface ArticleFileDao {
 }
 
 export const getArticles = () =>
-  AxiosInstance.get<ArticleDao[]>('/api/v1/articles').then((res) => {
-    return res.data.map((dao) => {
-      return {
-        id: dao.id,
-        title: dao.title,
-        description: dao.description,
-        lat: dao.lat,
-        lng: dao.lng,
-        writer: dao.writer,
-        files: dao.media_contents,
-      };
-    });
-  });
+  AxiosInstance.get<ArticleDao[]>('/api/v1/articles').then(
+    (res): ArticleEntityStateProps[] => {
+      return res.data.map((dao) => {
+        return {
+          id: dao.id,
+          title: dao.title,
+          description: dao.description,
+          lat: dao.lat,
+          lng: dao.lng,
+          writer: dao.writer,
+          files: dao.media_contents,
+        };
+      });
+    },
+  );
