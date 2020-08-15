@@ -1,12 +1,6 @@
-import requests
-from commons.constants import Constants
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import redirect, render
-from django.urls import reverse
-from django.views.generic.base import TemplateResponseMixin
-from rest_framework import generics, response
-from rest_framework.exceptions import ValidationError
-from rest_framework.renderers import TemplateHTMLRenderer
+from django.shortcuts import redirect
+from rest_framework import response
 from rest_framework.views import APIView
 from user.serializers import UserSerializer
 
