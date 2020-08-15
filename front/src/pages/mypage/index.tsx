@@ -16,9 +16,9 @@ const MyPage: React.FC = () => {
 
   // 텍스트도 되고 svg 파일도 되도록 구현
 
-  const user: UserStateProps = useSelector<RootState>(
+  const user: UserStateProps = useSelector<RootState, UserStateProps>(
     (state) => state.user,
-  ) as UserStateProps;
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
