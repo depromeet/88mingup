@@ -1,5 +1,4 @@
 import { AxiosInstance } from 'apis';
-import Axios from 'axios';
 
 export const getProfile = () =>
   AxiosInstance.get<{
