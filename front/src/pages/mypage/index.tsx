@@ -10,6 +10,7 @@ import { Header, Card } from 'components';
 import { HeaderItem } from 'components/header/item';
 import { BackIcon, RecordIcon } from 'assets';
 import Avatar from 'components/avatar';
+import { history } from 'store/rootReducer';
 
 const MyPage: React.FC = () => {
   // 텍스트도 되고 svg 파일도 되도록 구현
@@ -34,7 +35,13 @@ const MyPage: React.FC = () => {
         }}
       >
         <Header>
-          <HeaderItem icon={BackIcon} align="start" />
+          <HeaderItem
+            icon={BackIcon}
+            align="start"
+            onClick={() =>
+              history.length > 0 ? history.goBack() : history.push('/')
+            }
+          />
           <HeaderItem icon={RecordIcon} align="end" />
         </Header>
 

@@ -3,13 +3,13 @@ import Header from './header';
 import { Logo, User } from 'assets';
 import { history } from 'store/rootReducer';
 
-export function MainHeader() {
+export const MainHeader = () => {
   return (
     <Header>
       <Header.Item
         icon={Logo}
         onClick={() => {
-          window.alert('왼쪽 로고!');
+          history.push('/');
         }}
         align="start"
       />
@@ -32,6 +32,6 @@ export function MainHeader() {
       />
     </Header>
   );
-}
+};
 
 export { default } from './header';
