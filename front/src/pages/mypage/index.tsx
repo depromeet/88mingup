@@ -11,6 +11,7 @@ import { HeaderItem } from 'components/header/item';
 import { BackIcon, RecordIcon } from 'assets';
 import Avatar from 'components/avatar';
 import { history } from 'store/rootReducer';
+import LoginPage from 'pages/login';
 
 const MyPage: React.FC = () => {
   // 텍스트도 되고 svg 파일도 되도록 구현
@@ -123,7 +124,7 @@ const MyPage: React.FC = () => {
       </div>
     </>
   ) : (
-    <Auth />
+    <LoginPage />
   );
 };
 

@@ -2,10 +2,9 @@ import React from 'react';
 import { Logo, LoginLogo } from 'assets';
 import KakaoLogin from 'react-kakao-login';
 import { useDispatch } from 'react-redux';
-import { UserActionTypes } from 'store/user/action';
+import { UserActionTypes, UserActionCreators } from 'store/user/action';
 
 const LoginPage: React.FC = (props) => {
-  const dispatch = useDispatch();
   return (
     <div
       style={{
@@ -44,29 +43,24 @@ const LoginPage: React.FC = (props) => {
 
       <KakaoLogin
         jsKey={process.env.REACT_APP_KAKAO_AUTH_API_KEY as string}
-        onSuccess={(resp) =>
-          dispatch({ type: UserActionTypes.LOGIN, pay: resp })
-        }
+        onSuccess={(resp) => UserActionCreators.login(resp.response)}
         onFailure={(result) => console.log(result)}
         getProfile={true}
-        render={(props) => {
-          console.log(props);
-          return (
-            <div
-              style={{
-                margin: '126px auto',
-                borderRadius: 24,
-                backgroundColor: '#ffffff',
-                padding: '8px',
-                display: 'flex',
-                width: 280,
-              }}
-              onClick={() => props.onClick()}
-            >
-              <span>카카오톡으로 시작하기</span>
-            </div>
-          );
-        }}
+        render={(props) => (
+          <div
+            style={{
+              margin: '126px auto',
+              borderRadius: 24,
+              backgroundColor: '#ffffff',
+              padding: '8px',
+              display: 'flex',
+              width: 280,
+            }}
+            onClick={() => props.onClick()}
+          >
+            <span>카카오톡으로 시작하기</span>
+          </div>
+        )}
       />
     </div>
   );
