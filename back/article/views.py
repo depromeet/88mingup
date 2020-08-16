@@ -1,21 +1,19 @@
 from rest_framework.generics import get_object_or_404
-from rest_framework.viewsets import ModelViewSet
-from .models import Article, MediaContent
-from .serializers import ArticleSerializer, MediaContentSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework.filters import OrderingFilter
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.http import HttpResponse
-from .models import Article, MediaContent, ArticleLike
+from .models import Article, MediaContent, ArticleLike, Comment
 from rest_framework.viewsets import ModelViewSet
 from .filters import ArticleFilter
-from .models import Article, MediaContent
 from .serializers import (
     ArticleCreateSerializer,
     ArticleSerializer,
     MediaContentSerializer,
     ArticleLikeSerializer,
+    CommentSerializer,
+    ArticleWithCommentSerializer,
 )
 
 
@@ -33,8 +31,9 @@ class ArticleViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action == "create":
             return ArticleCreateSerializer
+        if self.action == "retrieve":
+            return ArticleWithCommentSerializer
         return ArticleSerializer
-
     def get_permissions(self):
         permission_classes = [AllowAny]
         if self.action == "create":
@@ -51,7 +50,6 @@ class ArticleLikeViewSet(viewsets.ModelViewSet):
     queryset = ArticleLike.objects.all()
     serializer_class = ArticleLikeSerializer
 
-
     def create(self,request):
         article_id = request.POST['article']
         user = request.POST['liker']
@@ -63,3 +61,8 @@ class ArticleLikeViewSet(viewsets.ModelViewSet):
             article.like_users.add(user)
 
         return HttpResponse(status=200)
+
+
+class CommentViewSet(viewsets.ModelViewSet):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer

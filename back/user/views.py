@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.views.generic.base import TemplateResponseMixin
-from rest_framework import response
+from rest_framework import generics, response
 from rest_framework.exceptions import ValidationError
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.views import APIView
@@ -14,5 +14,6 @@ class LoginView(APIView):
         user = authenticate(request)
         if user and user.is_active:
             login(request, user)
-            return response.Response(status=200)
+            serializer = UserSerializer(instance=user)
+            return response.Response(data=serializer.data, status=200)
         return response.Response(status=400)
