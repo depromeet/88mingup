@@ -1,8 +1,17 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
+import { useLocation } from 'hooks/useLocation';
+import { useEffect } from 'react';
 
 export const TopSheet = () => {
+  const [location, error] = useLocation();
+
+  useEffect(() => {
+    console.log(location);
+    console.log(error);
+  }, [location]);
+
   return (
     <div
       css={css`
