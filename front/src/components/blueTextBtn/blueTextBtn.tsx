@@ -16,8 +16,8 @@ const BlueTextBtn: React.FC<Props> = (props) => {
 
 const BlueButton = styled.button`
   height: 40px;
+  border-style: none;
   border-radius: 35px;
-  border-color: #373cff;
   background-color: #373cff;
   font-size: 13px;
   color: white;
