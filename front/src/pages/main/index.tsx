@@ -6,6 +6,7 @@ import TextArea from 'components/textArea';
 import React from 'react';
 import { Discover } from './discover';
 import styled from '@emotion/styled';
+import { TopSheet } from './topsheet';
 
 const MainPage: React.FC = (props) => {
   return (
@@ -13,6 +14,7 @@ const MainPage: React.FC = (props) => {
       <MainHeader />
 
       <RootLayout>
+        <TopSheet />
         <Discover />
       </RootLayout>
 
