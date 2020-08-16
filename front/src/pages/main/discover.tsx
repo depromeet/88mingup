@@ -10,6 +10,7 @@ import {
 } from 'store/article/action';
 import { ArticleStateProps } from 'store/article/reducer';
 import { RootState } from 'store/configureStore';
+import { ArticleShortcut } from 'components/article/shortcut';
 
 export const Discover = () => {
   const dispatch = useDispatch();
@@ -32,13 +33,14 @@ export const Discover = () => {
           grid-gap: 8px;
           grid-auto-flow: column;
           grid-auto-columns: minmax(min-content, max-content);
+          margin-bottom: 16px;
         `}
       >
         <BlueTextBtn>거리순</BlueTextBtn>
         <BlueTextBtn>최신순</BlueTextBtn>
       </div>
       {articleState.all.map((article) => (
-        <div>{article.title}</div>
+        <ArticleShortcut key={article.id} {...article}></ArticleShortcut>
       ))}
     </div>
   );
