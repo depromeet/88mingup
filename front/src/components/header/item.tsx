@@ -2,10 +2,11 @@
 import { jsx } from '@emotion/core';
 import { ReactComponent } from '*.svg';
 import styled from '@emotion/styled';
+import { ReactElement } from 'react';
 
 export interface Props {
   icon?: typeof ReactComponent;
-  children?: string;
+  children?: string | ReactElement;
   onClick?: () => void;
   align: 'start' | 'middle' | 'end';
 }

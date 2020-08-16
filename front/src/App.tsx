@@ -9,6 +9,7 @@ import configureStore from './store/configureStore';
 import { Switch, Route } from 'react-router-dom';
 import MyPage from 'pages/mypage';
 import LoginPage from 'pages/login';
+import ArticleDetailPage from 'pages/article-detail';
 
 function App() {
   const store = configureStore();
@@ -21,6 +22,7 @@ function App() {
             <Route exact path="/" component={MainPage} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/:id" component={MyPage} />
+            <Route exact path="/articles/:id" component={ArticleDetailPage} />
           </Switch>
         </RootPage>
       </ConnectedRouter>
