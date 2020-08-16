@@ -30,8 +30,9 @@ const Input: React.FC<Props> = (props) => {
         }}
       >
         <input
+          {...props}
           style={{
-            width: '100%',
+            flex: 1,
             border: 'none',
             outline: 'none',
           }}

@@ -116,7 +116,24 @@ const ArticleDetailPage: React.FC = (props) => {
         }}
       >
         <Avatar size={40} />
-        <Input placeholder="댓글 달기" style={{ marginLeft: 16 }} />
+        <Input
+          placeholder="댓글 달기"
+          style={{ marginLeft: 16 }}
+          onKeyPress={(e) => {
+            console.log('e', e.key);
+            if (e.key === 'Enter') {
+              console.log('와우F');
+            }
+          }}
+          suffix={
+            <div
+              style={{ marginLeft: 16, color: '#373cff', cursor: 'pointer' }}
+              onClick={() => console.log('dada')}
+            >
+              게시
+            </div>
+          }
+        />
       </div>
     </div>
   );
