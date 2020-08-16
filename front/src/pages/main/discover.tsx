@@ -4,7 +4,10 @@ import { BlueTextBtn } from 'components';
 import styled from '@emotion/styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { ArticleActionTypes } from 'store/article/action';
+import {
+  ArticleActionTypes,
+  ArticleActionCreators,
+} from 'store/article/action';
 import { ArticleStateProps } from 'store/article/reducer';
 import { RootState } from 'store/configureStore';
 
@@ -17,7 +20,7 @@ export const Discover = () => {
   >((state) => state.article);
 
   useEffect(() => {
-    dispatch({ type: ArticleActionTypes.FETCH_ALL });
+    dispatch(ArticleActionCreators.fetch_all());
   }, []);
 
   return (

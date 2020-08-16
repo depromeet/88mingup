@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { UserActionTypes, UserActionCreators } from 'store/user/action';
 
 const LoginPage: React.FC = (props) => {
+  const dispatch = useDispatch();
   return (
     <div
       style={{
@@ -43,7 +44,7 @@ const LoginPage: React.FC = (props) => {
 
       <KakaoLogin
         jsKey={process.env.REACT_APP_KAKAO_AUTH_API_KEY as string}
-        onSuccess={(resp) => UserActionCreators.login(resp.response)}
+        onSuccess={(resp) => dispatch(UserActionCreators.login(resp))}
         onFailure={(result) => console.log(result)}
         getProfile={true}
         render={(props) => (

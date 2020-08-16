@@ -10,5 +10,5 @@ export const ArticleActionTypes = {
 
 export const ArticleActionCreators = {
   refresh: createAction<ArticleStateProps>(ArticleActionTypes.REFRESH),
-  fetch_all: createAction<ArticleStateProps>(ArticleActionTypes.FETCH_ALL),
+  fetch_all: createAction(ArticleActionTypes.FETCH_ALL),
 };

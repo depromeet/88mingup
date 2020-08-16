@@ -1,7 +1,7 @@
 import './mypage.scss';
 
 import Auth from 'pages/auth';
-import { UserActionTypes } from 'store/user/action';
+import { UserActionTypes, UserActionCreators } from 'store/user/action';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserStateProps } from 'store/user/reducer';
 import { RootState } from 'store/configureStore';
@@ -22,7 +22,7 @@ const MyPage: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: UserActionTypes.REFRESH_PROFILE });
+    dispatch(UserActionCreators.refreshProfile());
   }, [dispatch]);
 
   return user.authenticated ? (
