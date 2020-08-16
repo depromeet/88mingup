@@ -4,6 +4,8 @@ import { combineReducers } from 'redux';
 
 import loadingReducer from './loading/reducer';
 import modalReducer from './modal/reducer';
+import { userReducer } from './user/reducer';
+import { articleReducer } from './article/reducer';
 
 export const history = createBrowserHistory();
 
@@ -11,4 +13,6 @@ export default combineReducers({
   loading: loadingReducer,
   modal: modalReducer,
   router: connectRouter(history),
+  user: userReducer,
+  article: articleReducer,
 });

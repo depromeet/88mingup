@@ -16,7 +16,6 @@ const HeaderContainer = styled.div`
   display: flex;
   max-height: 60px;
   height: 60px;
-  position: fixed;
   width: 100%;
 `;
 

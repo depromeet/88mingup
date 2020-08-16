@@ -1,4 +1,7 @@
+/** @jsx jsx */
 import React from 'react';
+import { jsx } from '@emotion/core';
+import styled from '@emotion/styled';
 
 interface Props {
   style?: React.CSSProperties;
@@ -8,16 +11,17 @@ interface Props {
 }
 
 const BlueTextBtn: React.FC<Props> = (props) => {
-  const { style, className, isActive, children, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ color: isActive ? '#373cff' : '#a1a1a1', ...style }}
-      onClick={onClick}
-    >
-      {children}
-    </div>
-  );
+  return <BlueButton {...props}>{props.children}</BlueButton>;
 };
+
+const BlueButton = styled.button`
+  height: 40px;
+  border-radius: 35px;
+  border-color: #373cff;
+  background-color: #373cff;
+  font-size: 13px;
+  color: white;
+  padding: 9px 24px;
+`;
 
 export default BlueTextBtn;
