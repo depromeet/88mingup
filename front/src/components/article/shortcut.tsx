@@ -2,6 +2,7 @@
 import { jsx, css } from '@emotion/core';
 import { ArticleEntityStateProps } from 'store/article/reducer';
 import styled from '@emotion/styled';
+import { HeartIcon, CommentIcon } from 'assets';
 
 interface Props extends ArticleEntityStateProps {}
 
@@ -24,14 +25,28 @@ export const ArticleShortcut = (props: Props) => {
         <div
           css={css`
             display: flex;
+            align-items: start;
             margin-top: 16px;
             justify-content: space-between;
           `}
         >
           <Title>{props.title}</Title>
-          <div>
-            <SubTitle>1023</SubTitle>
-            <SubTitle>1023</SubTitle>
+          <div
+            css={css`
+              display: grid;
+              grid-auto-flow: column;
+              align-items: center;
+              grid-gap: 6px;
+            `}
+          >
+            <SubTittleWrapper>
+              <HeartIcon />
+              <SubTitle>1023</SubTitle>
+            </SubTittleWrapper>
+            <SubTittleWrapper>
+              <CommentIcon />
+              <SubTitle>1023</SubTitle>
+            </SubTittleWrapper>
           </div>
         </div>
         <TimeAgo>3시간 전</TimeAgo>
@@ -44,6 +59,11 @@ export const ArticleShortcut = (props: Props) => {
 const Title = styled.span`
   font-size: 18px;
   color: black;
+`;
+
+const SubTittleWrapper = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const SubTitle = styled.span`
