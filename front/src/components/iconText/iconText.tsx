@@ -1,16 +1,10 @@
 import React from 'react';
+import { ReactComponent } from '*.svg';
 
 interface Props {
   style?: React.CSSProperties;
   className?: string;
-  icon:
-    | string
-    | React.ReactNode
-    | React.FunctionComponent<
-        React.SVGProps<SVGSVGElement> & {
-          title?: string | undefined;
-        }
-      >;
+  icon: string | React.ReactNode | typeof ReactComponent;
 }
 
 const containerStyle: React.CSSProperties = {
@@ -24,11 +18,19 @@ const text: React.CSSProperties = {
 };
 
 const IconText: React.FC<Props> = (props) => {
-  const { style, icon, className } = props;
+  const { style, icon, className, children } = props;
   return (
-    <div className={className} style={{ ...containerStyle, ...style }}>
-      <span style={{ ...style }}>{{ icon }}</span>
-      <span style={{ ...text, ...style }}>1024</span>
+    <div
+      className={className}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        ...containerStyle,
+        ...style,
+      }}
+    >
+      <span>{icon}</span>
+      <span style={{ ...text }}>{children}</span>
     </div>
   );
 };
