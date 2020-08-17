@@ -1,23 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import GoogleMapReact, { Coords } from 'google-map-react';
-import Marker from './marker';
+import GoogleMapReact from 'google-map-react';
+import { MapMarker } from 'assets';
+import { MinkBKText } from 'components';
 
 interface Props {
   style?: React.CSSProperties;
   className?: string;
   zoom: number;
-  icon:
-    | string
-    | React.ReactNode
-    | React.FunctionComponent<
-        React.SVGProps<SVGSVGElement> & {
-          title?: string | undefined;
-        }
-      >;
 }
 
 const GoogleMap: React.FC<Props> = (props) => {
-  const { className, style, zoom, icon } = props;
+  const { className, style, zoom } = props;
 
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
@@ -35,30 +28,37 @@ const GoogleMap: React.FC<Props> = (props) => {
     setLoading(false);
   };
 
-  const getMapOptions = (maps: any) => {
-    return {
-      disableDefaultUI: true,
-      mapTypeControl: true,
-      streetViewControl: true,
-      styles: [{ featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'on' }] }],
-    };
-  };
-
   return (
-    <div
-      className={className}
-      style={{ ...style, height: '100vh', width: '100%' }}
-    >
+    <div className={className} style={{ ...style, alignItems: 'center' }}>
       {loading && 'loading...'}
       {!loading && (
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyBj90odFn56Ethoo4NK3r3VJh11O6jcjmk' }}
-          defaultCenter={{ lat, lng }}
-          defaultZoom={zoom}
-          options={getMapOptions}
-        >
-          <Marker lat={59.955413} lng={30.337844} icon={icon} />
-        </GoogleMapReact>
+        <>
+          <MinkBKText
+            width={'194px'}
+            rgba={'rgba(165, 255, 174, 0.55)'}
+            style={{
+              marginTop: '27px',
+              marginLeft: '94px',
+              position: 'absolute',
+              zIndex: 1,
+            }}
+          >
+            지도를 움직여서 <b>위치를 조정</b>해보세요!
+          </MinkBKText>
+          <GoogleMapReact
+            bootstrapURLKeys={{
+              key: 'AIzaSyBj90odFn56Ethoo4NK3r3VJh11O6jcjmk',
+            }}
+            defaultCenter={{ lat, lng }}
+            onChange={(e) => {
+              console.log('eee', e);
+            }}
+            defaultZoom={zoom}
+            yesIWantToUseGoogleMapApiInternals={true}
+          >
+            <MapMarker />
+          </GoogleMapReact>
+        </>
       )}
     </div>
   );

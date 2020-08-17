@@ -3,6 +3,9 @@ import React from 'react';
 interface Props {
   style?: React.CSSProperties;
   className?: string;
+  width?: string;
+  opacity?: number;
+  rgba?: string;
 }
 
 const backgroundStyle: React.CSSProperties = {
@@ -12,12 +15,21 @@ const backgroundStyle: React.CSSProperties = {
   color: '#373cff',
   borderRadius: '8px',
   fontStyle: 'bold',
+  textAlign: 'center',
 };
 
 const MintBkText: React.FC<Props> = (props) => {
-  const { style, className, children } = props;
+  const { style, className, children, width, rgba } = props;
   return (
-    <div className={className} style={{ ...backgroundStyle, ...style }}>
+    <div
+      className={className}
+      style={{
+        ...backgroundStyle,
+        ...style,
+        width: width,
+        backgroundColor: rgba,
+      }}
+    >
       {children}
     </div>
   );
