@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
-from .models import Article, MediaContent
+from .models import Article, MediaContent, ArticleLike, Comment
 
 
 class MediaContentSerializer(ModelSerializer):
@@ -11,6 +11,34 @@ class MediaContentSerializer(ModelSerializer):
             "id",
             "file",
         ]
+
+class CommentSerializer(ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = [
+            "id",
+            "article",
+            "commenter",
+            "content",
+        ]
+
+class ArticleWithCommentSerializer(ModelSerializer):
+    media_contents = MediaContentSerializer(many=True, read_only=True)
+    comments = CommentSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Article
+        fields = [
+            "id",
+            "title",
+            "description",
+            "lat",
+            "lng",
+            "writer",
+            "media_contents",
+            "comments",
+        ]
+
 
 
 class ArticleSerializer(ModelSerializer):
@@ -56,3 +84,15 @@ class ArticleCreateSerializer(ModelSerializer):
         instance.media_contents.add(*contents)
 
         return instance
+
+
+class ArticleLikeSerializer(ModelSerializer):
+    class Meta:
+        model = ArticleLike
+        fields = [
+            "id",
+            "article",
+            "liker",
+        ]
+
+

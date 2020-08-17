@@ -1,38 +1,19 @@
 import React from 'react';
 import Header from './header';
 import { Logo, User } from 'assets';
+import { history } from 'store/rootReducer';
 
-export function MainHeader() {
+export const MainHeader = () => {
   return (
     <Header>
       <Header.Item
         icon={Logo}
         onClick={() => {
-          window.alert('왼쪽 로고!');
+          history.push('/');
         }}
         align="start"
       />
-      <Header.Item
-        icon={Logo}
-        onClick={() => {
-          window.alert('왼쪽 로고!');
-        }}
-        align="start"
-      />
-      <Header.Item
-        icon={Logo}
-        onClick={() => {
-          window.alert('왼쪽 로고!');
-        }}
-        align="start"
-      />
-      <Header.Item
-        icon={User}
-        onClick={() => {
-          window.alert('오른쪽 유저!');
-        }}
-        align="end"
-      />
+
       <Header.Item
         onClick={() => {
           window.alert('가운데 테스트!');
@@ -41,22 +22,16 @@ export function MainHeader() {
       >
         테스트랍니다
       </Header.Item>
+
       <Header.Item
         icon={User}
         onClick={() => {
-          window.alert('오른쪽 유저!');
-        }}
-        align="end"
-      />
-      <Header.Item
-        icon={User}
-        onClick={() => {
-          window.alert('오른쪽 유저!');
+          history.push('/mypage');
         }}
         align="end"
       />
     </Header>
   );
-}
+};
 
 export { default } from './header';
