@@ -10,3 +10,4 @@ export { default as MintBKText } from './mintBkText';
 export { default as Avatar } from './avatar';
 export { default as List } from './list';
 export { default as GoogleMap } from './googleMap';
+export { default as SearchInput } from './searchInput';
