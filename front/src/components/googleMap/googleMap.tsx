@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { Map, Marker, GoogleApiWrapper, GoogleAPI } from 'google-maps-react';
+import GoogleMapReact, { Coords } from 'google-map-react';
+import Marker from './marker';
 
 interface Props {
   style?: React.CSSProperties;
   className?: string;
-  google?: GoogleAPI;
+  zoom: number;
+  icon:
+    | string
+    | React.ReactNode
+    | React.FunctionComponent<
+        React.SVGProps<SVGSVGElement> & {
+          title?: string | undefined;
+        }
+      >;
 }
 
 const GoogleMap: React.FC<Props> = (props) => {
-  const { className, style, google } = props;
+  const { className, style, zoom, icon } = props;
 
-  const [lat, setLat] = useState('');
-  const [lng, setLng] = useState('');
+  const [lat, setLat] = useState(0);
+  const [lng, setLng] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -26,23 +35,33 @@ const GoogleMap: React.FC<Props> = (props) => {
     setLoading(false);
   };
 
+  const getMapOptions = (maps: any) => {
+    return {
+      disableDefaultUI: true,
+      mapTypeControl: true,
+      streetViewControl: true,
+      styles: [{ featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'on' }] }],
+    };
+  };
+
   return (
-    <div className={className}>
+    <div
+      className={className}
+      style={{ ...style, height: '100vh', width: '100%' }}
+    >
       {loading && 'loading...'}
       {!loading && (
-        <Map
-          style={{ ...style }}
-          google={google}
-          center={{ lat, lng }}
-          initialCenter={{ lat, lng }}
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: 'AIzaSyBj90odFn56Ethoo4NK3r3VJh11O6jcjmk' }}
+          defaultCenter={{ lat, lng }}
+          defaultZoom={zoom}
+          options={getMapOptions}
         >
-          <Marker />
-        </Map>
+          <Marker lat={59.955413} lng={30.337844} icon={icon} />
+        </GoogleMapReact>
       )}
     </div>
   );
 };
 
-export default GoogleApiWrapper({
-  apiKey: process.env.GOOGLE_MAP_API_KEY as string,
-})(GoogleMap);
+export default GoogleMap;
