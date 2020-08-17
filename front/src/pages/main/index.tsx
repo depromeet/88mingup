@@ -7,6 +7,7 @@ import React from 'react';
 import { Discover } from './discover';
 import styled from '@emotion/styled';
 import { TopSheet } from './topsheet';
+import UploadIcon from 'components/uploadIcon';
 
 const MainPage: React.FC = (props) => {
   return (
@@ -46,7 +47,7 @@ const MainPage: React.FC = (props) => {
       </div>
       <TextArea title="zz" />
       <Input title="bb" />
-      <GoogleMap zoom={15} style={{ width: '375px', height: '280px' }} />
+      <UploadIcon />
     </div>
   );
 };

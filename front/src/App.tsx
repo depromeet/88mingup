@@ -10,6 +10,8 @@ import { Switch, Route } from 'react-router-dom';
 import MyPage from 'pages/mypage';
 import LoginPage from 'pages/login';
 import ArticleDetailPage from 'pages/article-detail';
+import UploadPage from 'pages/upload';
+import SearchLocationPage from 'pages/search-location';
 
 function App() {
   const store = configureStore();
@@ -21,6 +23,12 @@ function App() {
           <Switch>
             <Route exact path="/" component={MainPage} />
             <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/upload" component={UploadPage} />
+            <Route
+              exact
+              path="/search-location"
+              component={SearchLocationPage}
+            />
             <Route exact path="/:id" component={MyPage} />
             <Route exact path="/articles/:id" component={ArticleDetailPage} />
           </Switch>
