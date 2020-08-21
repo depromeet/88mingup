@@ -20,6 +20,7 @@ const GoogleMap: React.FC<Props> = (props) => {
   const position: PositionProps = useSelector<RootState, PositionProps>(
     (state) => state.position,
   );
+  console.log('으악',position)
 
   return (
     <div
@@ -45,15 +46,17 @@ const GoogleMap: React.FC<Props> = (props) => {
           지도를 움직여서 <b>위치를 조정</b>해보세요!
         </MintBkText>
       )}
-      <GoogleMapReact
-        bootstrapURLKeys={{
-          key: 'AIzaSyBj90odFn56Ethoo4NK3r3VJh11O6jcjmk',
-        }}
-        defaultCenter={{ lat: position.latitude, lng: position.longitude }}
-        defaultZoom={zoom}
-      >
-        <MapMarker />
-      </GoogleMapReact>
+      {position.latitude !== 0 && position.longitude !== 0 && (
+        <GoogleMapReact
+          bootstrapURLKeys={{
+            key: 'AIzaSyBj90odFn56Ethoo4NK3r3VJh11O6jcjmk',
+          }}
+          defaultCenter={{ lat: position.latitude, lng: position.longitude }}
+          defaultZoom={zoom}
+        >
+          <MapMarker />
+        </GoogleMapReact>
+      )}
     </div>
   );
 };
