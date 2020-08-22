@@ -7,10 +7,11 @@ import LoginPage from 'pages/login';
 import { HeaderItem } from 'components/header/item';
 import { history } from 'store/rootReducer';
 import { PositionProps } from 'store/position/reducer';
+import { LocationProps } from 'store/location/reducer';
 import Geocode from 'react-geocode';
 import { PositionActionCreators } from 'store/position/action';
 import { LocBtn } from 'assets';
-import { UserActionCreators } from 'store/user/action';
+import { LocationActionCreators } from 'store/location/action';
 
 const MapPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,9 @@ const MapPage: React.FC = () => {
   const position: PositionProps = useSelector<RootState, PositionProps>(
     (state) => state.position,
   );
+  const location: LocationProps = useSelector<RootState, LocationProps>(
+    (state) => state.location,
+  );
 
   useEffect(() => {
     // 핀 알림창 타이머
@@ -30,7 +34,6 @@ const MapPage: React.FC = () => {
   }, []);
 
   const [alert, setAlert] = useState(true);
-  const [loc, setLoc] = useState('');
 
   // 현재 위도/경도로 주소 찾기
   const setLocation = () => {
@@ -48,7 +51,11 @@ const MapPage: React.FC = () => {
             response.results[0].address_components[1].short_name +
             ' ' +
             response.results[0].address_components[0].short_name;
-          setLoc(address);
+          dispatch(
+            LocationActionCreators.setLocation({
+              location: address,
+            }),
+          );
         },
         (error) => {
           console.error(error);
@@ -73,7 +80,7 @@ const MapPage: React.FC = () => {
   const getCurrentPosition = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(currentPosition);
-      console.log('location-current', position);
+      console.log('location-current');
       setLocation();
     }
   };
@@ -94,7 +101,7 @@ const MapPage: React.FC = () => {
         <HeaderItem align="start" onClick={() => history.push('/')}>
           <BlueTextBtn isActive={false}>취소</BlueTextBtn>
         </HeaderItem>
-        <HeaderItem align="middle">{loc}</HeaderItem>
+        <HeaderItem align="middle">{location.location}</HeaderItem>
         <HeaderItem
           onClick={() => {
             history.push('/upload');

@@ -7,6 +7,7 @@ import modalReducer from './modal/reducer';
 import { userReducer } from './user/reducer';
 import { articleReducer } from './article/reducer';
 import { positionReducer } from './position/reducer';
+import { locationReducer } from './location/reducer';
 
 export const history = createBrowserHistory();
 
@@ -17,4 +18,5 @@ export default combineReducers({
   user: userReducer,
   article: articleReducer,
   position: positionReducer,
+  location: locationReducer,
 });
