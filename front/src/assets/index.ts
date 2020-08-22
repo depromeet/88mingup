@@ -11,3 +11,5 @@ export { ReactComponent as MapMarker } from './img-pin.svg';
 export { ReactComponent as WriteIcon } from './ic-write.svg';
 export { ReactComponent as CloseIcon } from './close.svg';
 export { ReactComponent as SearchIcon } from './search.svg';
+export { ReactComponent as DropDownIcon } from './ic-dropdown-blue.svg';
+export { ReactComponent as LocBtn } from './btn-location.svg';

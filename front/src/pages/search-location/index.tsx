@@ -44,7 +44,7 @@ const SearchLocationPage: React.FC<Props> = (props) => {
       .then(
         (response: any) => {
           const { lat, lng } = response.results[0].geometry.location;
-          console.log('으악악',lat, lng);
+          console.log('으악악', lat, lng);
           dispatch(
             PositionActionCreators.setPosition({
               latitude: lat,
@@ -56,7 +56,7 @@ const SearchLocationPage: React.FC<Props> = (props) => {
           console.error(error);
         },
       )
-      .then(() => history.push('/upload'));
+      .then(() => history.push('/map'));
   };
 
   const Postcode = () => {
