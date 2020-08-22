@@ -1,26 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, EventHandler, SetStateAction } from 'react';
 
 interface Props
-  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value'> {
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   title: string;
   limit?: number;
-  value?: string;
   width?: number;
   height?: string;
+  content?: string;
+  setcontent?: SetStateAction<any>;
 }
 
 const TextArea: React.FC<Props> = (props) => {
-  const { value = '', limit = 500, title, width, height } = props;
-
-  const [content, setContent] = useState<string>(value);
+  const { limit = 500, title, width, height, setcontent, content } = props;
   const [focused, setFocused] = useState<boolean>(false);
 
   const setFormattedContent = (text: string) => {
-    text.length > limit ? setContent(text.slice(0, limit)) : setContent(text);
+    text.length > limit ? setcontent(text.slice(0, limit)) : setcontent(text);
   };
 
   React.useEffect(() => {
-    setFormattedContent(content);
+    setFormattedContent(content as string);
   }, []);
 
   return (
@@ -28,7 +27,7 @@ const TextArea: React.FC<Props> = (props) => {
       <div style={{ display: 'flex' }}>
         <b style={{ fontWeight: 'bold', marginBottom: 8 }}>{title}</b>
         <div style={{ marginLeft: 'auto' }}>
-          <span style={{ color: '#373cff' }}>{content.length}</span>
+          <span style={{ color: '#373cff' }}>{content?.toString().length}</span>
           <span style={{ color: '#868686' }}>/{limit}</span>
         </div>
       </div>

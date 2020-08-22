@@ -68,7 +68,6 @@ const MainPage: React.FC = (props) => {
           url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg"
         />
       </div>
-      <TextArea title="zz" />
       <Input title="bb" />
       <UploadIcon />
     </div>
