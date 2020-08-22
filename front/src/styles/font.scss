@@ -1,1 +1,48 @@
-// XXXX font-face 정의
+@font-face {
+  font-family: 'SpocaHanSans';
+  font-style: normal;
+  font-weight: 100;
+  src: url(../assets/font/SpoqaHanSansThin.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'SpocaHanSans';
+  font-style: normal;
+  font-weight: 300;
+  src: url(../assets/font/SpoqaHanSansLight.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'SpocaHanSans';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../assets/font/SpoqaHanSansRegular.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'SpocaHanSans';
+  font-style: normal;
+  font-weight: 500;
+  src: url(../assets/font/SpoqaHanSansRegular.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'SpocaHanSans';
+  font-style: normal;
+  font-weight: 600;
+  src: url(../assets/font/SpoqaHanSansRegular.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'SpocaHanSans';
+  font-style: normal;
+  font-weight: bold;
+  src: url(../assets/font/SpoqaHanSansBold.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'SpocaHanSans';
+  font-style: normal;
+  font-weight: 700;
+  src: url(../assets/font/SpoqaHanSansBold.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'SpocaHanSans';
+  font-style: normal;
+  font-weight: 900;
+  src: url(../assets/font/SpoqaHanSansBold.woff2) format('truetype');
+}

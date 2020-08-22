@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 import { Header, Avatar, IconText, List, Input } from 'components';
+
+import './article-detail.scss';
+
 import { HeaderItem } from 'components/header/item';
 import { BackIcon, RecordIcon, HeartIcon, CommentIcon } from 'assets';
 import { useDispatch, useSelector } from 'react-redux';
@@ -115,7 +118,14 @@ const ArticleDetailPage: React.FC = (props) => {
 
       <List
         header={
-          <div style={{ fontWeight: 600, fontSize: 15, color: '#373cff' }}>
+          <div
+            className="icon-after"
+            style={{
+              fontWeight: 600,
+              fontSize: 15,
+              color: '#373cff',
+            }}
+          >
             {selectedArticle?.comments.length} comments
           </div>
         }
