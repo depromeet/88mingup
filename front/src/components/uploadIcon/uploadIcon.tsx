@@ -23,7 +23,7 @@ const UploadIcon: React.FC<Props> = (props) => {
   return (
     <div className={className} style={{ ...style, ...iconStyle }}
     onClick={() => {
-        history.push('/upload');
+        history.push('/map');
       }}>
       <WriteIcon />
     </div>
