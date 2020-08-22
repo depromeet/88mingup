@@ -45,6 +45,7 @@ const GoogleMap: React.FC<Props> = (props) => {
             key: 'AIzaSyBj90odFn56Ethoo4NK3r3VJh11O6jcjmk',
           }}
           defaultCenter={{ lat: position.latitude, lng: position.longitude }}
+          center={{ lat: position.latitude, lng: position.longitude }}
           defaultZoom={zoom}
           onChange={onChange}
         ></GoogleMapReact>
