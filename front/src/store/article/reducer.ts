@@ -1,6 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { UserStateProps } from 'store/user/reducer';
 import { ArticleActionCreators } from './action';
+import { ArticleDetailDto } from 'apis/article';
 
 export interface ArticleEntityStateProps {
   id: number;
@@ -19,6 +20,7 @@ export interface ArticleFileStateProps {
 
 export interface ArticleStateProps {
   all: ArticleEntityStateProps[];
+  selected?: ArticleDetailDto;
 }
 
 const initialState: ArticleStateProps = {
@@ -28,5 +30,9 @@ const initialState: ArticleStateProps = {
 export const articleReducer = createReducer(initialState, (builder) => {
   builder.addCase(ArticleActionCreators.refresh, (state, action) => {
     state.all = action.payload.all;
+  });
+  builder.addCase(ArticleActionCreators.fetch.success, (state, action) => {
+    console.log('action', action.payload);
+    state.selected = action.payload.data;
   });
 });

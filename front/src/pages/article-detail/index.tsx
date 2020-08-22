@@ -1,10 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Header, Avatar, IconText, List, Input } from 'components';
 import { HeaderItem } from 'components/header/item';
 import { BackIcon, RecordIcon, HeartIcon, CommentIcon } from 'assets';
+import { useDispatch, useSelector } from 'react-redux';
+import { ArticleActionCreators } from 'store/article/action';
+import { useParams } from 'react-router-dom';
+import { RootState } from 'store/configureStore';
+import createLoadingSelector from 'store/loading/selector';
 
 const ArticleDetailPage: React.FC = (props) => {
-  // Icon 교체해야됨.
+  const dispatch = useDispatch();
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    dispatch(ArticleActionCreators.fetch.request(id));
+  }, []);
+
+  const selectedArticle = useSelector(
+    (state: RootState) => state.article.selected,
+  );
+
+  const loading = useSelector(
+    createLoadingSelector([ArticleActionCreators.fetch.actionName]),
+  );
+
+  if (loading) {
+    return <div>로딩중입니다. </div>;
+  }
+
+  if (!loading && !selectedArticle) {
+    return <div>컨텐츠를 찾을수 없습니다.</div>;
+  }
+
+  console.log('selectedArticle', selectedArticle);
+
   return (
     <div
       style={{
@@ -37,7 +67,9 @@ const ArticleDetailPage: React.FC = (props) => {
       </div>
 
       <div style={{ display: 'flex', marginTop: 24 }}>
-        <div style={{ fontSize: 18, fontWeight: 'bold' }}>서울대입구역 쉼</div>
+        <div style={{ fontSize: 18, fontWeight: 'bold' }}>
+          {selectedArticle?.title}
+        </div>
         <div
           style={{
             marginLeft: 'auto',
@@ -46,7 +78,7 @@ const ArticleDetailPage: React.FC = (props) => {
         >
           <IconText icon={<HeartIcon />}>1024</IconText>
           <IconText style={{ marginLeft: 8 }} icon={<CommentIcon />}>
-            1024
+            {selectedArticle?.comments.length}
           </IconText>
         </div>
       </div>
@@ -66,9 +98,7 @@ const ArticleDetailPage: React.FC = (props) => {
       </div>
 
       <div style={{ fontSize: 13, color: '#000000', marginTop: 18 }}>
-        아주 맛이 존맛 와우내;;;미쳣군아주 맛이 존맛 와우내;;;미쳣군아주 맛이
-        존맛 와우내;;;미쳣군아주 맛이 존맛 와우내;;;미쳣군아주 맛이 존맛
-        와우내;;;미쳣군아주 맛이 존맛 와우내;;;미쳣군
+        {selectedArticle?.description}
       </div>
 
       <div
@@ -86,10 +116,10 @@ const ArticleDetailPage: React.FC = (props) => {
       <List
         header={
           <div style={{ fontWeight: 600, fontSize: 15, color: '#373cff' }}>
-            3 comments
+            {selectedArticle?.comments.length} comments
           </div>
         }
-        style={{ marginTop: 32 }}
+        style={{ marginTop: 32, marginBottom: 86 }}
       >
         <List.Item>ddd</List.Item>
         <List.Item

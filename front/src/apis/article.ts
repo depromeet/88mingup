@@ -35,3 +35,23 @@ export const getArticles = () =>
       });
     },
   );
+
+interface CommentDto {
+  id: number;
+  article: number;
+  commenter: number;
+  content: string;
+}
+
+export interface ArticleDetailDto extends ArticleDto {
+  comments: CommentDto[];
+}
+
+const getArticleDetail = (id: number) => {
+  return AxiosInstance.get<ArticleDetailDto>(`/api/v1/articles/${id}`);
+};
+
+export default {
+  getArticles,
+  getArticleDetail,
+};
