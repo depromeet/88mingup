@@ -1,5 +1,4 @@
 import React from 'react';
-import './searchInput.scss';
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;

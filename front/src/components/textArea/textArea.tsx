@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface Props
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value'> {
@@ -6,12 +6,14 @@ interface Props
   limit?: number;
   value?: string;
   width?: number;
+  height?: string;
 }
 
 const TextArea: React.FC<Props> = (props) => {
-  const { value = '', limit = 500, title, width } = props;
+  const { value = '', limit = 500, title, width, height } = props;
 
-  const [content, setContent] = React.useState<string>(value);
+  const [content, setContent] = useState<string>(value);
+  const [focused, setFocused] = useState<boolean>(false);
 
   const setFormattedContent = (text: string) => {
     text.length > limit ? setContent(text.slice(0, limit)) : setContent(text);
@@ -30,17 +32,30 @@ const TextArea: React.FC<Props> = (props) => {
           <span style={{ color: '#868686' }}>/{limit}</span>
         </div>
       </div>
-      <textarea
-        {...props}
+      <div
         style={{
           borderRadius: 8,
-          border: 'solid 1px #373cff',
+          border: focused ? 'solid 1px #373cff' : 'solid 1px #c7c7c7',
+          display: 'inline-flex',
           padding: '10px 8px',
           ...props.style,
         }}
-        onChange={(event) => setFormattedContent(event.target.value)}
-        value={content}
-      />
+      >
+        <textarea
+          {...props}
+          style={{
+            flex: 1,
+            border: 'none',
+            outline: 'none',
+            height: height,
+            resize: 'none',
+          }}
+          onChange={(event) => setFormattedContent(event.target.value)}
+          value={content}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+        />
+      </div>
     </div>
   );
 };
