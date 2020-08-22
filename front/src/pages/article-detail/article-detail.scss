@@ -1,0 +1,11 @@
+.icon-after::after {
+  content: '';
+  display: inline-block;
+  background: url('img_bubble.png') no-repeat;
+  width: 24px;
+  height: 24px;
+  z-index: -1;
+  position: relative;
+  top: 2px;
+  right: 6px;
+}
