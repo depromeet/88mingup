@@ -1,48 +1,57 @@
-import React, { useEffect, useState } from 'react';
-import { Map, Marker, GoogleApiWrapper, GoogleAPI } from 'google-maps-react';
+import React from 'react';
+import GoogleMapReact from 'google-map-react';
+import { MapMarker, LocBtn } from 'assets';
+import MintBkText from 'components/mintBkText';
+import { PositionProps } from 'store/position/reducer';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/configureStore';
+import './googleMap.scss';
 
 interface Props {
   style?: React.CSSProperties;
   className?: string;
-  google?: GoogleAPI;
+  zoom: number;
+  onChange: React.EventHandler<any>;
 }
 
 const GoogleMap: React.FC<Props> = (props) => {
-  const { className, style, google } = props;
+  const { className, style, zoom, onChange } = props;
 
-  const [lat, setLat] = useState('');
-  const [lng, setLng] = useState('');
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(currentPosition);
-    }
-  }, []);
-
-  const currentPosition = (position: any) => {
-    setLat(position.coords.latitude);
-    setLng(position.coords.longitude);
-    setLoading(false);
-  };
+  const position: PositionProps = useSelector<RootState, PositionProps>(
+    (state) => state.position,
+  );
 
   return (
-    <div className={className}>
-      {loading && 'loading...'}
-      {!loading && (
-        <Map
-          style={{ ...style }}
-          google={google}
-          center={{ lat, lng }}
-          initialCenter={{ lat, lng }}
-        >
-          <Marker />
-        </Map>
+    <div
+      className={className}
+      style={{
+        ...style,
+        width: '100%',
+        justifyContent: 'center',
+        display: 'flex',
+        height: '752px',
+      }}
+    >
+      <MapMarker
+        style={{
+          marginTop: '242',
+          position: 'absolute',
+          zIndex: 2,
+        }}
+      />
+      {position.latitude !== 0 && position.longitude !== 0 && (
+        <GoogleMapReact
+          bootstrapURLKeys={{
+            key: 'AIzaSyBj90odFn56Ethoo4NK3r3VJh11O6jcjmk',
+          }}
+          defaultCenter={{ lat: position.latitude, lng: position.longitude }}
+          center={{ lat: position.latitude, lng: position.longitude }}
+          defaultZoom={zoom}
+          onChange={onChange}
+        ></GoogleMapReact>
       )}
     </div>
   );
 };
 
-export default GoogleApiWrapper({
-  apiKey: process.env.GOOGLE_MAP_API_KEY as string,
-})(GoogleMap);
+export default GoogleMap;

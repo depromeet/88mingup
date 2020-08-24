@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export {};
+export { default as ArticleAPI } from './article';
 
 export const AxiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
