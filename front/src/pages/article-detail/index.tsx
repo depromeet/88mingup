@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Header, Avatar, IconText, List, Input } from 'components';
 
 import './article-detail.scss';
@@ -28,6 +28,8 @@ const ArticleDetailPage: React.FC = (props) => {
     createLoadingSelector([ArticleActionCreators.fetch.actionName]),
   );
 
+  const [comment, setComment] = useState<string>('');
+
   if (loading) {
     return <div>로딩중입니다. </div>;
   }
@@ -35,8 +37,6 @@ const ArticleDetailPage: React.FC = (props) => {
   if (!loading && !selectedArticle) {
     return <div>컨텐츠를 찾을수 없습니다.</div>;
   }
-
-  console.log('selectedArticle', selectedArticle);
 
   return (
     <div
@@ -131,13 +131,12 @@ const ArticleDetailPage: React.FC = (props) => {
         }
         style={{ marginTop: 32, marginBottom: 86 }}
       >
-        <List.Item>ddd</List.Item>
-        <List.Item
-          meta={{
-            title: '금나와라뚞딲',
-            description: '흠냐흠냐리흠냐리흠냐리흠냐리흠냐리흠냐리흠냐리',
-          }}
-        />
+        {selectedArticle?.comments.map((comment, index) => (
+          <List.Item
+            key={`comments-${index}`}
+            meta={{ title: comment.commenter, description: comment.content }}
+          />
+        ))}
       </List>
 
       <div
@@ -159,16 +158,33 @@ const ArticleDetailPage: React.FC = (props) => {
         <Input
           placeholder="댓글 달기"
           style={{ marginLeft: 16 }}
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
           onKeyPress={(e) => {
-            console.log('e', e.key);
             if (e.key === 'Enter') {
-              console.log('와우F');
+              dispatch(
+                ArticleActionCreators.postComment.request({
+                  article: 4,
+                  commenter: 4,
+                  content: comment,
+                }),
+              );
+              setComment('');
             }
           }}
           suffix={
             <div
               style={{ marginLeft: 16, color: '#373cff', cursor: 'pointer' }}
-              onClick={() => console.log('dada')}
+              onClick={() => {
+                dispatch(
+                  ArticleActionCreators.postComment.request({
+                    article: 4,
+                    commenter: 4,
+                    content: comment,
+                  }),
+                );
+                setComment('');
+              }}
             >
               게시
             </div>
