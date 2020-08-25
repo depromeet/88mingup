@@ -17,8 +17,8 @@ const iconStyle: React.CSSProperties = {
   justifyContent: 'center',
   display: 'flex',
   position: 'fixed',
-  right: '10px',
-  bottom: '10px',
+  right: '24px',
+  bottom: '24px',
 };
 
 const UploadIcon: React.FC<Props> = (props) => {

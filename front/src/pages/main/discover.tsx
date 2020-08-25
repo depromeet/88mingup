@@ -11,6 +11,7 @@ import {
 import { ArticleStateProps } from 'store/article/reducer';
 import { RootState } from 'store/configureStore';
 import { ArticleShortcut } from 'components/article/shortcut';
+import { MainTitle } from './title';
 
 export const Discover = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ export const Discover = () => {
 
   return (
     <div>
-      <Title>Discover</Title>
+      <MainTitle>Discover</MainTitle>
       <div
         css={css`
           display: grid;
@@ -45,9 +46,3 @@ export const Discover = () => {
     </div>
   );
 };
-
-const Title = styled.p`
-  font-size: 22px;
-  color: #373cff;
-  margin-bottom: 24px;
-`;

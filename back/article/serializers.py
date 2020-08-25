@@ -1,7 +1,11 @@
+import math
+
+from django.contrib.gis.geos import Point
 from rest_framework import serializers
+from rest_framework.fields import SerializerMethodField
 from rest_framework.serializers import ModelSerializer
 
-from .models import Article, MediaContent, ArticleLike, Comment
+from .models import Article, ArticleLike, Comment, MediaContent
 
 
 class MediaContentSerializer(ModelSerializer):
@@ -76,9 +80,9 @@ class ArticleWithCommentSerializer(ModelSerializer):
         ]
 
 
-
 class ArticleSerializer(ModelSerializer):
     media_contents = MediaContentSerializer(many=True, read_only=True)
+    distance = SerializerMethodField()
 
     class Meta:
         model = Article
@@ -92,7 +96,14 @@ class ArticleSerializer(ModelSerializer):
             "media_contents",
             "created_at",
             "address",
+            "distance",
         ]
+
+    def get_distance(self, obj: Article):
+
+        if hasattr(obj, "distance"):
+            return obj.distance.m
+        return None
 
 
 class ArticleCreateSerializer(ModelSerializer):
@@ -109,6 +120,7 @@ class ArticleCreateSerializer(ModelSerializer):
             "description",
             "lat",
             "lng",
+            "location",
             "file_ids",
             "writer",
             "media_contents",
@@ -125,5 +137,11 @@ class ArticleCreateSerializer(ModelSerializer):
         return instance
 
 
-
-
+class ArticleLikeSerializer(ModelSerializer):
+    class Meta:
+        model = ArticleLike
+        fields = [
+            "id",
+            "article",
+            "liker",
+        ]
