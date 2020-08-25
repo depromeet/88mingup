@@ -37,6 +37,8 @@ class ArticleWithCommentSerializer(ModelSerializer):
             "writer",
             "media_contents",
             "comments",
+            "created_at",
+            "address",
         ]
 
 
@@ -54,6 +56,8 @@ class ArticleSerializer(ModelSerializer):
             "lng",
             "writer",
             "media_contents",
+            "created_at",
+            "address",
         ]
 
 
@@ -74,6 +78,7 @@ class ArticleCreateSerializer(ModelSerializer):
             "file_ids",
             "writer",
             "media_contents",
+            "address",
         ]
 
     def create(self, validated_data):

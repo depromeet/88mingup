@@ -1,11 +1,13 @@
+from requests import Response
 from rest_framework.generics import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.filters import OrderingFilter
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.http import HttpResponse
 from .models import Article, MediaContent, ArticleLike, Comment
-from rest_framework.viewsets import ModelViewSet
+from rest_framework import status
+from rest_framework.response import Response
 from .filters import ArticleFilter
 from .serializers import (
     ArticleCreateSerializer,
@@ -27,6 +29,13 @@ class ArticleViewSet(viewsets.ModelViewSet):
     )
     filterset_class = ArticleFilter
     ordering_fields = ["lat","lng","created_at","updated_at"]
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     def get_serializer_class(self):
         if self.action == "create":

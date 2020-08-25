@@ -13,11 +13,13 @@ class Article(BaseModel):
     lng = models.FloatField()
     writer = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     media_contents = models.ManyToManyField("MediaContent")
+    address = models.TextField()
     like_users = models.ManyToManyField(
         User,
         through="ArticleLike",
         related_name="like_users",
     )
+
 
 def upload_to(instance, filename):
     _, ext = path.splitext(filename)
