@@ -1,3 +1,5 @@
+from django.contrib.gis.db.models.functions import Distance
+from django.contrib.gis.geos import Point
 from django.http import HttpResponse
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
@@ -27,7 +29,21 @@ class ArticleViewSet(viewsets.ModelViewSet):
         OrderingFilter,
     )
     filterset_class = ArticleFilter
-    ordering_fields = ["distance"]
+    ordering_fields = ["lat", "lng", "created_at", "updated_at"]
+
+    def get_queryset(self):
+        request = self.request
+        params = request.query_params
+        lat = params.get("lat")
+        lng = params.get("lng")
+
+        if not lat or not lng:
+            return self.queryset
+
+        p = Point(float(lat), float(lng), srid=4326)
+
+        self.queryset = self.queryset.annotate(distance=Distance("location", p))
+        return self.queryset
 
     def get_serializer_class(self):
         if self.action == "create":
@@ -52,9 +68,9 @@ class ArticleLikeViewSet(viewsets.ModelViewSet):
     queryset = ArticleLike.objects.all()
     serializer_class = ArticleLikeSerializer
 
-    def create(self,request):
-        article_id = request.POST['article']
-        user = request.POST['liker']
+    def create(self, request):
+        article_id = request.POST["article"]
+        user = request.POST["liker"]
         article = get_object_or_404(Article, pk=article_id)
 
         if article.like_users.filter(id=user):

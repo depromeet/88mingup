@@ -1,3 +1,6 @@
+from django.contrib.gis.db.models.functions import Distance
+from django.contrib.gis.geos import Point
+from django.contrib.gis.measure import Distance as D
 from django.db.models import F
 from django_filters import rest_framework as filters
 
@@ -5,7 +8,7 @@ from .models import Article
 
 
 class ArticleFilter(filters.FilterSet):
-    radius = filters.NumberFilter(label="distance", method="filter_radius")
+    radius = filters.NumberFilter(label="distance(m)", method="filter_radius")
     lat = filters.NumberFilter(label="current lat", method="filter_lat")
     lng = filters.NumberFilter(label="current lng", method="filter_lng")
 
@@ -23,12 +26,9 @@ class ArticleFilter(filters.FilterSet):
 
         lat = float(self.data["lat"])
         lng = float(self.data["lng"])
-        queryset = queryset.annotate(
-            distance=((F("lat") - lat) ** 2) + ((F("lng") - lng) ** 2)
+        p = Point(lat, lng, srid=4326)
+        queryset = queryset.filter(location__distance_lte=(p, D(m=value))).annotate(
+            distance=Distance("location", p)
         )
-
-        if value:
-            queryset = queryset.filter(distance__lte=value)
-            return queryset
 
         return queryset
