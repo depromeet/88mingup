@@ -1,7 +1,6 @@
 import './mypage.scss';
 
-import Auth from 'pages/auth';
-import { UserActionTypes, UserActionCreators } from 'store/user/action';
+import { UserActionCreators } from 'store/user/action';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserStateProps } from 'store/user/reducer';
 import { RootState } from 'store/configureStore';
