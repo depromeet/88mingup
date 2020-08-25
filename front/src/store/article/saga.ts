@@ -2,7 +2,6 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import { ArticleActionTypes, ArticleActionCreators } from './action';
 import { getArticles } from 'apis/article';
 import { ArticleAPI } from 'apis';
-import { PayloadAction } from '@reduxjs/toolkit';
 
 export function* fetchAllArticles() {
   const data = yield call(getArticles);
@@ -28,9 +27,22 @@ export function* fetchArticle(
   }
 }
 
+export function* postArticleComment(
+  action: ReturnType<typeof ArticleActionCreators.postComment.request>,
+) {
+  try {
+    yield call(ArticleAPI.postArticleComment, action.payload);
+    yield put(ArticleActionCreators.postComment.success());
+    yield put(ArticleActionCreators.fetch.request(action.payload.article));
+  } catch (error) {
+    yield put(ArticleActionCreators.postComment.failure(error));
+  }
+}
+
 export const articleSaga = [
   takeEvery(ArticleActionTypes.FETCH_ALL, fetchAllArticles),
   takeEvery(ArticleActionCreators.fetch.request, fetchArticle),
+  takeEvery(ArticleActionCreators.postComment.request, postArticleComment),
 ];
 
 export default articleSaga;

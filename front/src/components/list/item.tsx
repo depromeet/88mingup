@@ -2,7 +2,11 @@ import React from 'react';
 import Avatar from 'components/avatar';
 
 interface Props {
-  meta?: { title?: string; avatar?: React.ReactNode; description?: string };
+  meta?: {
+    title?: string | number;
+    avatar?: React.ReactNode;
+    description?: string;
+  };
 }
 
 const Item: React.FC<Props> = (props) => {
