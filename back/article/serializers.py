@@ -1,5 +1,6 @@
 import math
 
+from django.contrib.gis.geos import Point
 from rest_framework import serializers
 from rest_framework.fields import SerializerMethodField
 from rest_framework.serializers import ModelSerializer
@@ -63,18 +64,10 @@ class ArticleSerializer(ModelSerializer):
         ]
 
     def get_distance(self, obj: Article):
-        request = self.context["request"]
-        params = request.query_params
-        lat = params.get("lat")
-        lng = params.get("lng")
 
-        if not lat or not lng:
-            return None
-
-        lat = float(lat)
-        lng = float(lng)
-
-        return math.sqrt(((obj.lat - lat) ** 2) + ((obj.lng - lng) ** 2))
+        if hasattr(obj, "distance"):
+            return obj.distance.m
+        return None
 
 
 class ArticleCreateSerializer(ModelSerializer):
@@ -91,6 +84,7 @@ class ArticleCreateSerializer(ModelSerializer):
             "description",
             "lat",
             "lng",
+            "location",
             "file_ids",
             "writer",
             "media_contents",
