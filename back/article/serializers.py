@@ -13,6 +13,11 @@ class MediaContentSerializer(ModelSerializer):
         ]
 
 class CommentSerializer(ModelSerializer):
+    commenter = serializers.SlugRelatedField(
+        read_only = True,
+        slug_field = "name"
+     )
+
     class Meta:
         model = Comment
         fields = [
@@ -22,12 +27,24 @@ class CommentSerializer(ModelSerializer):
             "content",
         ]
 
+class ArticleLikeSerializer(ModelSerializer):
+
+    class Meta:
+        model = ArticleLike
+        fields = [
+            "id",
+            "article",
+            "liker",
+        ]
+
 class ArticleWithCommentSerializer(ModelSerializer):
     media_contents = MediaContentSerializer(many=True, read_only=True)
     comments = CommentSerializer(many=True, read_only=True)
+    article_likes = ArticleLikeSerializer(many=True, read_only=True)
 
     class Meta:
         model = Article
+        # fields='__all__'
         fields = [
             "id",
             "title",
@@ -36,9 +53,11 @@ class ArticleWithCommentSerializer(ModelSerializer):
             "lng",
             "writer",
             "media_contents",
+            "article_likes",
             "comments",
             "created_at",
             "address",
+            "like_users",
         ]
 
 
@@ -91,13 +110,5 @@ class ArticleCreateSerializer(ModelSerializer):
         return instance
 
 
-class ArticleLikeSerializer(ModelSerializer):
-    class Meta:
-        model = ArticleLike
-        fields = [
-            "id",
-            "article",
-            "liker",
-        ]
 
 
