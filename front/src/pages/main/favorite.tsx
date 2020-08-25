@@ -9,6 +9,7 @@ import { RootState } from 'store/configureStore';
 import { ArticleActionCreators } from 'store/article/action';
 import { ArticleShortcut } from 'components/article/shortcut';
 import styled from '@emotion/styled';
+import { history } from 'store/rootReducer';
 
 interface Props {}
 
@@ -28,17 +29,12 @@ export const Favorite = (props: Props) => {
       <MainTitle>Favorite</MainTitle>
       <Scroll>
         {articleState.all.map((article) => (
-          <React.Fragment>
-            <Card key={article.id}>
-              <Image src={article.files[0].url} />
-            </Card>
-            <Card key={article.id}>
-              <Image src={article.files[0].url} />
-            </Card>
-            <Card key={article.id}>
-              <Image src={article.files[0].url} />
-            </Card>
-          </React.Fragment>
+          <Card
+            key={article.id}
+            onClick={() => history.push(`/articles/${article.id}`)}
+          >
+            <Image src={article.files[0].url} />
+          </Card>
         ))}
       </Scroll>
     </div>
