@@ -1,9 +1,6 @@
+from article.serializers import ArticleSerializer, CommentSerializer
 from rest_framework import serializers
 from user.models import User
-from article.serializers import CommentSerializer
-from article.serializers import ArticleSerializer
-
-from back.article.serializers import ArticleLikeSerializer
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -12,4 +9,11 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["name", "profile_url", "created_at", "updated_at", "comment_set", "article_set"]
+        fields = [
+            "name",
+            "profile_url",
+            "created_at",
+            "updated_at",
+            "comment_set",
+            "article_set",
+        ]
