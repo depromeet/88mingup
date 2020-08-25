@@ -12,12 +12,27 @@ class MediaContentSerializer(ModelSerializer):
             "file",
         ]
 
-class CommentSerializer(ModelSerializer):
+class ArticleCommentSerializer(ModelSerializer):
     commenter = serializers.SlugRelatedField(
         read_only = True,
         slug_field = "name"
      )
+    commenter_profile = serializers.SerializerMethodField()
 
+    def get_commenter_profile(self, obj):
+        return obj.commenter.profile_url
+
+    class Meta:
+        model = Comment
+        fields = [
+            "id",
+            "article",
+            "commenter",
+            "content",
+            "commenter_profile",
+        ]
+
+class CommentSerializer(ModelSerializer):
     class Meta:
         model = Comment
         fields = [
@@ -39,7 +54,7 @@ class ArticleLikeSerializer(ModelSerializer):
 
 class ArticleWithCommentSerializer(ModelSerializer):
     media_contents = MediaContentSerializer(many=True, read_only=True)
-    comments = CommentSerializer(many=True, read_only=True)
+    comments = ArticleCommentSerializer(many=True, read_only=True)
     article_likes = ArticleLikeSerializer(many=True, read_only=True)
 
     class Meta:
