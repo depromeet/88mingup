@@ -46,6 +46,15 @@ class CommentSerializer(ModelSerializer):
         ]
 
 
+class CommentCreateSerializer(ModelSerializer):
+
+    commenter = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+    class Meta:
+        model = Comment
+        fields = ["id", "article", "commenter", "content"]
+
+
 class ArticleLikeSerializer(ModelSerializer):
     class Meta:
         model = ArticleLike

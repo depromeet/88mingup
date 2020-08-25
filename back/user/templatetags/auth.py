@@ -43,7 +43,6 @@ def optional_login(request):
     except NoReverseMatch:
         return ""
 
-    # snippet = "<li><a href='{href}?next={next}'>Log in</a></li>"
     snippet = """<li><a id="custom-login-btn" href="javascript:loginWithKakao()">
   <img
     src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
