@@ -19,3 +19,6 @@ class User(BaseModel, AbstractBaseUser):
 
     def get_username(self) -> str:
         return self.name
+
+    def __str__(self):
+        return self.profile_url

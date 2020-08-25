@@ -17,6 +17,7 @@ class Article(BaseModel):
     location = models.PointField(geography=True, null=True, srid=4326)
     writer = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     media_contents = models.ManyToManyField("MediaContent")
+    address = models.TextField()
     like_users = models.ManyToManyField(
         User, through="ArticleLike", related_name="like_users",
     )
@@ -34,7 +35,6 @@ def upload_to(instance, filename):
 class MediaContent(BaseModel):
     file = models.FileField(null=False, blank=False, upload_to=upload_to)
 
-
 class ArticleLike(BaseModel):
     article = models.ForeignKey(Article, on_delete=models.DO_NOTHING)
     liker = models.ForeignKey(User, on_delete=models.DO_NOTHING)
@@ -46,4 +46,3 @@ class Comment(BaseModel):
     )
     commenter = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     content = models.CharField(max_length=100)
-    # ToDo : commenter_image
