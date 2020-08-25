@@ -11,6 +11,7 @@ import UploadIcon from 'components/uploadIcon';
 import { useDispatch } from 'react-redux';
 import { UserActionCreators } from 'store/user/action';
 import { PositionActionCreators } from 'store/position/action';
+import { Favorite } from './favorite';
 
 const MainPage: React.FC = (props) => {
   const dispatch = useDispatch();
@@ -39,10 +40,11 @@ const MainPage: React.FC = (props) => {
 
       <RootLayout>
         <TopSheet />
+        <Favorite />
         <Discover />
       </RootLayout>
 
-      <div className="no-scrollbar list" style={{ paddingTop: '60px' }}>
+      {/* <div className="no-scrollbar list" style={{ paddingTop: '60px' }}>
         <Card
           className="list-item"
           url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg"
@@ -68,7 +70,7 @@ const MainPage: React.FC = (props) => {
           url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg"
         />
       </div>
-      <Input title="bb" />
+      <Input title="bb" /> */}
       <UploadIcon />
     </div>
   );
