@@ -1,7 +1,10 @@
+import math
+
 from rest_framework import serializers
+from rest_framework.fields import SerializerMethodField
 from rest_framework.serializers import ModelSerializer
 
-from .models import Article, MediaContent, ArticleLike, Comment
+from .models import Article, ArticleLike, Comment, MediaContent
 
 
 class MediaContentSerializer(ModelSerializer):
@@ -12,6 +15,7 @@ class MediaContentSerializer(ModelSerializer):
             "file",
         ]
 
+
 class CommentSerializer(ModelSerializer):
     class Meta:
         model = Comment
@@ -21,6 +25,7 @@ class CommentSerializer(ModelSerializer):
             "commenter",
             "content",
         ]
+
 
 class ArticleWithCommentSerializer(ModelSerializer):
     media_contents = MediaContentSerializer(many=True, read_only=True)
@@ -40,9 +45,9 @@ class ArticleWithCommentSerializer(ModelSerializer):
         ]
 
 
-
 class ArticleSerializer(ModelSerializer):
     media_contents = MediaContentSerializer(many=True, read_only=True)
+    distance = SerializerMethodField()
 
     class Meta:
         model = Article
@@ -54,7 +59,22 @@ class ArticleSerializer(ModelSerializer):
             "lng",
             "writer",
             "media_contents",
+            "distance",
         ]
+
+    def get_distance(self, obj: Article):
+        request = self.context["request"]
+        params = request.query_params
+        lat = params.get("lat")
+        lng = params.get("lng")
+
+        if not lat or not lng:
+            return None
+
+        lat = float(lat)
+        lng = float(lng)
+
+        return math.sqrt(((obj.lat - lat) ** 2) + ((obj.lng - lng) ** 2))
 
 
 class ArticleCreateSerializer(ModelSerializer):
@@ -94,5 +114,3 @@ class ArticleLikeSerializer(ModelSerializer):
             "article",
             "liker",
         ]
-
-

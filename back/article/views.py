@@ -1,19 +1,20 @@
-from rest_framework.generics import get_object_or_404
+from django.http import HttpResponse
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework.filters import OrderingFilter
+from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from django.http import HttpResponse
-from .models import Article, MediaContent, ArticleLike, Comment
 from rest_framework.viewsets import ModelViewSet
+
 from .filters import ArticleFilter
+from .models import Article, ArticleLike, Comment, MediaContent
 from .serializers import (
     ArticleCreateSerializer,
-    ArticleSerializer,
-    MediaContentSerializer,
     ArticleLikeSerializer,
-    CommentSerializer,
+    ArticleSerializer,
     ArticleWithCommentSerializer,
+    CommentSerializer,
+    MediaContentSerializer,
 )
 
 
@@ -26,7 +27,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
         OrderingFilter,
     )
     filterset_class = ArticleFilter
-    ordering_fields = ["lat","lng","created_at","updated_at"]
+    ordering_fields = ["distance"]
 
     def get_serializer_class(self):
         if self.action == "create":
@@ -34,6 +35,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
         if self.action == "retrieve":
             return ArticleWithCommentSerializer
         return ArticleSerializer
+
     def get_permissions(self):
         permission_classes = [AllowAny]
         if self.action == "create":
