@@ -1,16 +1,12 @@
-from requests import Response
-from rest_framework.generics import get_object_or_404
 from django.contrib.gis.db.models.functions import Distance
 from django.contrib.gis.geos import Point
 from django.http import HttpResponse
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import viewsets, status
+from requests import Response
+from rest_framework import status, viewsets
 from rest_framework.filters import OrderingFilter
 from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from django.http import HttpResponse
-from .models import Article, MediaContent, ArticleLike, Comment
-from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
@@ -27,7 +23,7 @@ from .serializers import (
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     filter_backends = (
@@ -59,7 +55,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
         return ArticleSerializer
 
     def get_permissions(self):
-        permission_classes = [AllowAny]
+        permission_classes = self.permission_classes
         if self.action == "create":
             permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]

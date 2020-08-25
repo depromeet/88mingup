@@ -7,13 +7,15 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('article', '0010_auto_20200816_2320'),
+        ("article", "0010_auto_20200816_2320"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='article',
-            name='location',
-            field=django.contrib.gis.db.models.fields.PointField(geography=True, null=True, srid=4326),
+            model_name="article",
+            name="location",
+            field=django.contrib.gis.db.models.fields.PointField(
+                geography=True, null=True, srid=4326
+            ),
         ),
     ]
