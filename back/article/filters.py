@@ -27,7 +27,7 @@ class ArticleFilter(filters.FilterSet):
         lat = float(self.data["lat"])
         lng = float(self.data["lng"])
         p = Point(lat, lng, srid=4326)
-        queryset = queryset.filter(location__distance_lte=(p, D(km=value))).annotate(
+        queryset = queryset.filter(location__distance_lte=(p, D(m=value))).annotate(
             distance=Distance("location", p)
         )
 
