@@ -8,7 +8,7 @@ from .models import Article
 
 
 class ArticleFilter(filters.FilterSet):
-    radius = filters.NumberFilter(label="distance(km)", method="filter_radius")
+    radius = filters.NumberFilter(label="distance(m)", method="filter_radius")
     lat = filters.NumberFilter(label="current lat", method="filter_lat")
     lng = filters.NumberFilter(label="current lng", method="filter_lng")
 
