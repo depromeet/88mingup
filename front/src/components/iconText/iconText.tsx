@@ -5,6 +5,7 @@ interface Props {
   style?: React.CSSProperties;
   className?: string;
   icon: string | React.ReactNode | typeof ReactComponent;
+  onClick?: () => void;
 }
 
 const containerStyle: React.CSSProperties = {
@@ -18,13 +19,14 @@ const text: React.CSSProperties = {
 };
 
 const IconText: React.FC<Props> = (props) => {
-  const { style, icon, className, children } = props;
+  const { style, icon, className, children, onClick } = props;
   return (
     <div
       className={className}
       style={{
         display: 'flex',
         alignItems: 'center',
+        cursor: onClick ? 'pointer' : undefined,
         ...containerStyle,
         ...style,
       }}

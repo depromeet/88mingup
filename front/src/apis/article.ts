@@ -3,13 +3,17 @@ import { UserStateProps } from 'store/user/reducer';
 import { ArticleEntityStateProps } from 'store/article/reducer';
 
 interface ArticleDto {
-  id: number;
+  id?: number;
   title: string;
   description: string;
   lat: number;
   lng: number;
   writer: UserStateProps;
+  address: string;
   media_contents: ArticleFileDto[];
+  created_at: string;
+  like_count: number;
+  comment_count: number;
 }
 
 interface ArticleFileDto {
@@ -22,7 +26,7 @@ export const getArticles = () =>
     (res): ArticleEntityStateProps[] => {
       return res.data.map((dto) => {
         return {
-          id: dto.id,
+          id: dto.id!,
           title: dto.title,
           description: dto.description,
           lat: dto.lat,
@@ -39,8 +43,9 @@ export const getArticles = () =>
 export interface CommentDto {
   id?: number;
   article: number;
-  commenter: number;
+  commenter?: string;
   content: string;
+  commenter_profile?: string;
 }
 
 export interface ArticleDetailDto extends ArticleDto {

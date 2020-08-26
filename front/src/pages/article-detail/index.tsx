@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { Header, Avatar, IconText, List, Input } from 'components';
+import { Header, Avatar, IconText, List, Input, Card } from 'components';
+
+import 'dayjs/locale/ko';
 
 import './article-detail.scss';
 
 import { HeaderItem } from 'components/header/item';
-import { BackIcon, RecordIcon, HeartIcon, CommentIcon } from 'assets';
+import {
+  BackIconBlack,
+  RecordIcon,
+  HeartIcon,
+  CommentIcon,
+  MoreIcon,
+} from 'assets';
 import { useDispatch, useSelector } from 'react-redux';
 import { ArticleActionCreators } from 'store/article/action';
 import { useParams } from 'react-router-dom';
 import { RootState } from 'store/configureStore';
 import createLoadingSelector from 'store/loading/selector';
+
+import dayjs from 'dayjs';
+import { push } from 'connected-react-router';
 
 const ArticleDetailPage: React.FC = (props) => {
   const dispatch = useDispatch();
@@ -50,11 +61,15 @@ const ArticleDetailPage: React.FC = (props) => {
       }}
     >
       <Header>
-        <HeaderItem icon={BackIcon} align="start" />
+        <HeaderItem
+          onClick={() => dispatch(push('/'))}
+          icon={BackIconBlack}
+          align="start"
+        />
         <HeaderItem align="middle">
           <Avatar size={24} />
         </HeaderItem>
-        <HeaderItem icon={RecordIcon} align="end" />
+        <HeaderItem icon={MoreIcon} align="end" />
       </Header>
 
       <div
@@ -62,11 +77,14 @@ const ArticleDetailPage: React.FC = (props) => {
           backgroundColor: '#f2f2f2',
           position: 'relative',
           paddingTop: '100%',
+          backgroundImage:
+            selectedArticle?.media_contents &&
+            selectedArticle?.media_contents.length > 0
+              ? `url(${selectedArticle?.media_contents[0].file})`
+              : undefined,
         }}
       >
-        <div style={{ position: 'absolute', top: 16, left: 16 }}>
-          {/*XXXX 여기 뱃지들 리스트 들어가면됨F*/}
-        </div>
+        <div style={{ position: 'absolute', top: 16, left: 16 }}>{}</div>
       </div>
 
       <div style={{ display: 'flex', marginTop: 24 }}>
@@ -79,7 +97,12 @@ const ArticleDetailPage: React.FC = (props) => {
             display: 'flex',
           }}
         >
-          <IconText icon={<HeartIcon />}>1024</IconText>
+          <IconText
+            icon={<HeartIcon fill="rgb(237, 73, 86)" />}
+            onClick={() => console.log('Dada')}
+          >
+            1024
+          </IconText>
           <IconText style={{ marginLeft: 8 }} icon={<CommentIcon />}>
             {selectedArticle?.comments.length}
           </IconText>
@@ -97,7 +120,7 @@ const ArticleDetailPage: React.FC = (props) => {
           width: 'fit-content',
         }}
       >
-        서울특별시 동작구 00동 222-21
+        {selectedArticle?.address}
       </div>
 
       <div style={{ fontSize: 13, color: '#000000', marginTop: 18 }}>
@@ -113,7 +136,9 @@ const ArticleDetailPage: React.FC = (props) => {
           marginLeft: 'auto',
         }}
       >
-        2020년 5월 13일
+        {dayjs(selectedArticle?.created_at)
+          .locale('ko')
+          .format('YYYY년 MM월 DD일')}
       </div>
 
       <List
@@ -164,8 +189,7 @@ const ArticleDetailPage: React.FC = (props) => {
             if (e.key === 'Enter') {
               dispatch(
                 ArticleActionCreators.postComment.request({
-                  article: 4,
-                  commenter: 4,
+                  article: id,
                   content: comment,
                 }),
               );
@@ -178,8 +202,7 @@ const ArticleDetailPage: React.FC = (props) => {
               onClick={() => {
                 dispatch(
                   ArticleActionCreators.postComment.request({
-                    article: 4,
-                    commenter: 4,
+                    article: id,
                     content: comment,
                   }),
                 );

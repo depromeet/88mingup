@@ -13,3 +13,4 @@ export { ReactComponent as CloseIcon } from './close.svg';
 export { ReactComponent as SearchIcon } from './search.svg';
 export { ReactComponent as LocBtn } from './btn-location.svg';
 export { ReactComponent as CameraIcon } from './ic-camera.svg';
+export { ReactComponent as MoreIcon } from './ic_more.svg';
