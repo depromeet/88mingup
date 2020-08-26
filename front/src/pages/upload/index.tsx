@@ -5,10 +5,15 @@ import { Header, BlueTextBtn, Input } from 'components';
 import { HeaderItem } from 'components/header/item';
 import { history } from 'store/rootReducer';
 import { LocationProps } from 'store/location/reducer';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'store/configureStore';
 import { CameraIcon } from 'assets';
 import TextArea from 'components/textArea';
+import Axios from 'axios';
+import { PositionProps } from 'store/position/reducer';
+import { ArticleActionCreators } from 'store/article/action';
+import { UserStateProps } from 'store/user/reducer';
+import createLoadingSelector from 'store/loading/selector';
 
 const BlankImg = styled.div`
   height: 375px;
@@ -32,8 +37,20 @@ const BlankBox = styled.div`
 `;
 
 const UploadPage: React.FC = () => {
+  const dispatch = useDispatch();
+
   const location: LocationProps = useSelector<RootState, LocationProps>(
     (state) => state.location,
+  );
+  const position: PositionProps = useSelector<RootState, PositionProps>(
+    (state) => state.position,
+  );
+  const user: UserStateProps = useSelector<RootState, UserStateProps>(
+    (state) => state.user,
+  );
+
+  const postedFile = useSelector(
+    (state: RootState) => state.article.postedFile,
   );
 
   const [isUploadActice, setIsUploadActice] = useState(false);
@@ -42,6 +59,9 @@ const UploadPage: React.FC = () => {
   const [previewURL, setPreviewURL] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const loading = useSelector(
+    createLoadingSelector([ArticleActionCreators.fetch.actionName]),
+  );
 
   const upload = () => {
     if (isUploadActice) {
@@ -49,10 +69,26 @@ const UploadPage: React.FC = () => {
       console.log('content', content);
       console.log('file', file);
 
-      const formData = new FormData();
-      formData.append('file', file);
+      dispatch(
+        ArticleActionCreators.postFile.request({
+          file: file,
+        }),
+      );
 
-      // api 요청
+      if (postedFile?.id) {
+        console.log('파일 아이디', postedFile.id);
+        dispatch(
+          ArticleActionCreators.postArticle.request({
+            title,
+            description: content,
+            lat: position.latitude,
+            lng: position.longitude,
+            address: location.location,
+            writer: user,
+            file_ids: [postedFile.id!],
+          }),
+        );
+      }
     }
   };
 
@@ -77,6 +113,10 @@ const UploadPage: React.FC = () => {
     isTitle = value;
     setIsUploadActice(file !== '' && isTitle !== '');
   };
+
+  if (loading) {
+    return <div>로딩중입니다. </div>;
+  }
 
   return (
     <div>

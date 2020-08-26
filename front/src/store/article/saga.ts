@@ -39,10 +39,25 @@ export function* postArticleComment(
   }
 }
 
+export function* postArticleFile(
+  action: ReturnType<typeof ArticleActionCreators.postFile.request>,
+) {
+  try {
+    // const response: ReturnType<
+    //   typeof ArticleActionCreators.postFile.success
+    // >['payload'] = yield call(ArticleAPI.postFile, action.payload);
+    yield call(ArticleAPI.postFile, action.payload);
+    yield put(ArticleActionCreators.postFile.success(action.payload));
+  } catch (error) {
+    yield put(ArticleActionCreators.postFile.failure(error));
+  }
+}
+
 export const articleSaga = [
   takeEvery(ArticleActionTypes.FETCH_ALL, fetchAllArticles),
   takeEvery(ArticleActionCreators.fetch.request, fetchArticle),
   takeEvery(ArticleActionCreators.postComment.request, postArticleComment),
+  takeEvery(ArticleActionCreators.postFile.request, postArticleFile),
 ];
 
 export default articleSaga;
