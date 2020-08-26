@@ -1,4 +1,4 @@
-import React, { useEffect, useState, SetStateAction } from 'react';
+import React, { useState } from 'react';
 import './upload.scss';
 import styled from '@emotion/styled';
 import { Header, BlueTextBtn, Input } from 'components';
@@ -9,7 +9,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'store/configureStore';
 import { CameraIcon } from 'assets';
 import TextArea from 'components/textArea';
-import Axios from 'axios';
 import { PositionProps } from 'store/position/reducer';
 import { ArticleActionCreators } from 'store/article/action';
 import { UserStateProps } from 'store/user/reducer';
@@ -54,7 +53,6 @@ const UploadPage: React.FC = () => {
   );
 
   const [isUploadActice, setIsUploadActice] = useState(false);
-  // const [img, setImage] = useState({});
   const [file, setFile] = useState('');
   const [previewURL, setPreviewURL] = useState('');
   const [title, setTitle] = useState('');

@@ -70,7 +70,7 @@ const postFile = (file: File) => {
 };
 
 const postArticle = (article: ArticleDto) => {
-  return AxiosInstance.post(`api/v1/articles`, { ...article });
+  return AxiosInstance.post(`/api/v1/articles`, { ...article });
 };
 
 export default {
