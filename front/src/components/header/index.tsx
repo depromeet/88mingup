@@ -14,14 +14,7 @@ export const MainHeader = () => {
         align="start"
       />
 
-      <Header.Item
-        onClick={() => {
-          window.alert('가운데 테스트!');
-        }}
-        align="middle"
-      >
-        테스트랍니다
-      </Header.Item>
+      <Header.Item onClick={() => {}} align="middle"></Header.Item>
 
       <Header.Item
         icon={User}

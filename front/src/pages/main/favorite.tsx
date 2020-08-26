@@ -26,7 +26,7 @@ export const Favorite = (props: Props) => {
   }, []);
   return (
     <div>
-      <MainTitle>Favorite</MainTitle>
+      <MainTitle>Most<br/>Favorite</MainTitle>
       <Scroll>
         {articleState.all.map((article) => (
           <Card

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-import { BlueTextBtn } from 'components';
+import { BlueBKBtn } from 'components';
 import styled from '@emotion/styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -37,8 +37,8 @@ export const Discover = () => {
           margin-bottom: 16px;
         `}
       >
-        <BlueTextBtn>거리순</BlueTextBtn>
-        <BlueTextBtn>최신순</BlueTextBtn>
+        <BlueBKBtn isActive={true}>거리순</BlueBKBtn>
+        <BlueBKBtn isActive={false}>최신순</BlueBKBtn>
       </div>
       {articleState.all.map((article) => (
         <ArticleShortcut key={article.id} {...article}></ArticleShortcut>

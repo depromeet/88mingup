@@ -44,10 +44,6 @@ export function* postArticleFile(
 ) {
   console.log('actiozzzzn', action);
   try {
-    // const response: ReturnType<
-    //   typeof ArticleActionCreators.postFile.success
-    // >['payload'] = yield call(ArticleAPI.postFile, action.payload);
-
     yield call(ArticleAPI.postFile, action.payload);
     yield put(ArticleActionCreators.postFile.success({}));
   } catch (error) {
