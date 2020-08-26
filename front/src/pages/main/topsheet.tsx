@@ -15,7 +15,6 @@ export const TopSheet = () => {
   return (
     <div
       css={css`
-        margin-top: 40px;
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -32,6 +31,7 @@ const Title = styled.p`
   font-size: 48px;
   text-transform: uppercase;
   margin-bottom: 0px;
+  font-weight: 200;
 `;
 
 const SubTitle = styled.p`
@@ -39,4 +39,5 @@ const SubTitle = styled.p`
   color: #a1a1a1;
   text-transform: uppercase;
   margin-top: 0px;
+  font-weight: bold;
 `;
