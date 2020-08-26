@@ -17,6 +17,7 @@ from .serializers import (
     ArticleLikeSerializer,
     ArticleSerializer,
     ArticleWithCommentSerializer,
+    CommentCreateSerializer,
     CommentSerializer,
     MediaContentSerializer,
     ArticleWithCountSerializer,
@@ -89,3 +90,8 @@ class ArticleLikeViewSet(viewsets.ModelViewSet):
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+
+    def get_serializer_class(self):
+        if self.action == "create":
+            return CommentCreateSerializer
+        return CommentSerializer
