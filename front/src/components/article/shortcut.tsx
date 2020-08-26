@@ -15,7 +15,7 @@ export const ArticleShortcut = (props: Props) => {
           width: 100%;
           border-radius: 16px;
         `}
-        src={props.files[0].url}
+        src={props.files[0].file}
       />
       <div
         css={css`

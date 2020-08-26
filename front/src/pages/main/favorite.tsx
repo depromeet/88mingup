@@ -33,7 +33,7 @@ export const Favorite = (props: Props) => {
             key={article.id}
             onClick={() => history.push(`/articles/${article.id}`)}
           >
-            <Image src={article.files[0].url} />
+            <Image src={article.files[0].file} />
           </Card>
         ))}
       </Scroll>

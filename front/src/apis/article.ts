@@ -2,7 +2,7 @@ import { AxiosInstance } from 'apis';
 import { UserStateProps } from 'store/user/reducer';
 import { ArticleEntityStateProps } from 'store/article/reducer';
 
-interface ArticleDto {
+export interface ArticleDto {
   id?: number;
   title: string;
   description: string;
@@ -10,14 +10,15 @@ interface ArticleDto {
   lng: number;
   writer: UserStateProps;
   address: string;
-  media_contents: ArticleFileDto[];
-  created_at: string;
-  like_count: number;
-  comment_count: number;
+  media_contents?: ArticleFileDto[];
+  created_at?: string;
+  like_count?: number;
+  comment_count?: number;
+  file_ids: Array<number>;
 }
 
-interface ArticleFileDto {
-  id: number;
+export interface ArticleFileDto {
+  id?: number;
   file: string;
 }
 
@@ -32,8 +33,8 @@ export const getArticles = () =>
           lat: dto.lat,
           lng: dto.lng,
           writer: dto.writer,
-          files: dto.media_contents.map((content) => {
-            return { id: content.id, url: content.file };
+          files: dto.media_contents!.map((content) => {
+            return { id: content.id!, file: content.file };
           }),
         };
       });
@@ -60,8 +61,22 @@ const postArticleComment = (comment: CommentDto) => {
   return AxiosInstance.post(`/api/v1/comment`, { ...comment });
 };
 
+const postFile = (file: File) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  return AxiosInstance.post(`/api/v1/files`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+};
+
+const postArticle = (article: ArticleDto) => {
+  return AxiosInstance.post(`api/v1/articles`, { ...article });
+};
+
 export default {
   getArticles,
   getArticleDetail,
   postArticleComment,
+  postFile,
+  postArticle,
 };

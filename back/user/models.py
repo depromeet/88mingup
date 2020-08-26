@@ -13,7 +13,7 @@ class User(BaseModel, AbstractBaseUser):
     kakao_id = models.IntegerField()
     name = models.CharField(max_length=128)
     password = models.CharField(max_length=128, blank=True, null=True)
-    profile_url = models.URLField()
+    profile_url = models.URLField(null=True, blank=True)
 
     USERNAME_FIELD = "id"
 
