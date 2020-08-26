@@ -20,6 +20,7 @@ from .serializers import (
     CommentCreateSerializer,
     CommentSerializer,
     MediaContentSerializer,
+    ArticleWithCountSerializer,
 )
 
 
@@ -53,6 +54,8 @@ class ArticleViewSet(viewsets.ModelViewSet):
             return ArticleCreateSerializer
         if self.action == "retrieve":
             return ArticleWithCommentSerializer
+        if self.action == "list":
+            return ArticleWithCountSerializer
         return ArticleSerializer
 
     def get_permissions(self):
