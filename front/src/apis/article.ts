@@ -61,9 +61,9 @@ const postArticleComment = (comment: CommentDto) => {
   return AxiosInstance.post(`/api/v1/comment`, { ...comment });
 };
 
-const postFile = (file: File) => {
+const postFile = (file: any) => {
   const formData = new FormData();
-  formData.append('file', file);
+  formData.append('file', file.file);
   return AxiosInstance.post(`/api/v1/files`, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
