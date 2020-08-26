@@ -9,6 +9,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'store/configureStore';
 import { CameraIcon } from 'assets';
 import TextArea from 'components/textArea';
+import Axios from 'axios';
+import { PositionProps } from 'store/position/reducer';
 
 const BlankImg = styled.div`
   height: 375px;
@@ -35,6 +37,9 @@ const UploadPage: React.FC = () => {
   const location: LocationProps = useSelector<RootState, LocationProps>(
     (state) => state.location,
   );
+  const position: PositionProps = useSelector<RootState, PositionProps>(
+    (state) => state.position,
+  );
 
   const [isUploadActice, setIsUploadActice] = useState(false);
   // const [img, setImage] = useState({});
@@ -42,8 +47,9 @@ const UploadPage: React.FC = () => {
   const [previewURL, setPreviewURL] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const upload = () => {
+  const upload = async () => {
     if (isUploadActice) {
       console.log('title', title);
       console.log('content', content);
@@ -52,7 +58,36 @@ const UploadPage: React.FC = () => {
       const formData = new FormData();
       formData.append('file', file);
 
-      // api 요청
+      // file post
+      const files = {
+        file: file,
+      };
+      setLoading(true);
+      try {
+        const { data: fileData } = await Axios.post(
+          'https://warmingup-185433511.ap-northeast-2.elb.amazonaws.com/api/v1/articles',
+          files,
+        );
+        // article post
+        console.log(fileData);
+        // if(fileData.id){
+        //   const body = {
+        //     title: title,
+        //     description: content,
+        //     lat: position.latitude,
+        //     lng: position.longitude,
+        //   };
+        //   const { data:articleData } = await Axios.post(
+        //     'http://warmingup-185433511.ap-northeast-2.elb.amazonaws.com/api/v1/articles',
+        //     body,
+        //   );
+        //   if(articleData.id){
+        //     setLoading(false)
+        //   }
+        // }
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
