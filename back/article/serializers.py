@@ -63,7 +63,6 @@ class ArticleWithCommentSerializer(ModelSerializer):
 
     class Meta:
         model = Article
-        # fields='__all__'
         fields = [
             "id",
             "title",
@@ -135,3 +134,49 @@ class ArticleCreateSerializer(ModelSerializer):
         instance.media_contents.add(*contents)
 
         return instance
+
+class ArticleLikeCountSerializer(ModelSerializer):
+    like_count=serializers.SerializerMethodField()
+
+    def get_like_count(self, obj):
+        return obj.liker.count()
+
+    class Meta:
+        model = ArticleLike
+        fields = [
+            "id",
+            "article",
+            "liker",
+            "like_count",
+        ]
+
+class ArticleWithCountSerializer(ModelSerializer):
+    media_contents = MediaContentSerializer(many=True, read_only=True)
+    comment_count = serializers.SerializerMethodField()
+    like_count = serializers.SerializerMethodField()
+    writer = serializers.SlugRelatedField(
+        read_only = True,
+        slug_field = "name"
+     )
+
+    def get_comment_count(self, obj):
+        return obj.comments.count()
+
+    def get_like_count(self, obj):
+        return obj.like_users.count()
+
+    class Meta:
+        model = Article
+        fields = [
+            "id",
+            "title",
+            "description",
+            "lat",
+            "lng",
+            "writer",
+            "media_contents",
+            "like_count",
+            "comment_count",
+            "created_at",
+            "address",
+        ]
