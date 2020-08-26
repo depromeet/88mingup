@@ -14,13 +14,14 @@ export interface ArticleEntityStateProps {
 }
 
 export interface ArticleFileStateProps {
-  id: number;
-  url: string;
+  id?: number;
+  file: string;
 }
 
 export interface ArticleStateProps {
   all: ArticleEntityStateProps[];
   selected?: ArticleDetailDto;
+  postedFile?: ArticleFileStateProps;
 }
 
 const initialState: ArticleStateProps = {
@@ -33,5 +34,8 @@ export const articleReducer = createReducer(initialState, (builder) => {
   });
   builder.addCase(ArticleActionCreators.fetch.success, (state, action) => {
     state.selected = action.payload.data;
+  });
+  builder.addCase(ArticleActionCreators.postFile.success, (state, action) => {
+    state.postedFile = action.payload;
   });
 });

@@ -5,12 +5,15 @@ import { Header, BlueTextBtn, Input } from 'components';
 import { HeaderItem } from 'components/header/item';
 import { history } from 'store/rootReducer';
 import { LocationProps } from 'store/location/reducer';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'store/configureStore';
 import { CameraIcon } from 'assets';
 import TextArea from 'components/textArea';
 import Axios from 'axios';
 import { PositionProps } from 'store/position/reducer';
+import { ArticleActionCreators } from 'store/article/action';
+import { UserStateProps } from 'store/user/reducer';
+import createLoadingSelector from 'store/loading/selector';
 
 const BlankImg = styled.div`
   height: 375px;
@@ -34,11 +37,20 @@ const BlankBox = styled.div`
 `;
 
 const UploadPage: React.FC = () => {
+  const dispatch = useDispatch();
+
   const location: LocationProps = useSelector<RootState, LocationProps>(
     (state) => state.location,
   );
   const position: PositionProps = useSelector<RootState, PositionProps>(
     (state) => state.position,
+  );
+  const user: UserStateProps = useSelector<RootState, UserStateProps>(
+    (state) => state.user,
+  );
+
+  const postedFile = useSelector(
+    (state: RootState) => state.article.postedFile,
   );
 
   const [isUploadActice, setIsUploadActice] = useState(false);
@@ -47,46 +59,35 @@ const UploadPage: React.FC = () => {
   const [previewURL, setPreviewURL] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [loading, setLoading] = useState(false);
+  const loading = useSelector(
+    createLoadingSelector([ArticleActionCreators.fetch.actionName]),
+  );
 
-  const upload = async () => {
+  const upload = () => {
     if (isUploadActice) {
       console.log('title', title);
       console.log('content', content);
       console.log('file', file);
 
-      const formData = new FormData();
-      formData.append('file', file);
+      dispatch(
+        ArticleActionCreators.postFile.request({
+          file: file,
+        }),
+      );
 
-      // file post
-      const files = {
-        file: file,
-      };
-      setLoading(true);
-      try {
-        const { data: fileData } = await Axios.post(
-          'https://warmingup-185433511.ap-northeast-2.elb.amazonaws.com/api/v1/articles',
-          files,
+      if (postedFile?.id) {
+        console.log('파일 아이디', postedFile.id);
+        dispatch(
+          ArticleActionCreators.postArticle.request({
+            title,
+            description: content,
+            lat: position.latitude,
+            lng: position.longitude,
+            address: location.location,
+            writer: user,
+            file_ids: [postedFile.id!],
+          }),
         );
-        // article post
-        console.log(fileData);
-        // if(fileData.id){
-        //   const body = {
-        //     title: title,
-        //     description: content,
-        //     lat: position.latitude,
-        //     lng: position.longitude,
-        //   };
-        //   const { data:articleData } = await Axios.post(
-        //     'http://warmingup-185433511.ap-northeast-2.elb.amazonaws.com/api/v1/articles',
-        //     body,
-        //   );
-        //   if(articleData.id){
-        //     setLoading(false)
-        //   }
-        // }
-      } catch (e) {
-        console.log(e);
       }
     }
   };
@@ -112,6 +113,10 @@ const UploadPage: React.FC = () => {
     isTitle = value;
     setIsUploadActice(file !== '' && isTitle !== '');
   };
+
+  if (loading) {
+    return <div>로딩중입니다. </div>;
+  }
 
   return (
     <div>
