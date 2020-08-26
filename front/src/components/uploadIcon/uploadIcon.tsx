@@ -16,15 +16,21 @@ const iconStyle: React.CSSProperties = {
   alignItems: 'center',
   justifyContent: 'center',
   display: 'flex',
+  position: 'fixed',
+  right: '24px',
+  bottom: '24px',
 };
 
 const UploadIcon: React.FC<Props> = (props) => {
   const { style, className } = props;
   return (
-    <div className={className} style={{ ...style, ...iconStyle }}
-    onClick={() => {
+    <div
+      className={className}
+      style={{ ...style, ...iconStyle }}
+      onClick={() => {
         history.push('/map');
-      }}>
+      }}
+    >
       <WriteIcon />
     </div>
   );

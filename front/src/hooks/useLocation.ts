@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import { Map, Marker, GoogleApiWrapper, GoogleAPI } from 'google-maps-react';
 
 export const useLocation = () => {
   const [location, setLocation] = useState<Position | null>(null);
   const [error, setError] = useState<PositionError | null>(null);
+
 
   navigator.geolocation.getCurrentPosition(setLocation, setError);
 

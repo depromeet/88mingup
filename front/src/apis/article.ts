@@ -36,8 +36,8 @@ export const getArticles = () =>
     },
   );
 
-interface CommentDto {
-  id: number;
+export interface CommentDto {
+  id?: number;
   article: number;
   commenter: number;
   content: string;
@@ -51,7 +51,12 @@ const getArticleDetail = (id: number) => {
   return AxiosInstance.get<ArticleDetailDto>(`/api/v1/articles/${id}`);
 };
 
+const postArticleComment = (comment: CommentDto) => {
+  return AxiosInstance.post(`/api/v1/comment`, { ...comment });
+};
+
 export default {
   getArticles,
   getArticleDetail,
+  postArticleComment,
 };

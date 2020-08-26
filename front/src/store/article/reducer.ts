@@ -32,7 +32,6 @@ export const articleReducer = createReducer(initialState, (builder) => {
     state.all = action.payload.all;
   });
   builder.addCase(ArticleActionCreators.fetch.success, (state, action) => {
-    console.log('action', action.payload);
     state.selected = action.payload.data;
   });
 });

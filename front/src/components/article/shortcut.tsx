@@ -3,12 +3,13 @@ import { jsx, css } from '@emotion/core';
 import { ArticleEntityStateProps } from 'store/article/reducer';
 import styled from '@emotion/styled';
 import { HeartIcon, CommentIcon } from 'assets';
+import { history } from 'store/rootReducer';
 
 interface Props extends ArticleEntityStateProps {}
 
 export const ArticleShortcut = (props: Props) => {
   return (
-    <div>
+    <div onClick={() => history.push(`/articles/${props.id}`)}>
       <img
         css={css`
           width: 100%;
