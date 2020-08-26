@@ -30,9 +30,7 @@ export const ArticleActionCreators = {
   postComment: createAsyncAction<CommentDto, undefined>(
     ArticleActionTypes.POST_COMMENT,
   ),
-  postFile: createAsyncAction<any, ArticleFileDto>(
-    ArticleActionTypes.POST_FILE,
-  ),
+  postFile: createAsyncAction<File, any>(ArticleActionTypes.POST_FILE),
   postArticle: createAsyncAction<ArticleDto, undefined>(
     ArticleActionTypes.POST_ARTICLE,
   ),

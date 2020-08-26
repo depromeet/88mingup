@@ -55,7 +55,7 @@ const UploadPage: React.FC = () => {
 
   const [isUploadActice, setIsUploadActice] = useState(false);
   // const [img, setImage] = useState({});
-  const [file, setFile] = useState('');
+  const [file, setFile] = useState<File | undefined>(undefined);
   const [previewURL, setPreviewURL] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -64,16 +64,8 @@ const UploadPage: React.FC = () => {
   );
 
   const upload = () => {
-    if (isUploadActice) {
-      console.log('title', title);
-      console.log('content', content);
-      console.log('file', file);
-
-      dispatch(
-        ArticleActionCreators.postFile.request({
-          file: file,
-        }),
-      );
+    if (isUploadActice && file) {
+      dispatch(ArticleActionCreators.postFile.request(file));
 
       if (postedFile?.id) {
         console.log('파일 아이디', postedFile.id);
@@ -95,8 +87,9 @@ const UploadPage: React.FC = () => {
   let isTitle = '';
 
   const selectImg = (e: any) => {
-    let reader = new FileReader();
-    let targetFile = e.target.files[0];
+    const reader = new FileReader();
+    const targetFile = e.target.files[0];
+    console.log('targetFile', targetFile);
     reader.onloadend = () => {
       setFile(targetFile);
       setPreviewURL(reader.result as string);
@@ -111,7 +104,7 @@ const UploadPage: React.FC = () => {
     } = e;
     setTitle(value);
     isTitle = value;
-    setIsUploadActice(file !== '' && isTitle !== '');
+    setIsUploadActice(file !== undefined && isTitle !== '');
   };
 
   if (loading) {
@@ -130,7 +123,7 @@ const UploadPage: React.FC = () => {
         </HeaderItem>
       </Header>
       <div>
-        {file === '' ? (
+        {file === undefined ? (
           <>
             <BlankBox />
             <BlankImg style={{ display: 'flex', flexDirection: 'column' }}>

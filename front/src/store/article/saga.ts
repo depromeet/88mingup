@@ -49,7 +49,7 @@ export function* postArticleFile(
     // >['payload'] = yield call(ArticleAPI.postFile, action.payload);
 
     yield call(ArticleAPI.postFile, action.payload);
-    yield put(ArticleActionCreators.postFile.success(action.payload.file));
+    yield put(ArticleActionCreators.postFile.success({}));
   } catch (error) {
     yield put(ArticleActionCreators.postFile.failure(error));
   }
