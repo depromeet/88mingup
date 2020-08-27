@@ -14,7 +14,7 @@ export interface ArticleEntityStateProps {
 }
 
 export interface ArticleFileStateProps {
-  id?: number;
+  id: number;
   file: string;
 }
 
@@ -36,6 +36,6 @@ export const articleReducer = createReducer(initialState, (builder) => {
     state.selected = action.payload.data;
   });
   builder.addCase(ArticleActionCreators.postFile.success, (state, action) => {
-    state.postedFile = action.payload;
+    state.postedFile = action.payload.data;
   });
 });

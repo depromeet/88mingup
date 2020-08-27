@@ -21,6 +21,8 @@ import createLoadingSelector from 'store/loading/selector';
 
 import dayjs from 'dayjs';
 import { push } from 'connected-react-router';
+import article from 'apis/article';
+import { userInfo } from 'os';
 
 const ArticleDetailPage: React.FC = (props) => {
   const dispatch = useDispatch();
@@ -35,8 +37,14 @@ const ArticleDetailPage: React.FC = (props) => {
     (state: RootState) => state.article.selected,
   );
 
+  const user = useSelector((state: RootState) => state.user);
+
   const loading = useSelector(
     createLoadingSelector([ArticleActionCreators.fetch.actionName]),
+  );
+
+  const likeLoading = useSelector(
+    createLoadingSelector([ArticleActionCreators.likeArticle.actionName]),
   );
 
   const [comment, setComment] = useState<string>('');
@@ -83,6 +91,7 @@ const ArticleDetailPage: React.FC = (props) => {
               selectedArticle?.media_contents.length > 0
                 ? `url(${selectedArticle?.media_contents[0].file})`
                 : undefined,
+            backgroundSize: 'contain',
           }}
         >
           <div style={{ position: 'absolute', top: 16, left: 16 }}>{}</div>
@@ -99,8 +108,16 @@ const ArticleDetailPage: React.FC = (props) => {
             }}
           >
             <IconText
-              icon={<HeartIcon width={'24px'} height={'24px'} fill="#000000" />}
-              onClick={() => console.log('Dada')}
+              icon={<HeartIcon width={'24px'} height={'24px'} />}
+              onClick={() => {
+                console.log('adda');
+                dispatch(
+                  ArticleActionCreators.likeArticle.request({
+                    article: Number(id),
+                    liker: user.id,
+                  }),
+                );
+              }}
             >
               <b>1024</b>
             </IconText>

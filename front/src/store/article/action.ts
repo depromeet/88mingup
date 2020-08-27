@@ -7,6 +7,8 @@ import {
   CommentDto,
   ArticleFileDto,
   ArticleDto,
+  PostArticleDto,
+  LikeArticle,
 } from 'apis/article';
 import { create } from 'lodash';
 
@@ -19,7 +21,13 @@ export const ArticleActionTypes = {
   POST_COMMENT: `${prefix}/POST_COMMENT`,
   POST_FILE: `${prefix}/POST_FILE`,
   POST_ARTICLE: `${prefix}/POST_ARTICLE`,
+  LIKE_ARTICLE: `${prefix}/LIKE_ARTICLE`,
 } as const;
+
+interface FileUploadResponse {
+  id: number;
+  file: string;
+}
 
 export const ArticleActionCreators = {
   refresh: createAction<ArticleStateProps>(ArticleActionTypes.REFRESH),
@@ -30,8 +38,13 @@ export const ArticleActionCreators = {
   postComment: createAsyncAction<CommentDto, undefined>(
     ArticleActionTypes.POST_COMMENT,
   ),
-  postFile: createAsyncAction<File, any>(ArticleActionTypes.POST_FILE),
-  postArticle: createAsyncAction<ArticleDto, undefined>(
+  postFile: createAsyncAction<File, AxiosResponse<FileUploadResponse>>(
+    ArticleActionTypes.POST_FILE,
+  ),
+  postArticle: createAsyncAction<PostArticleDto, undefined>(
     ArticleActionTypes.POST_ARTICLE,
+  ),
+  likeArticle: createAsyncAction<LikeArticle, undefined>(
+    ArticleActionTypes.LIKE_ARTICLE,
   ),
 };

@@ -1,25 +1,22 @@
 import React, { useState, EventHandler, SetStateAction } from 'react';
 
-interface Props
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface Props extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   title: string;
   limit?: number;
   width?: number;
   height?: string;
-  content?: string;
-  setcontent?: SetStateAction<any>;
+  value?: string;
 }
 
 const TextArea: React.FC<Props> = (props) => {
-  const { limit = 500, title, width, height, setcontent, content } = props;
+  const { limit = 500, title, width, height, value } = props;
   const [focused, setFocused] = useState<boolean>(false);
 
-  const setFormattedContent = (text: string) => {
-    text.length > limit ? setcontent(text.slice(0, limit)) : setcontent(text);
-  };
+  const setFormattedContent = (text: string) =>
+    text.length > limit ? text.slice(0, limit) : text;
 
   React.useEffect(() => {
-    setFormattedContent(content as string);
+    setFormattedContent(value as string);
   }, []);
 
   return (
@@ -27,7 +24,7 @@ const TextArea: React.FC<Props> = (props) => {
       <div style={{ display: 'flex' }}>
         <b style={{ fontWeight: 'bold', marginBottom: 8 }}>{title}</b>
         <div style={{ marginLeft: 'auto' }}>
-          <span style={{ color: '#373cff' }}>{content?.toString().length}</span>
+          <span style={{ color: '#373cff' }}>{value?.toString().length}</span>
           <span style={{ color: '#868686' }}>/{limit}</span>
         </div>
       </div>
@@ -49,8 +46,11 @@ const TextArea: React.FC<Props> = (props) => {
             height: height,
             resize: 'none',
           }}
-          onChange={(event) => setFormattedContent(event.target.value)}
-          value={content}
+          onChange={(event) => {
+            props.onChange && props.onChange(event);
+            setFormattedContent(event.target.value);
+          }}
+          value={value}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
         />

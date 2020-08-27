@@ -14,7 +14,16 @@ export interface ArticleDto {
   created_at?: string;
   like_count?: number;
   comment_count?: number;
-  file_ids: Array<number>;
+}
+
+export interface PostArticleDto {
+  id?: number;
+  title: string;
+  description: string;
+  lat: number;
+  lng: number;
+  file_ids?: number[];
+  address: string;
 }
 
 export interface ArticleFileDto {
@@ -61,16 +70,26 @@ const postArticleComment = (comment: CommentDto) => {
   return AxiosInstance.post(`/api/v1/comment`, { ...comment });
 };
 
-const postFile = (file: any) => {
+const postFile = (file: File) => {
+  console.log('zzz', file);
   const formData = new FormData();
-  formData.append('file', file.file);
+  formData.append('file', file);
   return AxiosInstance.post(`/api/v1/files`, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
 };
 
-const postArticle = (article: ArticleDto) => {
+const postArticle = (article: PostArticleDto) => {
   return AxiosInstance.post(`/api/v1/articles`, { ...article });
+};
+
+export interface LikeArticle {
+  article: number;
+  liker: number;
+}
+
+const likeArticle = (likeData: LikeArticle) => {
+  return AxiosInstance.post(`/api/v1/like`, { ...likeData });
 };
 
 export default {
@@ -79,4 +98,5 @@ export default {
   postArticleComment,
   postFile,
   postArticle,
+  likeArticle,
 };

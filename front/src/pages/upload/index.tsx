@@ -45,71 +45,59 @@ const UploadPage: React.FC = () => {
   const position: PositionProps = useSelector<RootState, PositionProps>(
     (state) => state.position,
   );
-  const user: UserStateProps = useSelector<RootState, UserStateProps>(
-    (state) => state.user,
-  );
 
-  const postedFile = useSelector(
-    (state: RootState) => state.article.postedFile,
-  );
-
-  const [isUploadActice, setIsUploadActice] = useState(false);
-  // const [img, setImage] = useState({});
   const [file, setFile] = useState<File | undefined>(undefined);
   const [previewURL, setPreviewURL] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const loading = useSelector(
-    createLoadingSelector([ArticleActionCreators.fetch.actionName]),
+
+  const fileUploadLoading = useSelector(
+    createLoadingSelector([ArticleActionCreators.postFile.actionName]),
   );
 
-  const upload = () => {
-    if (isUploadActice && file) {
-      dispatch(ArticleActionCreators.postFile.request(file));
+  // 이미지프로세스 등록.
 
-      if (postedFile?.id) {
-        console.log('파일 아이디', postedFile.id);
-        dispatch(
-          ArticleActionCreators.postArticle.request({
-            title,
-            description: content,
-            lat: position.latitude,
-            lng: position.longitude,
-            address: location.location,
-            writer: user,
-            file_ids: [postedFile.id!],
-          }),
-        );
-      }
+  // 1. 업로드 버튼은 글이랑 설명이랑 이미지가 등록이 완료되었을때 활성화가 되야겠죠.
+
+  const uploadImage = (file: File) => {
+    if (!file) {
+      return;
     }
+
+    dispatch(ArticleActionCreators.postFile.request(file));
   };
 
-  let isTitle = '';
+  const uploadArticle = () => {
+    dispatch(
+      ArticleActionCreators.postArticle.request({
+        title,
+        description: content,
+        lat: position.latitude,
+        lng: position.longitude,
+        address: location.location,
+      }),
+    );
+  };
 
   const selectImg = (e: any) => {
     const reader = new FileReader();
     const targetFile = e.target.files[0];
-    console.log('targetFile', targetFile);
+    setFile(targetFile);
+    uploadImage(targetFile);
+
     reader.onloadend = () => {
-      setFile(targetFile);
       setPreviewURL(reader.result as string);
-      setIsUploadActice(isTitle !== '');
     };
+
     reader.readAsDataURL(targetFile);
   };
 
-  const onChangeTitle = (e: any) => {
-    const {
-      target: { value },
-    } = e;
-    setTitle(value);
-    isTitle = value;
-    setIsUploadActice(file !== undefined && isTitle !== '');
+  const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
   };
 
-  if (loading) {
-    return <div>로딩중입니다. </div>;
-  }
+  const isActiveUpload =
+    title.length > 0 && content.length > 0 && !!file && !fileUploadLoading;
 
   return (
     <div>
@@ -118,8 +106,8 @@ const UploadPage: React.FC = () => {
           <BlueTextBtn isActive={false}>취소</BlueTextBtn>
         </HeaderItem>
         <HeaderItem align="middle">{location.location}</HeaderItem>
-        <HeaderItem onClick={upload} align="end">
-          <BlueTextBtn isActive={isUploadActice}>업로드</BlueTextBtn>
+        <HeaderItem onClick={uploadArticle} align="end">
+          <BlueTextBtn isActive={isActiveUpload}>업로드</BlueTextBtn>
         </HeaderItem>
       </Header>
       <div>
@@ -155,11 +143,10 @@ const UploadPage: React.FC = () => {
         <div style={{ marginTop: '24px' }}>
           <TextArea
             value={content}
+            onChange={(e) => setContent(e.target.value)}
             height="100px"
             title="내용"
             placeholder="내용을 입력해주세요"
-            content={content}
-            setcontent={setContent}
           />
         </div>
       </TextComponent>

@@ -22,6 +22,7 @@ const IconText: React.FC<Props> = (props) => {
   const { style, icon, className, children, onClick } = props;
   return (
     <div
+      {...props}
       className={className}
       style={{
         display: 'flex',
