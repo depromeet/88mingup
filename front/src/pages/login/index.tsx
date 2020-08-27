@@ -1,5 +1,5 @@
 import React from 'react';
-import { Logo, LoginLogo } from 'assets';
+import { Logo, LoginLogo, KakaoIcon } from 'assets';
 import KakaoLogin from 'react-kakao-login';
 import { useDispatch } from 'react-redux';
 import { UserActionTypes, UserActionCreators } from 'store/user/action';
@@ -37,7 +37,7 @@ const LoginPage: React.FC = (props) => {
           color: '#ffffff',
         }}
       >
-        내 주변의 사람들은 지금 뭐하고 있을까요?
+        주변의 사람들은 지금 뭐하고 있을까요?
       </div>
 
       {/*디자인변경예정이라 이정도만하고스탑*/}
@@ -50,6 +50,8 @@ const LoginPage: React.FC = (props) => {
         render={(props) => (
           <div
             style={{
+              justifyContent: 'center',
+              alignItems: 'center',
               margin: '126px auto',
               borderRadius: 24,
               backgroundColor: '#ffffff',
@@ -59,7 +61,8 @@ const LoginPage: React.FC = (props) => {
             }}
             onClick={() => props.onClick()}
           >
-            <span>카카오톡으로 시작하기</span>
+            <KakaoIcon />
+            <span style={{ marginLeft: '8px' }}>카카오톡으로 시작하기</span>
           </div>
         )}
       />
