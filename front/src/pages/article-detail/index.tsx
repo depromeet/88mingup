@@ -181,13 +181,12 @@ const ArticleDetailPage: React.FC = (props) => {
             display: 'flex',
             padding: 16,
             alignItems: 'center',
-            width: '100%',
+            maxWidth: 600,
           }}
         >
           <Avatar style={{ width: '20%' }} size={40} />
           <Input
-            style={{ marginLeft: 16 }}
-            width={'80%'}
+            style={{ marginLeft: 16, flex: 1 }}
             placeholder="댓글 달기"
             value={comment}
             onChange={(e) => setComment(e.target.value)}
@@ -207,7 +206,7 @@ const ArticleDetailPage: React.FC = (props) => {
                 style={{
                   color: '#373cff',
                   cursor: 'pointer',
-                  minWidth: 40,
+                  minWidth: 30,
                 }}
                 onClick={() => {
                   dispatch(
