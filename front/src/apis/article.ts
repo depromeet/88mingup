@@ -22,24 +22,24 @@ export interface ArticleFileDto {
   file: string;
 }
 
-export const getArticles = () =>
-  AxiosInstance.get<ArticleDto[]>('/api/v1/articles').then(
-    (res): ArticleEntityStateProps[] => {
-      return res.data.map((dto) => {
-        return {
-          id: dto.id!,
-          title: dto.title,
-          description: dto.description,
-          lat: dto.lat,
-          lng: dto.lng,
-          writer: dto.writer,
-          files: dto.media_contents!.map((content) => {
-            return { id: content.id!, file: content.file };
-          }),
-        };
-      });
-    },
-  );
+export const getArticles = (writerId?: number) =>
+  AxiosInstance.get<ArticleDto[]>(
+    writerId ? `/api/v1/articles?writer_id=${writerId}` : '/api/v1/articles',
+  ).then((res): ArticleEntityStateProps[] => {
+    return res.data.map((dto) => {
+      return {
+        id: dto.id!,
+        title: dto.title,
+        description: dto.description,
+        lat: dto.lat,
+        lng: dto.lng,
+        writer: dto.writer,
+        files: dto.media_contents!.map((content) => {
+          return { id: content.id!, file: content.file };
+        }),
+      };
+    });
+  });
 
 export interface CommentDto {
   id?: number;

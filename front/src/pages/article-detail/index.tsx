@@ -180,6 +180,7 @@ const ArticleDetailPage: React.FC = (props) => {
           display: 'flex',
           padding: 16,
           alignItems: 'center',
+          maxWidth: 600,
         }}
       >
         <Avatar size={40} />

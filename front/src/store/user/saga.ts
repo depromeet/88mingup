@@ -2,10 +2,14 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import { getProfile, userLogin } from 'apis/user';
 import { UserActionTypes } from './action';
 import { UserStateProps } from './reducer';
+import { ArticleDto } from 'apis/article';
+import { ArticleAPI } from 'apis';
 
 export function* currentUserProfile() {
   try {
     const profile: UserStateProps = yield call(getProfile);
+    const writedArticles = yield call(ArticleAPI.getArticles, profile.id);
+    console.log('dadaad', writedArticles);
     yield put({
       type: UserActionTypes.SET_PROFILE,
       payload: {
@@ -18,7 +22,7 @@ export function* currentUserProfile() {
       type: UserActionTypes.SET_PROFILE,
       payload: {
         name: '',
-        profileUrl: '',
+        profile_url: '',
         authenticated: false,
       },
     });
@@ -26,7 +30,6 @@ export function* currentUserProfile() {
 }
 
 export function* loginAction(action: any) {
-  console.log();
   yield call(userLogin, action.payload);
   yield put({ type: UserActionTypes.REFRESH_PROFILE });
 }

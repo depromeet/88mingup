@@ -18,6 +18,7 @@ const MyPage: React.FC = () => {
   const user: UserStateProps = useSelector<RootState, UserStateProps>(
     (state) => state.user,
   );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -46,7 +47,7 @@ const MyPage: React.FC = () => {
         </Header>
 
         <div style={{ margin: '0 auto', textAlign: 'center' }}>
-          <Avatar src={user.profileUrl} />
+          <Avatar src={user.profile_url} />
           <div
             style={{
               color: '#a5ffae',
@@ -58,7 +59,7 @@ const MyPage: React.FC = () => {
             {user.name}
           </div>
           <div style={{ fontSize: 14, color: '#e0e0e0', marginTop: 8 }}>
-            서울시 00구 00동
+            서울시 송파구
           </div>
         </div>
       </div>
@@ -79,7 +80,7 @@ const MyPage: React.FC = () => {
       >
         <div>
           <div style={{ fontSize: 18, fontWeight: 'bold', color: '#000000' }}>
-            201
+            {user.article_count}
           </div>
           <div style={{ fontWeight: 'bold', fontSize: 11, color: '#a1a1a1' }}>
             내가 쓴 글
@@ -87,7 +88,7 @@ const MyPage: React.FC = () => {
         </div>
         <div>
           <div style={{ fontSize: 18, fontWeight: 'bold', color: '#000000' }}>
-            201
+            {user.comment_count}
           </div>
           <div style={{ fontWeight: 'bold', fontSize: 11, color: '#a1a1a1' }}>
             내가 쓴 댓글
@@ -95,7 +96,7 @@ const MyPage: React.FC = () => {
         </div>
         <div>
           <div style={{ fontSize: 18, fontWeight: 'bold', color: '#000000' }}>
-            201
+            {user.like_count}
           </div>
           <div style={{ fontWeight: 'bold', fontSize: 11, color: '#a1a1a1' }}>
             받은 하트

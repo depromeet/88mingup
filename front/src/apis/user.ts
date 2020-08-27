@@ -7,9 +7,11 @@ interface UserDto {
 }
 
 export const getProfile = () =>
-  AxiosInstance.get<UserDto>('/api/v1/auth/profile').then(
+  AxiosInstance.get<Omit<UserStateProps, 'authenticated'>>(
+    '/api/v1/auth/profile',
+  ).then(
     (res): Omit<UserStateProps, 'authenticated'> => {
-      return { name: res.data.name, profileUrl: res.data.profile_url };
+      return res.data;
     },
   );
 
