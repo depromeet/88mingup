@@ -114,7 +114,12 @@ const UploadPage: React.FC = () => {
         {file === undefined ? (
           <>
             <BlankBox />
-            <BlankImg style={{ display: 'flex', flexDirection: 'column' }}>
+            <BlankImg
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
               <CameraIcon />
               <div>사진을 선택해주세요</div>
               <input
@@ -130,7 +135,12 @@ const UploadPage: React.FC = () => {
             </BlankImg>
           </>
         ) : (
-          <img src={previewURL} width={'100%'} height={'375px'} />
+          <img
+            style={{ objectFit: 'cover', display: 'flex', margin: '0 auto' }}
+            src={previewURL}
+            width={'80%'}
+            height={'375px'}
+          />
         )}
       </div>
       <TextComponent>
