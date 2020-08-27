@@ -21,12 +21,13 @@ export const ArticleShortcut = (props: Props) => {
         css={css`
           padding-left: 8px;
           padding-right: 8px;
+          margin-bottom: 40px;
         `}
       >
         <div
           css={css`
             display: flex;
-            align-items: start;
+            align-items: center;
             margin-top: 16px;
             justify-content: space-between;
           `}
@@ -60,6 +61,7 @@ export const ArticleShortcut = (props: Props) => {
 const Title = styled.span`
   font-size: 18px;
   color: black;
+  font-weight: bold;
 `;
 
 const SubTittleWrapper = styled.div`
@@ -70,11 +72,14 @@ const SubTittleWrapper = styled.div`
 const SubTitle = styled.span`
   font-size: 11px;
   color: black;
+  font-weight: bold;
 `;
 
 const TimeAgo = styled.span`
   font-size: 9px;
   color: #a1a1a1;
+  font-weight: bold;
+  letter-spacing: -0.3px;
 `;
 
 const Description = styled.p`

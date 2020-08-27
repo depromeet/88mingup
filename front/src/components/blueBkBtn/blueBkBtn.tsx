@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { EventHandler } from 'react';
 
 interface Props {
   style?: React.CSSProperties;
   className?: string;
   isActive: boolean;
+  onClick?: EventHandler<any>;
 }
 
 const backgroundStyle: React.CSSProperties = {
-  padding: '9px 24px',
+  padding: '11px 24px',
   fontSize: '13px',
   color: '#ffffff',
   borderRadius: '35px',
@@ -15,9 +16,10 @@ const backgroundStyle: React.CSSProperties = {
 };
 
 const BlueBkBtn: React.FC<Props> = (props) => {
-  const { style, className, children, isActive } = props;
+  const { style, className, children, isActive, onClick } = props;
   return (
     <div
+      onClick={onClick}
       className={className}
       style={{
         ...backgroundStyle,

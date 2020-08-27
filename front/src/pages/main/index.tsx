@@ -1,8 +1,6 @@
 import './main.scss';
 
-import { Card, Input, GoogleMap } from 'components';
 import { MainHeader } from 'components/header';
-import TextArea from 'components/textArea';
 import React, { useEffect } from 'react';
 import { Discover } from './discover';
 import styled from '@emotion/styled';
@@ -49,33 +47,6 @@ const MainPage: React.FC = (props) => {
         <Discover />
       </RootLayout>
 
-      {/* <div className="no-scrollbar list" style={{ paddingTop: '60px' }}>
-        <Card
-          className="list-item"
-          url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg"
-        />
-        <Card
-          className="list-item"
-          url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg"
-        />
-        <Card
-          className="list-item"
-          url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg"
-        />
-        <Card
-          className="list-item"
-          url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg"
-        />
-        <Card
-          className="list-item"
-          url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg"
-        />
-        <Card
-          className="list-item"
-          url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg"
-        />
-      </div>
-      <Input title="bb" /> */}
       <UploadIcon />
     </div>
   );

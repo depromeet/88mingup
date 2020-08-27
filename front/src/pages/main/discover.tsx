@@ -3,7 +3,7 @@ import { jsx, css } from '@emotion/core';
 import { BlueBKBtn } from 'components';
 import styled from '@emotion/styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   ArticleActionTypes,
   ArticleActionCreators,
@@ -16,6 +16,8 @@ import { MainTitle } from './title';
 export const Discover = () => {
   const dispatch = useDispatch();
 
+  const [isDistance, setIsDistance] = useState(true);
+
   const articleState: ArticleStateProps = useSelector<
     RootState,
     ArticleStateProps
@@ -24,6 +26,10 @@ export const Discover = () => {
   useEffect(() => {
     dispatch(ArticleActionCreators.fetch_all());
   }, []);
+
+  const onClickBtn = (type: string) => {
+    type === 'distance' ? setIsDistance(true) : setIsDistance(false);
+  };
 
   return (
     <div>
@@ -34,15 +40,20 @@ export const Discover = () => {
           grid-gap: 8px;
           grid-auto-flow: column;
           grid-auto-columns: minmax(min-content, max-content);
-          margin-bottom: 16px;
         `}
       >
-        <BlueBKBtn isActive={true}>거리순</BlueBKBtn>
-        <BlueBKBtn isActive={false}>최신순</BlueBKBtn>
+        <BlueBKBtn onClick={() => onClickBtn('distance')} isActive={isDistance}>
+          거리순
+        </BlueBKBtn>
+        <BlueBKBtn onClick={() => onClickBtn('new')} isActive={!isDistance}>
+          최신순
+        </BlueBKBtn>
       </div>
-      {articleState.all.map((article) => (
-        <ArticleShortcut key={article.id} {...article}></ArticleShortcut>
-      ))}
+      <div style={{ marginTop: '16px' }}>
+        {articleState.all.map((article) => (
+          <ArticleShortcut key={article.id} {...article}></ArticleShortcut>
+        ))}
+      </div>
     </div>
   );
 };

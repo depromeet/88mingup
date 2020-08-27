@@ -1,7 +1,6 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
-import { MapMarker, LocBtn } from 'assets';
-import MintBkText from 'components/mintBkText';
+import { MapMarker } from 'assets';
 import { PositionProps } from 'store/position/reducer';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/configureStore';
