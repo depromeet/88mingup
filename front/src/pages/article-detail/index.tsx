@@ -87,7 +87,7 @@ const ArticleDetailPage: React.FC = (props) => {
         <div style={{ position: 'absolute', top: 16, left: 16 }}>{}</div>
       </div>
 
-      <div style={{ display: 'flex', marginTop: 24 }}>
+      <div style={{ alignItems: 'center', display: 'flex', marginTop: 24 }}>
         <div style={{ fontSize: 18, fontWeight: 'bold' }}>
           {selectedArticle?.title}
         </div>
@@ -98,12 +98,21 @@ const ArticleDetailPage: React.FC = (props) => {
           }}
         >
           <IconText
-            icon={<HeartIcon fill="rgb(237, 73, 86)" />}
+            icon={
+              <HeartIcon
+                width={'24px'}
+                height={'24px'}
+                fill="#000000"
+              />
+            }
             onClick={() => console.log('Dada')}
           >
-            1024
+            <b>1024</b>
           </IconText>
-          <IconText style={{ marginLeft: 8 }} icon={<CommentIcon />}>
+          <IconText
+            style={{ marginLeft: 8 }}
+            icon={<CommentIcon width={'24px'} height={'24px'} />}
+          >
             {selectedArticle?.comments.length}
           </IconText>
         </div>
