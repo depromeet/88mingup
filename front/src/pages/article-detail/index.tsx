@@ -98,13 +98,7 @@ const ArticleDetailPage: React.FC = (props) => {
           }}
         >
           <IconText
-            icon={
-              <HeartIcon
-                width={'24px'}
-                height={'24px'}
-                fill="#000000"
-              />
-            }
+            icon={<HeartIcon width={'24px'} height={'24px'} fill="#000000" />}
             onClick={() => console.log('Dada')}
           >
             <b>1024</b>
@@ -158,6 +152,7 @@ const ArticleDetailPage: React.FC = (props) => {
               fontWeight: 600,
               fontSize: 15,
               color: '#373cff',
+              fontFamily: 'Montserrat',
             }}
           >
             {selectedArticle?.comments.length} comments
@@ -185,13 +180,12 @@ const ArticleDetailPage: React.FC = (props) => {
           display: 'flex',
           padding: 16,
           alignItems: 'center',
-          maxWidth: 600,
         }}
       >
         <Avatar size={40} />
         <Input
           placeholder="댓글 달기"
-          style={{ marginLeft: 16 }}
+          style={{ marginLeft: 16, flex: 1 }}
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           onKeyPress={(e) => {
@@ -207,7 +201,11 @@ const ArticleDetailPage: React.FC = (props) => {
           }}
           suffix={
             <div
-              style={{ marginLeft: 16, color: '#373cff', cursor: 'pointer' }}
+              style={{
+                color: '#373cff',
+                cursor: 'pointer',
+                minWidth: 40,
+              }}
               onClick={() => {
                 dispatch(
                   ArticleActionCreators.postComment.request({
