@@ -21,7 +21,7 @@ export const TopSheet = () => {
         align-items: center;
       `}
     >
-      <Title>SEOUL</Title>
+      <Title className="icon1-after">SEOUL</Title>
       <SubTitle>KOREA</SubTitle>
     </div>
   );

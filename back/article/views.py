@@ -1,6 +1,8 @@
 from django.contrib.gis.db.models.functions import Distance
 from django.contrib.gis.geos import Point
 from django.http import HttpResponse
+from django.db.models import F, Sum, Count, Case, When
+
 from django_filters.rest_framework import DjangoFilterBackend
 from requests import Response
 from rest_framework import status, viewsets
@@ -33,13 +35,15 @@ class ArticleViewSet(viewsets.ModelViewSet):
         OrderingFilter,
     )
     filterset_class = ArticleFilter
-    ordering_fields = ["created_at", "distance"]
+    ordering_fields = ["created_at", "distance", 'like_count']
 
     def get_queryset(self):
         request = self.request
         params = request.query_params
         lat = params.get("lat")
         lng = params.get("lng")
+        
+        self.queryset = self.queryset.annotate(like_count=Count('like_users'))
 
         if not lat or not lng:
             return self.queryset
@@ -75,8 +79,8 @@ class ArticleLikeViewSet(viewsets.ModelViewSet):
     serializer_class = ArticleLikeSerializer
 
     def create(self, request):
-        article_id = request.POST["article"]
-        user = request.POST["liker"]
+        article_id = request.data["article"]
+        user = request.data["liker"]
         article = get_object_or_404(Article, pk=article_id)
 
         if article.like_users.filter(id=user):
