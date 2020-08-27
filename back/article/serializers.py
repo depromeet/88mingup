@@ -90,7 +90,6 @@ class ArticleWithCommentSerializer(ModelSerializer):
 
 class ArticleSerializer(ModelSerializer):
     media_contents = MediaContentSerializer(many=True, read_only=True)
-    distance = SerializerMethodField()
 
     class Meta:
         model = Article
@@ -106,12 +105,6 @@ class ArticleSerializer(ModelSerializer):
             "address",
             "distance",
         ]
-
-    def get_distance(self, obj: Article):
-
-        if hasattr(obj, "distance"):
-            return obj.distance.m
-        return None
 
 
 class ArticleCreateSerializer(ModelSerializer):
@@ -144,8 +137,9 @@ class ArticleCreateSerializer(ModelSerializer):
 
         return instance
 
+
 class ArticleLikeCountSerializer(ModelSerializer):
-    like_count=serializers.SerializerMethodField()
+    like_count = serializers.SerializerMethodField()
 
     def get_like_count(self, obj):
         return obj.liker.count()
@@ -159,20 +153,25 @@ class ArticleLikeCountSerializer(ModelSerializer):
             "like_count",
         ]
 
+
 class ArticleWithCountSerializer(ModelSerializer):
     media_contents = MediaContentSerializer(many=True, read_only=True)
     comment_count = serializers.SerializerMethodField()
     like_count = serializers.SerializerMethodField()
-    writer = serializers.SlugRelatedField(
-        read_only = True,
-        slug_field = "name"
-     )
+    distance = SerializerMethodField()
+    writer = serializers.SlugRelatedField(read_only=True, slug_field="name")
 
     def get_comment_count(self, obj):
         return obj.comments.count()
 
     def get_like_count(self, obj):
         return obj.like_users.count()
+
+    def get_distance(self, obj: Article):
+
+        if hasattr(obj, "distance"):
+            return obj.distance.m
+        return None
 
     class Meta:
         model = Article
@@ -188,4 +187,5 @@ class ArticleWithCountSerializer(ModelSerializer):
             "comment_count",
             "created_at",
             "address",
+            "distance",
         ]

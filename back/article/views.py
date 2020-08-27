@@ -17,10 +17,10 @@ from .serializers import (
     ArticleLikeSerializer,
     ArticleSerializer,
     ArticleWithCommentSerializer,
+    ArticleWithCountSerializer,
     CommentCreateSerializer,
     CommentSerializer,
     MediaContentSerializer,
-    ArticleWithCountSerializer,
 )
 
 
@@ -33,7 +33,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
         OrderingFilter,
     )
     filterset_class = ArticleFilter
-    ordering_fields = ["lat", "lng", "created_at", "updated_at"]
+    ordering_fields = ["created_at", "distance"]
 
     def get_queryset(self):
         request = self.request
