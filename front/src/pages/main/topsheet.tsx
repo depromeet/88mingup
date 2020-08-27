@@ -32,6 +32,7 @@ const Title = styled.p`
   text-transform: uppercase;
   margin-bottom: 0px;
   font-weight: 200;
+  font-family: 'Montserrat';
 `;
 
 const SubTitle = styled.p`
@@ -40,4 +41,5 @@ const SubTitle = styled.p`
   text-transform: uppercase;
   margin-top: 0px;
   font-weight: bold;
+  font-family: 'Montserrat';
 `;

@@ -11,4 +11,5 @@ export const MainTitle = styled.p`
   margin-bottom: 24px;
   letter-spacing: -0.3px;
   font-weight: 600;
+  font-family: 'Montserrat';
 `;
