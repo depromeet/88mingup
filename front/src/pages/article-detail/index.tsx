@@ -49,13 +49,14 @@ const ArticleDetailPage: React.FC = (props) => {
 
   const [comment, setComment] = useState<string>('');
 
-  if (loading) {
-    return <div>로딩중입니다. </div>;
-  }
-
   if (!loading && !selectedArticle) {
     return <div>컨텐츠를 찾을수 없습니다.</div>;
   }
+
+  console.log(
+    ' selectedArticle?.like_users?.find((id) => id === user.id)',
+    selectedArticle?.like_users?.find((id) => id === user.id),
+  );
 
   return (
     <div>
@@ -108,9 +109,18 @@ const ArticleDetailPage: React.FC = (props) => {
             }}
           >
             <IconText
-              icon={<HeartIcon width={'24px'} height={'24px'} />}
+              icon={
+                <HeartIcon
+                  width={'24px'}
+                  height={'24px'}
+                  fill={
+                    selectedArticle?.like_users?.find((id) => id === user.id)
+                      ? '#000000'
+                      : '#ffffff'
+                  }
+                />
+              }
               onClick={() => {
-                console.log('adda');
                 dispatch(
                   ArticleActionCreators.likeArticle.request({
                     article: Number(id),
@@ -119,7 +129,7 @@ const ArticleDetailPage: React.FC = (props) => {
                 );
               }}
             >
-              <b>1024</b>
+              <b>{selectedArticle?.like_users?.length}</b>
             </IconText>
             <IconText
               style={{ marginLeft: 8 }}

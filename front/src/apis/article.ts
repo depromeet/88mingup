@@ -14,6 +14,7 @@ export interface ArticleDto {
   created_at?: string;
   like_count?: number;
   comment_count?: number;
+  like_users?: number[];
 }
 
 export interface PostArticleDto {
