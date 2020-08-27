@@ -35,10 +35,6 @@ const MainPage: React.FC = (props) => {
 
   return (
     <div>
-      <BubbleImg>
-        <MainBubble />
-      </BubbleImg>
-
       <MainHeader />
 
       <RootLayout>
