@@ -2,7 +2,7 @@ import React, { useState, ReactElement } from 'react';
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   title?: string;
-  width?: number;
+  width?: string;
   suffix?: string | ReactElement;
 }
 
@@ -19,7 +19,6 @@ const Input: React.FC<Props> = (props) => {
       }}
     >
       {title && <b style={{ fontWeight: 'bold', marginBottom: 8 }}>{title}</b>}
-
       <div
         style={{
           borderRadius: 8,
@@ -32,6 +31,7 @@ const Input: React.FC<Props> = (props) => {
         <input
           {...props}
           style={{
+            width: width || '100%',
             flex: 1,
             border: 'none',
             outline: 'none',
