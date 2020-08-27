@@ -79,8 +79,8 @@ class ArticleLikeViewSet(viewsets.ModelViewSet):
     serializer_class = ArticleLikeSerializer
 
     def create(self, request):
-        article_id = request.POST["article"]
-        user = request.POST["liker"]
+        article_id = request.data["article"]
+        user = request.data["liker"]
         article = get_object_or_404(Article, pk=article_id)
 
         if article.like_users.filter(id=user):
