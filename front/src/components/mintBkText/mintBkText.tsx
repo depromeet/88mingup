@@ -16,6 +16,7 @@ const backgroundStyle: React.CSSProperties = {
   borderRadius: '8px',
   fontStyle: 'bold',
   textAlign: 'center',
+  minWidth: '40px',
 };
 
 const MintBkText: React.FC<Props> = (props) => {

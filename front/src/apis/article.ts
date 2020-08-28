@@ -15,6 +15,7 @@ export interface ArticleDto {
   like_count?: number;
   comment_count?: number;
   like_users?: number[];
+  distance?: number;
 }
 
 export interface PostArticleDto {
@@ -34,7 +35,9 @@ export interface ArticleFileDto {
 
 export const getArticles = (writerId?: number) =>
   AxiosInstance.get<ArticleDto[]>(
-    writerId ? `/api/v1/articles?writer_id=${writerId}` : '/api/v1/articles',
+    writerId
+      ? `/api/v1/articles?writer_id=${writerId}&lat=37.574515&lng=126.976930`
+      : '/api/v1/articles?lat=37.574515&lng=126.976930',
   ).then((res): ArticleEntityStateProps[] => {
     return res.data.map((dto) => {
       return {
@@ -49,6 +52,7 @@ export const getArticles = (writerId?: number) =>
         files: dto.media_contents!.map((content) => {
           return { id: content.id!, file: content.file };
         }),
+        distance: parseInt(dto.distance + '', 10),
       };
     });
   });

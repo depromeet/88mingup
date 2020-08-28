@@ -31,6 +31,14 @@ export const Discover = () => {
     type === 'distance' ? setIsDistance(true) : setIsDistance(false);
   };
 
+  const orderData = isDistance
+    ? [...articleState.all.filter((item) => item.distance)].sort(
+        (a, b) => a.distance! - b.distance!,
+      )
+    : [...articleState.all].sort((a, b) =>
+        a.created_at! < b.created_at! ? 1 : -1,
+      );
+
   return (
     <div>
       <MainTitle>Discover</MainTitle>
@@ -51,7 +59,7 @@ export const Discover = () => {
         </BlueBKBtn>
       </div>
       <div style={{ marginTop: '16px' }}>
-        {articleState.all.map((article) => (
+        {orderData.map((article) => (
           <ArticleShortcut key={article.id} {...article}></ArticleShortcut>
         ))}
       </div>

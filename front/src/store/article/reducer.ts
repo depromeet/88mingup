@@ -13,6 +13,8 @@ export interface ArticleEntityStateProps {
   comment_count?: number;
   writer: UserStateProps;
   files: ArticleFileStateProps[];
+  distance?: number;
+  created_at?: string;
 }
 
 export interface ArticleFileStateProps {

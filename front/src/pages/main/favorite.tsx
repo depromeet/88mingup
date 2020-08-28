@@ -26,6 +26,11 @@ export const Favorite = (props: Props) => {
   useEffect(() => {
     dispatch(ArticleActionCreators.fetch_all());
   }, []);
+
+  console.log(
+    'articleState',
+    articleState.all.filter((item) => item.distance && item.distance < 1000),
+  );
   return (
     <div>
       <MainTitle>
@@ -34,29 +39,35 @@ export const Favorite = (props: Props) => {
         Favorable
       </MainTitle>
       <Scroll>
-        {articleState.all.map((article, idx) => (
-          <div key={article.id} style={{ backgroundSize: 'cover' }}>
-            {idx === 0 && (
-              <MintBKText
-                rgba={'#a5ffae'}
+        {articleState.all
+          .filter((item) => item.distance && item.distance < 1000)
+          .map((article, idx) => (
+            <div key={article.id} style={{ backgroundSize: 'cover' }}>
+              {
+                <MintBKText
+                  rgba={'#a5ffae'}
+                  style={{
+                    position: 'absolute',
+                    zIndex: 1,
+                    margin: '8px',
+                  }}
+                >
+                  <b>
+                    {idx === 0
+                      ? 'near!'
+                      : `${(article.distance! / 100) * 100} m`}
+                  </b>
+                </MintBKText>
+              }
+              <Card
                 style={{
-                  position: 'absolute',
-                  zIndex: 1,
-                  margin: '8px',
+                  background: `url(${article.files[0].file}) no-repeat center center / cover`,
                 }}
-              >
-                <b>near!</b>
-              </MintBKText>
-            )}
-            <Card
-              style={{
-                background: `url(${article.files[0].file}) no-repeat center center / cover`,
-              }}
-              onClick={() => history.push(`/articles/${article.id}`)}
-            />
-            <Title>{article.title}</Title>
-          </div>
-        ))}
+                onClick={() => history.push(`/articles/${article.id}`)}
+              />
+              <Title>{article.title}</Title>
+            </div>
+          ))}
       </Scroll>
     </div>
   );

@@ -4,6 +4,7 @@ import { ArticleEntityStateProps } from 'store/article/reducer';
 import styled from '@emotion/styled';
 import { HeartIcon, CommentIcon } from 'assets';
 import { history } from 'store/rootReducer';
+import { MintBKText } from 'components';
 
 interface Props extends ArticleEntityStateProps {}
 
@@ -11,6 +12,16 @@ export const ArticleShortcut = (props: Props) => {
   console.log('rpo', props);
   return (
     <div onClick={() => history.push(`/articles/${props.id}`)}>
+      <MintBKText
+        rgba={'#a5ffae'}
+        style={{
+          position: 'absolute',
+          zIndex: 1,
+          margin: '8px',
+        }}
+      >
+        <b>{(props.distance! / 100) * 100} m</b>
+      </MintBKText>
       <img
         css={css`
           width: 100%;
