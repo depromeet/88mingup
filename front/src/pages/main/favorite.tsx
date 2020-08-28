@@ -50,10 +50,9 @@ export const Favorite = (props: Props) => {
             )}
             <Card
               key={article.id}
+              style={{ backgroundImage: `url(${article.files[0].file})` }}
               onClick={() => history.push(`/articles/${article.id}`)}
-            >
-              <Image src={article.files[0].file} />
-            </Card>
+            />
             <Title>{article.title}</Title>
           </div>
         ))}
@@ -72,15 +71,13 @@ const Title = styled.div`
 
 const Card = styled.div`
   border-radius: 16px;
-  width: 100%;
-  height: 168px;
+  width: 280px;
+  background-size: cover;
+  height: 280px;
   background: #f2f2f2;
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: calc(${window.screen.width}px * 0.8);
-  min-width: calc(${window.screen.width}px * 0.8);
-  min-height: calc(${window.screen.width}px * 0.8);
   box-shadow: 8px 8px 20px 0 rgba(0, 0, 0, 0.1);
 `;
 
@@ -93,6 +90,8 @@ const Scroll = styled.div`
   margin: 0 -16px;
   padding: 0 16px;
   position: relative;
+  
+  -webkit-overflow-scrolling: touch;
 `;
 
 const Image = styled.img`
