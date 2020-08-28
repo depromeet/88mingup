@@ -34,30 +34,26 @@ export const Discover = () => {
   return (
     <div>
       <MainTitle>Discover</MainTitle>
-      <div className="icon2-after">
-        <div
-          css={css`
-            display: grid;
-            grid-gap: 8px;
-            grid-auto-flow: column;
-            grid-auto-columns: minmax(min-content, max-content);
-          `}
-        >
-          <BlueBKBtn
-            onClick={() => onClickBtn('distance')}
-            isActive={isDistance}
-          >
-            거리순
-          </BlueBKBtn>
-          <BlueBKBtn onClick={() => onClickBtn('new')} isActive={!isDistance}>
-            최신순
-          </BlueBKBtn>
-        </div>
-        <div style={{ marginTop: '16px' }}>
-          {articleState.all.map((article) => (
-            <ArticleShortcut key={article.id} {...article}></ArticleShortcut>
-          ))}
-        </div>
+
+      <div
+        css={css`
+          display: grid;
+          grid-gap: 8px;
+          grid-auto-flow: column;
+          grid-auto-columns: minmax(min-content, max-content);
+        `}
+      >
+        <BlueBKBtn onClick={() => onClickBtn('distance')} isActive={isDistance}>
+          거리순
+        </BlueBKBtn>
+        <BlueBKBtn onClick={() => onClickBtn('new')} isActive={!isDistance}>
+          최신순
+        </BlueBKBtn>
+      </div>
+      <div style={{ marginTop: '16px' }}>
+        {articleState.all.map((article) => (
+          <ArticleShortcut key={article.id} {...article}></ArticleShortcut>
+        ))}
       </div>
     </div>
   );
