@@ -4,7 +4,7 @@ import Avatar from 'components/avatar';
 interface Props {
   meta?: {
     title?: string | number;
-    avatar?: React.ReactNode;
+    avatar?: string;
     description?: string;
   };
 }
@@ -25,7 +25,7 @@ const Item: React.FC<Props> = (props) => {
         {...others}
       >
         <div>
-          <Avatar size={32} />
+          <Avatar size={32} src={props.meta?.avatar} />
         </div>
         <div style={{ marginLeft: 8 }}>
           {meta.title && (

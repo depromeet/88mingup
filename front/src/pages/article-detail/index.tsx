@@ -67,7 +67,7 @@ const ArticleDetailPage: React.FC = (props) => {
           align="start"
         />
         <HeaderItem align="middle">
-          <Avatar size={24} />
+          <Avatar src={user.profile_url} size={24} />
         </HeaderItem>
         <HeaderItem icon={MoreIcon} align="end" />
       </Header>
@@ -191,7 +191,11 @@ const ArticleDetailPage: React.FC = (props) => {
           {selectedArticle?.comments.map((comment, index) => (
             <List.Item
               key={`comments-${index}`}
-              meta={{ title: comment.commenter, description: comment.content }}
+              meta={{
+                avatar: comment.commenter_profile,
+                title: comment.commenter,
+                description: comment.content,
+              }}
             />
           ))}
         </List>
@@ -211,7 +215,7 @@ const ArticleDetailPage: React.FC = (props) => {
             maxWidth: 600,
           }}
         >
-          <Avatar style={{ width: '20%' }} size={40} />
+          <Avatar src={user.profile_url} style={{ width: '20%' }} size={40} />
           <Input
             style={{ marginLeft: 16, flex: 1 }}
             placeholder="댓글 달기"
