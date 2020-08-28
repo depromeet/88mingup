@@ -39,8 +39,8 @@ export const Favorite = (props: Props) => {
         Favorable
       </MainTitle>
       <Scroll>
-        {articleState.all
-          .filter((item) => item.distance && item.distance < 1000)
+        {[...articleState.all]
+          .sort((a, b) => b.like_count! - a.like_count!)
           .map((article, idx) => (
             <div key={article.id} style={{ backgroundSize: 'cover' }}>
               {
