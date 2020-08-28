@@ -84,15 +84,13 @@ const MapPage: React.FC = () => {
       setLocation();
     }
   };
-  const currentPosition = (position: any) => {
-    if (position.coords) {
-      dispatch(
-        PositionActionCreators.setPosition({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-        }),
-      );
-    }
+  const currentPosition = () => {
+    dispatch(
+      PositionActionCreators.setPosition({
+        latitude: 37.33,
+        longitude: 126.59,
+      }),
+    );
   };
 
   return user.authenticated ? (
