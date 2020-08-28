@@ -36,7 +36,7 @@ const SearchLocationPage: React.FC<Props> = (props) => {
   const dispatch = useDispatch();
 
   const searchLoc = (location: string) => {
-    Geocode.setApiKey('AIzaSyBj90odFn56Ethoo4NK3r3VJh11O6jcjmk');
+    Geocode.setApiKey('AIzaSyC4ltv6KIHw_jiBgUYoittDjS4_IBfSmJU');
     Geocode.setLanguage('kr');
     Geocode.setRegion('kr');
     Geocode.enableDebug();

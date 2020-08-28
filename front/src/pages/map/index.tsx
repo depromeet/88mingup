@@ -38,7 +38,7 @@ const MapPage: React.FC = () => {
   // 현재 위도/경도로 주소 찾기
   const setLocation = () => {
     if (position.latitude !== 0 && position.longitude !== 0) {
-      Geocode.setApiKey('AIzaSyBj90odFn56Ethoo4NK3r3VJh11O6jcjmk');
+      Geocode.setApiKey('AIzaSyC4ltv6KIHw_jiBgUYoittDjS4_IBfSmJU');
       Geocode.setLanguage('kr');
       Geocode.setRegion('kr');
       Geocode.enableDebug();
@@ -87,8 +87,8 @@ const MapPage: React.FC = () => {
   const currentPosition = () => {
     dispatch(
       PositionActionCreators.setPosition({
-        latitude: 37.33,
-        longitude: 126.59,
+        latitude: 37.5760222,
+        longitude: 126.9769000,
       }),
     );
   };
