@@ -35,7 +35,7 @@ export const Favorite = (props: Props) => {
       </MainTitle>
       <Scroll>
         {articleState.all.map((article, idx) => (
-          <div>
+          <div key={article.id} style={{ backgroundSize: 'cover' }}>
             {idx === 0 && (
               <MintBKText
                 rgba={'#a5ffae'}
@@ -49,8 +49,9 @@ export const Favorite = (props: Props) => {
               </MintBKText>
             )}
             <Card
-              key={article.id}
-              style={{ backgroundImage: `url(${article.files[0].file})` }}
+              style={{
+                background: `url(${article.files[0].file}) no-repeat center center / cover`,
+              }}
               onClick={() => history.push(`/articles/${article.id}`)}
             />
             <Title>{article.title}</Title>
@@ -72,7 +73,6 @@ const Title = styled.div`
 const Card = styled.div`
   border-radius: 16px;
   width: 280px;
-  background-size: cover;
   height: 280px;
   background: #f2f2f2;
   display: flex;
@@ -90,8 +90,6 @@ const Scroll = styled.div`
   margin: 0 -16px;
   padding: 0 16px;
   position: relative;
-  
-  -webkit-overflow-scrolling: touch;
 `;
 
 const Image = styled.img`
