@@ -78,17 +78,20 @@ const MapPage: React.FC = () => {
 
   // 현재 위도/경도 가져오기
   const getCurrentPosition = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(currentPosition);
-      console.log('location-current');
-      setLocation();
-    }
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition(currentPosition);
+    //   console.log('location-current');
+    //   setLocation();
+    // }
+
+    currentPosition();
   };
+
   const currentPosition = () => {
     dispatch(
       PositionActionCreators.setPosition({
         latitude: 37.5760222,
-        longitude: 126.9769000,
+        longitude: 126.9769,
       }),
     );
   };
