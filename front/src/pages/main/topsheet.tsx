@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import { useEffect } from 'react';
 
 export const TopSheet = () => {
-
   return (
     <div
       css={css`
@@ -14,7 +13,16 @@ export const TopSheet = () => {
         align-items: center;
       `}
     >
-      <Title className="icon1-after">SEOUL</Title>
+      <Title>
+        <div
+          css={css`
+            text-align: 'center';
+          `}
+          className="icon1-after"
+        >
+          <div style={{ position: 'absolute' }}>SEOUL</div>
+        </div>
+      </Title>
       <SubTitle>KOREA</SubTitle>
     </div>
   );
@@ -32,7 +40,7 @@ const SubTitle = styled.p`
   font-size: 13px;
   color: #a1a1a1;
   text-transform: uppercase;
-  margin-top: 0px;
+  margin-top: -110px;
   font-weight: bold;
   font-family: 'Montserrat';
 `;
