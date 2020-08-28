@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { UserStateProps } from 'store/user/reducer';
 import { ArticleActionCreators } from './action';
-import { ArticleDetailDto } from 'apis/article';
+import { ArticleDetailDto, ArticleDto } from 'apis/article';
 
 export interface ArticleEntityStateProps {
   id: number;
@@ -9,6 +9,8 @@ export interface ArticleEntityStateProps {
   description: string;
   lat: number;
   lng: number;
+  like_count?: number;
+  comment_count?: number;
   writer: UserStateProps;
   files: ArticleFileStateProps[];
 }

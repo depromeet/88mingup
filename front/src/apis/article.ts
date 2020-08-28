@@ -44,6 +44,8 @@ export const getArticles = (writerId?: number) =>
         lat: dto.lat,
         lng: dto.lng,
         writer: dto.writer,
+        like_count: dto.like_count,
+        comment_count: dto.comment_count,
         files: dto.media_contents!.map((content) => {
           return { id: content.id!, file: content.file };
         }),

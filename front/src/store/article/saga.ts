@@ -8,6 +8,7 @@ import { AxiosResponse } from 'axios';
 
 export function* fetchAllArticles() {
   const data = yield call(getArticles);
+
   yield put({
     type: ArticleActionTypes.REFRESH,
     payload: {
@@ -92,7 +93,6 @@ export function* postArticle(
 export function* likeArticle(
   action: ReturnType<typeof ArticleActionCreators.likeArticle.request>,
 ) {
-  console.log("끼애F")
   try {
     yield call(ArticleAPI.likeArticle, action.payload);
     yield put(ArticleActionCreators.likeArticle.success());

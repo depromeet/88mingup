@@ -8,6 +8,7 @@ import { history } from 'store/rootReducer';
 interface Props extends ArticleEntityStateProps {}
 
 export const ArticleShortcut = (props: Props) => {
+  console.log('rpo', props);
   return (
     <div onClick={() => history.push(`/articles/${props.id}`)}>
       <img
@@ -43,11 +44,11 @@ export const ArticleShortcut = (props: Props) => {
           >
             <SubTittleWrapper>
               <HeartIcon />
-              <SubTitle>1023</SubTitle>
+              <SubTitle>{props.like_count}</SubTitle>
             </SubTittleWrapper>
             <SubTittleWrapper>
               <CommentIcon />
-              <SubTitle>1023</SubTitle>
+              <SubTitle>{props.comment_count}</SubTitle>
             </SubTittleWrapper>
           </div>
         </div>
