@@ -50,9 +50,9 @@
     width: 156px;
     height: 156px;
     z-index: -1;
-    position: absolute;
-    top: 32px;
-    right: 15px;
+    position: relative;
+    left: 100px;
+    bottom: 80px;
 }
   
 .icon2-after::after {
