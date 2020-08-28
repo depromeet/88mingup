@@ -8,8 +8,8 @@ export interface PositionProps {
 }
 
 export const initialState: PositionProps = {
-  latitude: 0,
-  longitude: 0,
+  latitude: 37.5760222,
+  longitude: 126.9769,
 };
 
 export const positionReducer = createReducer(initialState, (builder) => {
