@@ -19,6 +19,8 @@ const MyPage: React.FC = () => {
     (state) => state.user,
   );
 
+  console.log('user', user);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -112,15 +114,9 @@ const MyPage: React.FC = () => {
           padding: '60px 16px 0px',
         }}
       >
-        <Card url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg" />
-        <Card url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg" />
-        <Card url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg" />
-        <Card url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg" />
-        <Card url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg" />
-        <Card url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg" />
-        <Card url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg" />
-        <Card url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg" />
-        <Card url="https://opgg-com-image.akamaized.net/attach/images/20190813211845.709731.jpg" />
+        {user.writedArticles.map((item, index) => (
+          <Card key={`card-${index}`} url={item?.files?.[0].file} />
+        ))}
       </div>
     </>
   ) : (

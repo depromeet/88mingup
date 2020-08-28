@@ -9,11 +9,12 @@ export function* currentUserProfile() {
   try {
     const profile: UserStateProps = yield call(getProfile);
     const writedArticles = yield call(ArticleAPI.getArticles, profile.id);
-    console.log('dadaad', writedArticles);
+
     yield put({
       type: UserActionTypes.SET_PROFILE,
       payload: {
         ...profile,
+        writedArticles,
         authenticated: true,
       },
     });
