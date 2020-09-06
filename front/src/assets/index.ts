@@ -1,4 +1,4 @@
-export { ReactComponent as User } from './ic_mypage.svg';
+export { ReactComponent as User } from './ic-mypage.svg';
 export { ReactComponent as Logo } from './ic_logo.svg';
 export { ReactComponent as LoginLogo } from './ic_logo_login.svg';
 export { ReactComponent as RecordIcon } from './ic_record.svg';

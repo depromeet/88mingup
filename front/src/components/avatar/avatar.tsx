@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReactComponent as DefaultProfileIcon } from 'assets/ic_mypage.svg';
+import { ReactComponent as DefaultProfileIcon } from 'assets/ic-mypage.svg';
 
 interface Props {
   src?: string;
