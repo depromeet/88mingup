@@ -11,7 +11,7 @@
 * Back-end : Python, Django
 * Front-end: TypeScript, React, Redux, Redux-Saga
 
-## Featuers
+## Features
 * 회원가입 (카카오 로그인)
 * 게시글 작성, 이미지 첨부
 * 댓글 작성, 좋아요 작성
