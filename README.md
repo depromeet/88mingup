@@ -2,10 +2,10 @@
 디프만 8기 8조 워밍업 프로젝트
 
 ## Developers
-* 최승일[https://github.com/choiseungil29] : Back
-* 최은석[https://github.com/Ssook] : Back
-* 조영제[https://github.com/siosio34] : Front
-* 이정민[https://github.com/danmin20] : Front
+* [최승일](https://github.com/choiseungil29) : Back
+* [최은석](https://github.com/Ssook) : Back
+* [조영제](https://github.com/siosio34) : Front
+* [이정민](https://github.com/danmin20) : Front
 
 ## Technology
 * Back-end : Python, Django
