@@ -2,19 +2,18 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import { getProfile, userLogin } from 'apis/user';
 import { UserActionTypes } from './action';
 import { UserStateProps } from './reducer';
-import { ArticleDto } from 'apis/article';
 import { ArticleAPI } from 'apis';
 
 export function* currentUserProfile() {
   try {
     const profile: UserStateProps = yield call(getProfile);
-    const writedArticles = yield call(ArticleAPI.getArticles, profile.id);
+    const writtenArticles = yield call(ArticleAPI.getArticles, profile.id);
 
     yield put({
       type: UserActionTypes.SET_PROFILE,
       payload: {
         ...profile,
-        writedArticles,
+        writtenArticles,
         authenticated: true,
       },
     });

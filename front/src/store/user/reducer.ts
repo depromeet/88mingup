@@ -1,6 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { UserActionCreators } from './action';
-import { ArticleDto } from 'apis/article';
 import { ArticleEntityStateProps } from 'store/article/reducer';
 
 export interface UserStateProps {
@@ -13,7 +12,7 @@ export interface UserStateProps {
   comment_count: number;
   article_count: number;
   like_count: number;
-  writedArticles: ArticleEntityStateProps[];
+  writtenArticles: ArticleEntityStateProps[];
 }
 
 const initialState: UserStateProps = {
@@ -26,7 +25,7 @@ const initialState: UserStateProps = {
   comment_count: 0,
   article_count: 0,
   like_count: 0,
-  writedArticles: [],
+  writtenArticles: [],
 };
 
 export const userReducer = createReducer(initialState, (builder) => {
@@ -40,6 +39,6 @@ export const userReducer = createReducer(initialState, (builder) => {
     state.comment_count = action.payload.comment_count;
     state.article_count = action.payload.article_count;
     state.like_count = action.payload.like_count;
-    state.writedArticles = action.payload.writedArticles;
+    state.writtenArticles = action.payload.writtenArticles;
   });
 });

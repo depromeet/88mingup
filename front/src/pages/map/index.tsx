@@ -76,18 +76,8 @@ const MapPage: React.FC = () => {
     setLocation();
   };
 
-  // 현재 위도/경도 가져오기
+  // 현재 위도/경도 가져오기 (광화문으로 설정)
   const getCurrentPosition = () => {
-    // if (navigator.geolocation) {
-    //   navigator.geolocation.getCurrentPosition(currentPosition);
-    //   console.log('location-current');
-    //   setLocation();
-    // }
-
-    currentPosition();
-  };
-
-  const currentPosition = () => {
     dispatch(
       PositionActionCreators.setPosition({
         latitude: 37.5760222,

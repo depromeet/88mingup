@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { useEffect } from 'react';
 
 export const TopSheet = () => {
   return (

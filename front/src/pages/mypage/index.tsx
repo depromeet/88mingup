@@ -114,7 +114,7 @@ const MyPage: React.FC = () => {
           padding: '60px 16px 0px',
         }}
       >
-        {user.writedArticles.map((item, index) => (
+        {user.writtenArticles.map((item, index) => (
           <Card key={`card-${index}`} url={item?.files?.[0].file} />
         ))}
       </div>

@@ -1,14 +1,14 @@
 // $space: 20px;
 
-// .no-scrollbar {
-//   scrollbar-width: none;
-//   margin-bottom: 0;
-//   padding-bottom: 0;
+.no-scrollbar {
+  scrollbar-width: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
 
-//   &::-webkit-scrollbar {
-//     display: none;
-//   }
-// }
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 
 // .list {
 //   display: grid;
@@ -38,10 +38,6 @@
 //     align-items: center;
 //   }
 // }
-
-::-webkit-scrollbar{
-    display: none;
-}
 
 .icon1-after::after {
     content: '';

@@ -10,7 +10,6 @@ import { useDispatch } from 'react-redux';
 import { UserActionCreators } from 'store/user/action';
 import { PositionActionCreators } from 'store/position/action';
 import { Favorite } from './favorite';
-import { MainBubble } from 'assets';
 
 const MainPage: React.FC = (props) => {
   const dispatch = useDispatch();
@@ -49,14 +48,6 @@ const MainPage: React.FC = (props) => {
 const RootLayout = styled.div`
   padding-left: 16px;
   padding-right: 16px;
-`;
-
-const BubbleImg = styled.div`
-  z-index: 1;
-  position: absolute;
-  right: 0;
-  margin-top: 28px;
-  margin-right: 15px;
 `;
 
 export default MainPage;

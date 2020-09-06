@@ -1,4 +1,4 @@
-import React, { useEffect, useState, SetStateAction } from 'react';
+import React, { useState } from 'react';
 import './upload.scss';
 import styled from '@emotion/styled';
 import { Header, BlueTextBtn, Input } from 'components';
@@ -9,10 +9,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'store/configureStore';
 import { CameraIcon } from 'assets';
 import TextArea from 'components/textArea';
-import Axios from 'axios';
 import { PositionProps } from 'store/position/reducer';
 import { ArticleActionCreators } from 'store/article/action';
-import { UserStateProps } from 'store/user/reducer';
 import createLoadingSelector from 'store/loading/selector';
 
 const BlankImg = styled.div`
@@ -54,10 +52,6 @@ const UploadPage: React.FC = () => {
   const fileUploadLoading = useSelector(
     createLoadingSelector([ArticleActionCreators.postFile.actionName]),
   );
-
-  // 이미지프로세스 등록.
-
-  // 1. 업로드 버튼은 글이랑 설명이랑 이미지가 등록이 완료되었을때 활성화가 되야겠죠.
 
   const uploadImage = (file: File) => {
     if (!file) {

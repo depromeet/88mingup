@@ -51,10 +51,6 @@ export function* postArticleFile(
       typeof ArticleActionCreators.postFile.success
     >['payload'] = yield call(ArticleAPI.postFile, action.payload);
 
-    // const response: ReturnType<
-    //   typeof ArticleActionCreators.fetch.success
-    // >['payload'] = yield call(ArticleAPI.getArticleDetail, action.payload);
-
     yield put(ArticleActionCreators.postFile.success(response));
   } catch (error) {
     yield put(ArticleActionCreators.postFile.failure(error));
@@ -76,13 +72,8 @@ export function* postArticle(
       uploadArticleData,
     );
 
-    // 글 업로드완료되면은 해당글 상세로 나가야되고
-
+    // 업로드 후 해당글 상세페이지로 이동
     yield put(push(`/articles/${response.data.id}`));
-
-    // const response: ReturnType<
-    //   typeof ArticleActionCreators.fetch.success
-    // >['payload'] = yield call(ArticleAPI.getArticleDetail, action.payload);
 
     yield put(ArticleActionCreators.postArticle.success());
   } catch (error) {

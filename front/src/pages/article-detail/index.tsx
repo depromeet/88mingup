@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Header, Avatar, IconText, List, Input, Card } from 'components';
+import { Header, Avatar, IconText, List, Input } from 'components';
 
 import 'dayjs/locale/ko';
 
@@ -8,7 +8,6 @@ import './article-detail.scss';
 import { HeaderItem } from 'components/header/item';
 import {
   BackIconBlack,
-  RecordIcon,
   HeartIcon,
   CommentIcon,
   MoreIcon,
@@ -21,8 +20,6 @@ import createLoadingSelector from 'store/loading/selector';
 
 import dayjs from 'dayjs';
 import { push } from 'connected-react-router';
-import article from 'apis/article';
-import { userInfo } from 'os';
 
 const ArticleDetailPage: React.FC = (props) => {
   const dispatch = useDispatch();

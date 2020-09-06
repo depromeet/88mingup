@@ -1,7 +1,7 @@
 import React from 'react';
 import KakaoLogin from 'react-kakao-login';
 import { useDispatch } from 'react-redux';
-import { UserActionTypes, UserActionCreators } from 'store/user/action';
+import { UserActionCreators } from 'store/user/action';
 
 export default function Auth() {
   const dispatch = useDispatch();

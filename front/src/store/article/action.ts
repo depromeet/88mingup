@@ -1,16 +1,13 @@
 import { createAction } from '@reduxjs/toolkit';
-import { ArticleEntityStateProps, ArticleStateProps } from './reducer';
+import { ArticleStateProps } from './reducer';
 import createAsyncAction from 'utils/createAsyncAction';
 import { AxiosResponse } from 'axios';
 import {
   ArticleDetailDto,
   CommentDto,
-  ArticleFileDto,
-  ArticleDto,
   PostArticleDto,
   LikeArticle,
 } from 'apis/article';
-import { create } from 'lodash';
 
 const prefix = 'ARTICLE';
 

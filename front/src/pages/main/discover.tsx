@@ -1,13 +1,9 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 import { BlueBKBtn } from 'components';
-import styled from '@emotion/styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import {
-  ArticleActionTypes,
-  ArticleActionCreators,
-} from 'store/article/action';
+import { ArticleActionCreators } from 'store/article/action';
 import { ArticleStateProps } from 'store/article/reducer';
 import { RootState } from 'store/configureStore';
 import { ArticleShortcut } from 'components/article/shortcut';

@@ -1,12 +1,10 @@
 import React from 'react';
-import { Header, SearchInput } from 'components';
+import { Header } from 'components';
 import { HeaderItem } from 'components/header/item';
 import { history } from 'store/rootReducer';
 import { CloseIcon } from 'assets';
-import { useInput } from 'hooks/useInput';
 import DaumPostcode from 'react-daum-postcode';
 import UnderlineInput from 'components/searchInput';
-import { ThemeContext } from '@emotion/core';
 import Geocode from 'react-geocode';
 import { useDispatch } from 'react-redux';
 import { PositionActionCreators } from 'store/position/action';
