@@ -30,3 +30,9 @@
 <img width=300 src="https://user-images.githubusercontent.com/50590192/92329017-b11aa080-f09f-11ea-962c-ee8f0456aae5.png">
 <img width=300 src="https://user-images.githubusercontent.com/50590192/92328958-4c5f4600-f09f-11ea-8957-0f6250bf492c.png">
 </div>
+
+### Infrastructure model
+![Infrastructure main model](.infragenie/infrastructure_main_model.svg)
+- [server component model](.infragenie/server_component_model.svg)
+
+---
